@@ -22,11 +22,13 @@ Flask-JWT-Extended = "==3.24.1"
 flask-migrate = "*"
 email-validator = "*"
 flask-login = "*"
+autopep8 = "*"
 
 [dev-packages]
 psycopg2-binary = "==2.8.6"
 autopep8 = "*"
 pylint = "*"
+pycodestyle = "*"
 
 [requires]
 python_version = "3.8"
