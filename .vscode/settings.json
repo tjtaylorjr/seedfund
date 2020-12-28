@@ -1,6 +1,7 @@
 {
-    "python.pythonPath": "/home/echo/dev/appacademy/starters/python-project-starter/.venv/bin/python",
+    "python.pythonPath": "/Users/miguelmunoz/.pyenv/versions/3.8.3/bin/python",
     "python.linting.pylintEnabled": false,
     "python.linting.enabled": true,
-    "python.linting.pycodestyleEnabled": true
+    "python.linting.pycodestyleEnabled": true,
+    "python.formatting.provider": "autopep8"
 }
