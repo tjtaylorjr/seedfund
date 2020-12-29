@@ -7,6 +7,7 @@ from flask_login import LoginManager
 
 from .models import db, User
 from .routes.user_routes import user_routes
+from .routes.api.project_routes import project_routes
 
 from .seeds import seed_commands
 
@@ -28,6 +29,7 @@ def load_user(id):
 app.cli.add_command(seed_commands)
 
 app.config.from_object(Config)
+app.register_blueprint(project_routes, url_prefix='/api/project')
 app.register_blueprint(user_routes, url_prefix='/users')
 db.init_app(app)
 Migrate(app, db)
