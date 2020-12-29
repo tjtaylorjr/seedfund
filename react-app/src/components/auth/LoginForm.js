@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Redirect } from "react-router-dom";
+import { Redirect, NavLink } from "react-router-dom";
 import { login } from "../../services/auth";
 import Footer from "../Footer/Footer";
 
@@ -41,7 +41,6 @@ const LoginForm = ({ authenticated, setAuthenticated }) => {
               ))}
             </div>
             <div className="login-form__title">Log In</div>
-
             <input
               name="email"
               type="text"
@@ -64,9 +63,13 @@ const LoginForm = ({ authenticated, setAuthenticated }) => {
           </form>
           <div className="signup-link__main-container">
             <div className="signup-link__message">New to SeedFund?</div>
-            <a className="signup-link__link" href="/signup">
+            <NavLink
+              className="signup-link__link"
+              to="/users/signup"
+              exact={true}
+            >
               Sign Up
-            </a>
+            </NavLink>
           </div>
         </div>
       </div>

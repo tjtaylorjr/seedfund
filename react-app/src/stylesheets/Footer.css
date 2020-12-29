@@ -14,19 +14,22 @@
 .footer-contributers {
   display: grid;
   grid-area: contributer;
-  font-weight: bolder;
+  font-weight: 525;
+  opacity: 0.8;
 }
 
 .footer-product {
   display: grid;
   grid-area: product;
-  font-weight: bolder;
+  font-weight: 525;
+  opacity: 0.8;
 }
 
 .footer-community {
   display: grid;
   grid-area: community;
-  font-weight: bolder;
+  font-weight: 525;
+  opacity: 0.8;
 }
 
 .contributer-link,
@@ -35,13 +38,16 @@
   text-decoration: none;
   color: #282828;
   padding-top: 8px;
-  font-weight: lighter;
+  font-weight: 400;
+  font-size: 14px;
 }
 
 .footer__bottom-container {
   display: flex;
   justify-content: space-evenly;
-  margin: 15px auto;
+  margin: 18px auto;
+  font-size: 14px;
+  opacity: 0.8;
 }
 
 .fa-github-square {
