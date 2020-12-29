@@ -50,7 +50,7 @@ function App() {
       <ProtectedRoute path="/" exact={true} authenticated={authenticated}>
         <h1>SeedFund</h1>
       </ProtectedRoute>
-      <ProtectedRoute path='/new-project' exact={true} authenticated={authenticated}>
+      <ProtectedRoute path='/start' exact={true} authenticated={authenticated}>
         <NewProject />
       </ProtectedRoute>
     </BrowserRouter>
