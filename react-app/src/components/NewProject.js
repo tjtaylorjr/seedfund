@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 
-class NewProject(prop){
+function NewProject(prop) {
   const [title, setTitle] = useState('')
   const [description, setDescription] = useState('')
   const [fundingGoal, setFundingGoal] = useState('')

@@ -2,36 +2,53 @@ import React from 'react';
 import { NavLink } from 'react-router-dom';
 import LogoutButton from './auth/LogoutButton';
 
-const NavBar = ({ setAuthenticated }) => {
-  return (
-    <nav>
-      <ul>
-        <li>
-          <NavLink to="/" exact={true} activeClassName="active">
-            Home
+const NavBar = ({ authenticated, setAuthenticated }) => {
+  if (authenticated) {
+    return (
+      <nav>
+        <ul>
+          <li>
+            <NavLink to="/" exact={true} activeClassName="active">
+              Home
           </NavLink>
-        </li>
-        <li>
-          <NavLink to="/login" exact={true} activeClassName="active">
-            Login
+          </li>
+          <li>
+            <NavLink to="/start" exact={true} activeClassName="active">
+              Start A Project
           </NavLink>
-        </li>
-        <li>
-          <NavLink to="/sign-up" exact={true} activeClassName="active">
-            Sign Up
+          </li>
+          <li>
+            <NavLink to="/profile" exact={true} activeClassName="active">
+              Profile
           </NavLink>
-        </li>
-        <li>
-          <NavLink to="/users" exact={true} activeClassName="active">
-            Users
-          </NavLink>
-        </li>
-        <li>
+          </li>
           <LogoutButton setAuthenticated={setAuthenticated} />
-        </li>
-      </ul>
-    </nav>
-  );
+        </ul>
+      </nav>
+    )
+  } else {
+    return (
+      <nav>
+        <ul>
+          <li>
+            <NavLink to="/" exact={true} activeClassName="active">
+              Home
+          </NavLink>
+          </li>
+          <li>
+            <NavLink to="/login" exact={true} activeClassName="active">
+              Login
+          </NavLink>
+          </li>
+          <li>
+            <NavLink to="/signup" exact={true} activeClassName="active">
+              Sign Up
+          </NavLink>
+          </li>
+        </ul>
+      </nav>
+    )
+  }
 }
 
 export default NavBar;
