@@ -33,6 +33,9 @@ def newProject():
     print(form.errors)
     return jsonify(form.errors)
 
+
 @project_routes.route('/trending')
 def getTrending():
-    pass
+    result = Project.query.order_by(Project.date_goal.desc()).limit(5).all()
+    data = [ project.to_dict() for project in result ]
+    return {"trending_projects": data}
