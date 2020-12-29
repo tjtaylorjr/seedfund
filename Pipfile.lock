@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "326cee062b96495c441d4e0cedba574a22490074b7124f51d59d250b39d78f3e"
+            "sha256": "891bfb87d644b5488d54e19216f9ae0150293c16ac9ca13efcc7cc75f6505026"
         },
         "pipfile-spec": 6,
         "requires": {
@@ -254,6 +254,7 @@
             ],
             "index": "pypi",
             "version": "==1.7.1"
+<<<<<<< HEAD
         },
         "pylint": {
             "hashes": [
@@ -262,6 +263,8 @@
             ],
             "index": "pypi",
             "version": "==2.6.0"
+=======
+>>>>>>> main
         },
         "python-dateutil": {
             "hashes": [
