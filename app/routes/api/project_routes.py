@@ -1,6 +1,5 @@
 from flask import Blueprint, jsonify, redirect, request
 from datetime import datetime, timedelta
-import simplejson as json
 from app.models import db, Project
 from app.forms.project_form import ProjectForm
 
@@ -8,9 +7,9 @@ project_routes = Blueprint('projects', __name__)
 
 @project_routes.route('/')
 def getAllProjects():
-    return 'this works'
-    # result = Project.all()
-    # return jsonify(result)
+    result = Project.query.all()
+    data = [ project.to_dict() for project in result ]
+    return {"projects": data}
 
 
 @project_routes.route('/', methods=["POST"])
@@ -30,7 +29,10 @@ def newProject():
         )
         db.session.add(project)
         db.session.commit()
-        return json.dumps(project.to_dict())
+        return project.to_dict()
     print(form.errors)
     return jsonify(form.errors)
-    
+
+@project_routes.route('/trending')
+def getTrending():
+    pass
