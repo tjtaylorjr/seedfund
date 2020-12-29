@@ -30,34 +30,42 @@ const LoginForm = ({ authenticated, setAuthenticated }) => {
   }
 
   return (
-    <form onSubmit={onLogin}>
-      <div>
-        {errors.map((error) => (
-          <div>{error}</div>
-        ))}
-      </div>
-      <div>
-        <label htmlFor="email">Email</label>
+    <div className="login-form__main-container">
+      <form className="login-form__form-container" onSubmit={onLogin}>
+        <div>
+          {errors.map((error) => (
+            <div>{error}</div>
+          ))}
+        </div>
+        <div className="login-form__title">Log In</div>
+
         <input
           name="email"
           type="text"
+          className="login-form__input-field"
           placeholder="Email"
           value={email}
           onChange={updateEmail}
         />
-      </div>
-      <div>
-        <label htmlFor="password">Password</label>
         <input
           name="password"
           type="password"
           placeholder="Password"
+          className="login-form__input-field"
           value={password}
           onChange={updatePassword}
         />
-        <button type="submit">Login</button>
+        <button className="login-form__submit-button" type="submit">
+          Log in
+        </button>
+      </form>
+      <div className="signup-link__main-container">
+        <div className="signup-link__message">New to SeedFund?</div>
+        <a className="signup-link__link" href="/signup">
+          Sign Up
+        </a>
       </div>
-    </form>
+    </div>
   );
 };
 
