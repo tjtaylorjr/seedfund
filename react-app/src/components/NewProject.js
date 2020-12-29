@@ -25,7 +25,7 @@ function NewProject() {
       }),
     });
     const project = await response.json();
-    history.push(`/project/${project.id}`)
+    history.push(`/project/${project.title}`)
   };
 
   return (
