@@ -34,6 +34,12 @@ def newProject():
     return jsonify(form.errors)
 
 
+@project_routes.route('/<id>')
+def getSpecificProject(id):
+    result = Project.query.get(id)
+    return result.to_dict()
+
+
 @project_routes.route('/trending')
 def getTrending():
     result = Project.query.order_by(Project.date_goal.desc()).limit(5).all()
