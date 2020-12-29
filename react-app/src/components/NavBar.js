@@ -51,31 +51,4 @@ const NavBar = ({ authenticated, setAuthenticated }) => {
   }
 }
 
-// const NavBar = ({ authenticated, setAuthenticated }) => {
-//   return (
-//     <nav>
-//       <ul>
-//         <li>
-//           <NavLink to="/" exact={true} activeClassName="active">
-//             Home
-//           </NavLink>
-//         </li>
-//         {!authenticated && authenticationLinks}
-//         {/* {authenticated && secureLinks} */}
-//         {if(authenticated) {
-//           return (
-//             <>
-//               {secureLinks}
-//               <li>
-//                 <LogoutButton setAuthenticated={setAuthenticated} />
-//               </li>
-//             </>
-//           )
-//         }}
-//         {/* {authenticated && secureLinks} */}
-//       </ul>
-//     </nav>
-//   );
-// }
-
 export default NavBar;
