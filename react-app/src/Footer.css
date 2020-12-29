@@ -1,0 +1,50 @@
+.footer-grid__main-container {
+  display: grid;
+  grid-template-areas:
+    "contributer product community"
+    "contributer product community"
+    "contributer product community"
+    "contributer . ."
+    "contributer . .";
+  justify-content: space-evenly;
+  border-top: 2px solid #dcdedd;
+  padding-top: 14px;
+}
+
+.footer-contributers {
+  display: grid;
+  grid-area: contributer;
+  font-weight: bolder;
+}
+
+.footer-product {
+  display: grid;
+  grid-area: product;
+  font-weight: bolder;
+}
+
+.footer-community {
+  display: grid;
+  grid-area: community;
+  font-weight: bolder;
+}
+
+.contributer-link,
+.product-link,
+.community-link {
+  text-decoration: none;
+  color: #282828;
+  padding-top: 8px;
+  font-weight: lighter;
+}
+
+.footer__bottom-container {
+  display: flex;
+  justify-content: space-evenly;
+  margin: 15px auto;
+}
+
+.fa-github-square {
+  font-size: 20px;
+  color: #282828;
+}

@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Redirect } from "react-router-dom";
 import { login } from "../../services/auth";
+import Footer from "../Footer/Footer";
 
 const LoginForm = ({ authenticated, setAuthenticated }) => {
   const [errors, setErrors] = useState([]);
@@ -30,42 +31,47 @@ const LoginForm = ({ authenticated, setAuthenticated }) => {
   }
 
   return (
-    <div className="login-form__main-container">
-      <form className="login-form__form-container" onSubmit={onLogin}>
-        <div>
-          {errors.map((error) => (
-            <div>{error}</div>
-          ))}
-        </div>
-        <div className="login-form__title">Log In</div>
+    <>
+      <div className="login-page__main-container">
+        <div className="login-form__main-container">
+          <form className="login-form__form-container" onSubmit={onLogin}>
+            <div>
+              {errors.map((error) => (
+                <div>{error}</div>
+              ))}
+            </div>
+            <div className="login-form__title">Log In</div>
 
-        <input
-          name="email"
-          type="text"
-          className="login-form__input-field"
-          placeholder="Email"
-          value={email}
-          onChange={updateEmail}
-        />
-        <input
-          name="password"
-          type="password"
-          placeholder="Password"
-          className="login-form__input-field"
-          value={password}
-          onChange={updatePassword}
-        />
-        <button className="login-form__submit-button" type="submit">
-          Log in
-        </button>
-      </form>
-      <div className="signup-link__main-container">
-        <div className="signup-link__message">New to SeedFund?</div>
-        <a className="signup-link__link" href="/signup">
-          Sign Up
-        </a>
+            <input
+              name="email"
+              type="text"
+              className="login-form__input-field"
+              placeholder="Email"
+              value={email}
+              onChange={updateEmail}
+            />
+            <input
+              name="password"
+              type="password"
+              placeholder="Password"
+              className="login-form__input-field"
+              value={password}
+              onChange={updatePassword}
+            />
+            <button className="login-form__submit-button" type="submit">
+              Log in
+            </button>
+          </form>
+          <div className="signup-link__main-container">
+            <div className="signup-link__message">New to SeedFund?</div>
+            <a className="signup-link__link" href="/signup">
+              Sign Up
+            </a>
+          </div>
+        </div>
       </div>
-    </div>
+      <Footer />
+    </>
   );
 };
 

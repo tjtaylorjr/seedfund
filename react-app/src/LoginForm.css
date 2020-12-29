@@ -1,11 +1,22 @@
+.login-page__main-container {
+  box-sizing: border-box;
+  display: flex;
+  justify-content: center;
+  background-color: #f7f7f6;
+  vertical-align: baseline;
+  padding: 60px 18px;
+  height: 100vh;
+}
+
 .login-form__main-container {
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
   align-items: center;
   max-width: 400px;
+  width: 100%;
+  height: fit-content;
   padding: 20px;
-  margin: auto;
   background-color: #ffffff;
   border: 1px solid #f1eeea;
   border-radius: 2px;
