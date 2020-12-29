@@ -9,7 +9,7 @@ class ProjectForm(FlaskForm):
     fundingGoal = DecimalField('fundingGoal', validators=[DataRequired()])
     balance = DecimalField('balance')
     image = StringField('image')
-    dateGoal = DateField('dateGoal', validators=[DataRequired()])
+    dateGoal = DateField('dateGoal')
     category = StringField('category', validators=[DataRequired()])
     # username = StringField('username', validators=[DataRequired()])
     # email = StringField('email', validators=[DataRequired(), user_exists])

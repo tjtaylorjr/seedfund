@@ -7,6 +7,7 @@ from flask_login import LoginManager
 
 from .models import db, User
 from .routes.user_routes import user_routes
+from .routes.api.project_routes import project_routes
 
 from .seeds import seed_commands
 

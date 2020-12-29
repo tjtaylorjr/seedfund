@@ -1,4 +1,6 @@
 from flask import Blueprint, jsonify, redirect, request
+from datetime import datetime, timedelta
+import simplejson as json
 from app.models import db, Project
 from app.forms.project_form import ProjectForm
 
@@ -13,7 +15,7 @@ def getAllProjects():
 
 @project_routes.route('/', methods=["POST"])
 def newProject():
-    form = ProjectForm() # How does this thing connect to the incoming data...?
+    form = ProjectForm()
     form['csrf_token'].data = request.cookies['csrf_token']
     if form.validate_on_submit():
         project = Project(
@@ -23,12 +25,12 @@ def newProject():
             funding_goal=form.data['fundingGoal'],
             balance=0.00,
             image=form.data['image'],
-            date_goal=form.data['dateGoal'],
+            date_goal=(datetime.now() + timedelta(days=30)).isoformat(),
             category=form.data['category']
         )
         db.session.add(project)
         db.session.commit()
-        return project.to_dict()
+        return json.dumps(project.to_dict())
     print(form.errors)
     return jsonify(form.errors)
     
