@@ -22,9 +22,7 @@ const NavBar = ({ authenticated, setAuthenticated }) => {
               Profile
           </NavLink>
           </li>
-          <li>
-            <LogoutButton setAuthenticated={setAuthenticated} />
-          </li>
+          <LogoutButton setAuthenticated={setAuthenticated} />
         </ul>
       </nav>
     )
