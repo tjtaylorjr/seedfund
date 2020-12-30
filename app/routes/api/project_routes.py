@@ -72,7 +72,7 @@ def updateProject(id):
 @project_routes.route('/<id>', methods=["DELETE"])
 def deleteProject(id):
     project = Project.query.get(id)
-    if project != None:
+    if project is not None:
         db.session.delete(project)
         db.session.commit()
         return {"id deleted": id}
