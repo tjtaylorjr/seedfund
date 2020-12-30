@@ -32,8 +32,7 @@ function App() {
     <BrowserRouter>
       <NavBar
         authenticated={authenticated}
-        setAuthenticated={setAuthenticated}
-      />
+        setAuthenticated={setAuthenticated} />
       <ProtectedRoute path="/" exact={true} authenticated={authenticated}>
         <h1>SeedFund</h1>
       </ProtectedRoute>
