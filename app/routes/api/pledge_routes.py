@@ -15,13 +15,14 @@ def getAllPledges():
 
 @pledge_routes.route('/projects/<id>/pledges', methods=["POST"])
 def newPledge(id):
-    user_id = request.body.userId
-    project_id = request.body.projectId
-    amount = request.body.amount
+    data = request.get_json()
+    user_id = data["userId"]
+    project_id = data["projectId"]
+    amount = float(data["amount"])
     project = Project.query.get(id)
     if project:
-        project.balance += amount
-        pledge = dict()
+        project.balance = float(project.balance) + amount
+        pledge = Pledge()
         pledge.user_id = user_id
         pledge.project_id = project_id
         pledge.amount = amount
