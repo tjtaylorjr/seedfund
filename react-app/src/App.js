@@ -7,8 +7,8 @@ import NavBar from "./components/NavBar";
 import ProtectedRoute from "./components/auth/ProtectedRoute";
 import UsersList from "./components/UsersList";
 import User from "./components/User";
-import NewProject from "./components/NewProject"
-import ProjectProfile from './components/ProjectProfile'
+import NewProject from "./components/NewProject";
+import ProjectProfile from "./components/ProjectProfile";
 import { authenticate } from "./services/auth";
 
 function App() {
@@ -33,7 +33,8 @@ function App() {
     <BrowserRouter>
       <NavBar
         authenticated={authenticated}
-        setAuthenticated={setAuthenticated} />
+        setAuthenticated={setAuthenticated}
+      />
       <Switch>
         <Route path="/" exact={true} authenticated={authenticated} component={Home}>
         </Route>
@@ -49,15 +50,28 @@ function App() {
             setAuthenticated={setAuthenticated}
           />
         </Route>
-        <ProtectedRoute path="/start" exact={true} authenticated={authenticated}>
-          <NewProject />
-        </ProtectedRoute>
+        <ProtectedRoute
+          path="/start"
+          exact={true}
+          authenticated={authenticated}
+        ></ProtectedRoute>
         <ProtectedRoute
           path="/profile"
           exact={true}
           authenticated={authenticated}
         ></ProtectedRoute>
-        <ProtectedRoute path='/project/:id' exact={true} authenticated={authenticated}>
+        <ProtectedRoute
+          path="/start"
+          exact={true}
+          authenticated={authenticated}
+        >
+          <NewProject />
+        </ProtectedRoute>
+        <ProtectedRoute
+          path="/project/:id"
+          exact={true}
+          authenticated={authenticated}
+        >
           <ProjectProfile />
         </ProtectedRoute>
       </Switch>

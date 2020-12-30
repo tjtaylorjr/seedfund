@@ -66,6 +66,10 @@
   letter-spacing: 1px;
 }
 
+.demo-button {
+  margin-top: 12px;
+}
+
 .signup-link__main-container {
   display: flex;
   padding: 20px;
