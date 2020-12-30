@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { useHistory, useParams } from 'react-router-dom';
+import { Redirect, useHistory, useParams } from 'react-router-dom';
 
 function ProjectProfile(props) {
   const [project, setProject] = useState({});
@@ -15,16 +15,17 @@ function ProjectProfile(props) {
   useEffect(() => {
     (async () => {
       const response = await fetch(`/api/projects/${id}`);
-      const project = await response.json();
-      setProject(project);
-      if (project.userId === props.user.id) {
+      const res = await response.json();
+      setProject(res);
+      if (project.user_id === props.user.id) {
         setCanEdit(true);
       }
     })();
   }, []);
 
-  if (!project) {
-    history.push('/');
+
+  if (project.error) {
+    return <Redirect exact to='/' />
   }
 
   const editProject = () => {
