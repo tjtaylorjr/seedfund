@@ -9,7 +9,6 @@ function ProjectProfile(props) {
   const history = useHistory();
 
   const { id } = useParams();
-
   const userId = props.user.id;
 
   useEffect(() => {
