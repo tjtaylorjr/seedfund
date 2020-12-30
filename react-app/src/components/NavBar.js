@@ -18,7 +18,6 @@ const NavBar = ({ authenticated, setAuthenticated }) => {
 
   const demoLogin = async(e) => {
     e.preventDefault();
-    setAuthenticated(true);
     const email = "demo@user.io";
     const password = "password";
     const user = await login(email, password);
@@ -144,6 +143,11 @@ const NavBar = ({ authenticated, setAuthenticated }) => {
                 <NavLink to="#" exact={true} activeClassName="active" onClick={demoLogin}>
                   Demo
               </NavLink>
+              </li>
+              <li className="navbar__navlink-login">
+                <NavLink to="/login" exact={true} activeClassName="active">
+                  Login
+                </NavLink>
               </li>
               <li>
                 <NavLink to="/signup" exact={true} activeClassName="active">

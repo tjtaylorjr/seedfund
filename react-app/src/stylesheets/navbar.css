@@ -196,6 +196,9 @@
   margin-right: 1.8rem;
 }
 
+.navbar__navlink-login {
+  margin-right: 1.8rem;
+}
 .navbar__navlink-logout {
   border: none;
   background-color: #fff;
