@@ -31,7 +31,7 @@ function App() {
   }
 
   return (
-    <BrowserRouter>
+    {loaded} && <BrowserRouter>
       <NavBar
         authenticated={authenticated}
         setAuthenticated={setAuthenticated}
@@ -57,23 +57,14 @@ function App() {
           exact={true}
           authenticated={authenticated}
           setAuthenticated={setAuthenticated}
-        />
-      <ProtectedRoute
-        path="/start"
-        exact={true}
-        authenticated={authenticated}
-      ></ProtectedRoute>
-      <ProtectedRoute
-        path="/profile"
-        exact={true}
-        authenticated={authenticated}
-      ></ProtectedRoute>
-      <ProtectedRoute path="/start" exact={true} authenticated={authenticated}>
-        <NewProject />
-      </ProtectedRoute>
-      <ProtectedRoute path='/project/:id' exact={true} authenticated={authenticated} user={currentUser}>
-        <ProjectProfile />
-      </ProtectedRoute>
+        ></ProtectedRoute>
+        <ProtectedRoute path="/start" exact={true} authenticated={authenticated}>
+          <NewProject />
+        </ProtectedRoute>
+        <ProtectedRoute path='/project/:id' exact={true} authenticated={authenticated}>
+          <ProjectProfile user={currentUser}/>
+        </ProtectedRoute>
+      </Switch>
     </BrowserRouter>
   );
 }

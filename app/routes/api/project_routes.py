@@ -2,6 +2,7 @@ from flask import Blueprint, jsonify, redirect, request
 from datetime import datetime, timedelta
 from app.models import db, Project
 from app.forms.project_form import ProjectForm
+from flask_login import current_user
 
 project_routes = Blueprint('projects', __name__)
 
@@ -18,7 +19,7 @@ def newProject():
     form['csrf_token'].data = request.cookies['csrf_token']
     if form.validate_on_submit():
         project = Project(
-            user_id=form.data['userId'],
+            user_id=current_user.get_id(),
             title=form.data['title'],
             description=form.data['description'],
             funding_goal=form.data['fundingGoal'],
@@ -78,4 +79,7 @@ def deleteProject(id):
 @project_routes.route('/search')
 def searchForProjects():
     query = request.json.get('query')
-    Project.query.get()
+    result = Project.query.filter(Project.title.ilike(f"%{query}%")).all()
+    data = [ project.to_dict() for project in result ]
+
+    return {"result": data}
