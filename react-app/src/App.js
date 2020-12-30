@@ -4,7 +4,10 @@ import LoginForm from "./components/auth/LoginForm";
 import SignUpForm from "./components/auth/SignUpForm";
 import NavBar from "./components/NavBar";
 import ProtectedRoute from "./components/auth/ProtectedRoute";
-import NewProject from "./components/NewProject";
+import UsersList from "./components/UsersList";
+import User from "./components/User";
+import NewProject from "./components/NewProject"
+import ProjectProfile from './components/ProjectProfile'
 import { authenticate } from "./services/auth";
 
 function App() {
@@ -57,6 +60,9 @@ function App() {
       ></ProtectedRoute>
       <ProtectedRoute path="/start" exact={true} authenticated={authenticated}>
         <NewProject />
+      </ProtectedRoute>
+      <ProtectedRoute path='/project/:id' exact={true} authenticated={authenticated}>
+        <ProjectProfile />
       </ProtectedRoute>
     </BrowserRouter>
   );
