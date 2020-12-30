@@ -5,11 +5,12 @@ function ProjectProfile(props) {
   const [project, setProject] = useState({});
   const [canEdit, setCanEdit] = useState(false);
   const [amount, setAmount] = useState('');
-  const [pledged, setPledged] = useState(false):
+  const [pledged, setPledged] = useState(false);
   const history = useHistory();
 
   const { id } = useParams();
-  const userId = props.user.id
+
+  const userId = props.user.id;
 
   useEffect(() => {
     (async () => {
@@ -30,7 +31,7 @@ function ProjectProfile(props) {
     history.push(`/project/${id}/edit`);
   };
 
-  const fund = () => {
+  const fund = async () => {
     if (!props.authenticated) {
       history.push('/login');
     }
@@ -49,10 +50,10 @@ function ProjectProfile(props) {
     setPledged(true)
   };
 
-  const deleteProject = () => {
-    const response = await fetch(`/api/projects/${id}`,{
+  const deleteProject = async () => {
+    const response = await fetch(`/api/projects/${id}`, {
       method: "DELETE",
-    }),
+    });
     if (response.ok) {
       history.push('/')
     }
