@@ -14,6 +14,9 @@ const NavBar = ({ authenticated, setAuthenticated }) => {
     setIsHidden(false)
   }
 
+  const demoLogin = async() => {
+
+  }
   const searchFunction = (
     <>
       <div className="navbar__searchfield-container">
@@ -124,11 +127,15 @@ const NavBar = ({ authenticated, setAuthenticated }) => {
                 </svg>
               </div>
               <li className="navbar__navlink-profile">
-                <NavLink to="/profile" exact={true} activeClassName="active">
-                  Profile
+                <NavLink to="#" exact={true} activeClassName="active" onClick={demoLogin}>
+                  Demo
               </NavLink>
               </li>
-              <LogoutButton setAuthenticated={setAuthenticated} />
+              <li>
+                <NavLink to="/login" exact={true} activeClassName="active">
+                  Login
+                </NavLink>
+              </li>
             </ul>
           </section>
         </section>
