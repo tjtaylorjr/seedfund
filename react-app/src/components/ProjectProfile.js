@@ -4,10 +4,12 @@ import { useHistory, useParams } from 'react-router-dom';
 function ProjectProfile(props) {
   const [project, setProject] = useState({});
   const [canEdit, setCanEdit] = useState(false);
-  const [amount, setAmount] = useState('')
+  const [amount, setAmount] = useState('');
+  const [pledged, setPledged] = useState(false):
   const history = useHistory();
 
   const { id } = useParams();
+  const userId = props.user.id
 
   useEffect(() => {
     (async () => {
@@ -21,7 +23,7 @@ function ProjectProfile(props) {
   }, []);
 
   if (!project) {
-    return null;
+    history.push('/');
   }
 
   const editProject = () => {
@@ -32,25 +34,28 @@ function ProjectProfile(props) {
     if (!props.authenticated) {
       history.push('/login');
     }
-    const userId = props.user.id
-    const projectId = project.id
-    const response = await fetch("", {
+
+    const response = await fetch(`/api/projects/${id}/pledges`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
         userId,
-        projectId,
+        projectId: id,
         amount,
       }),
     });
+    setPledged(true)
   };
 
   const deleteProject = () => {
-    const response = await fetch("",{
-
-    })
+    const response = await fetch(`/api/projects/${id}`,{
+      method: "DELETE",
+    }),
+    if (response.ok) {
+      history.push('/')
+    }
   }
 
   return (
@@ -74,16 +79,15 @@ function ProjectProfile(props) {
       </div>
       <div>
         <h1>{project.balance}</h1>
-        <p>`pledge of $ ${project.fundingGoal} goal`</p>
+        <p>pledge of ${project.funding_goal} goal</p>
       </div>
       {canEdit && (
         <div>
           <button onClick={editProject}>Edit</button>
-        </div>
-      )}
-        <div>
+          <br/>
           <button onClick={deleteProject}>Delete</button>
         </div>
+      )}
       <div>
         <input placeholder="Your funding goal "
           type="number"
@@ -94,6 +98,11 @@ function ProjectProfile(props) {
           onChange={(e) => {setAmount(e.target.value)}}
           />
         <button onClick={fund}>Fund</button>
+        {pledged && (
+        <div>
+          <h1>Thank you for your pledge of ${amount}</h1>
+        </div>
+        )}
       </div>
     </div>
   );
