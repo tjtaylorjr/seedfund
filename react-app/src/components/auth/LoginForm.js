@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Redirect, NavLink } from "react-router-dom";
+import { Redirect, NavLink, useHistory } from "react-router-dom";
 import { login } from "../../services/auth";
 import Footer from "../Footer/Footer";
 
@@ -7,12 +7,29 @@ const LoginForm = ({ authenticated, setAuthenticated }) => {
   const [errors, setErrors] = useState([]);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const history = useHistory();
 
   const onLogin = async (e) => {
     e.preventDefault();
     const user = await login(email, password);
     if (!user.errors) {
       setAuthenticated(true);
+    } else {
+      setErrors(user.errors);
+    }
+  };
+
+  const logInDemo = async (e) => {
+    e.preventDefault();
+    const emailField = document.querySelector(".email");
+    const passwordField = document.querySelector(".password");
+    emailField.value = "demo@user.io";
+    passwordField.value = "password";
+
+    const user = await login(emailField.value, passwordField.value);
+    if (!user.errors) {
+      setAuthenticated(true);
+      return history.push("/");
     } else {
       setErrors(user.errors);
     }
@@ -51,7 +68,7 @@ const LoginForm = ({ authenticated, setAuthenticated }) => {
             <input
               name="email"
               type="email"
-              className="login-form__input-field"
+              className="login-form__input-field email"
               placeholder="Email"
               value={email}
               onChange={updateEmail}
@@ -60,12 +77,19 @@ const LoginForm = ({ authenticated, setAuthenticated }) => {
               name="password"
               type="password"
               placeholder="Password"
-              className="login-form__input-field"
+              className="login-form__input-field password"
               value={password}
               onChange={updatePassword}
             />
             <button className="login-form__submit-button" type="submit">
               Log in
+            </button>
+            <button
+              className="login-form__submit-button demo-button"
+              type="submit"
+              onClick={logInDemo}
+            >
+              Log in as Demo User
             </button>
           </form>
           <div className="signup-link__main-container">
