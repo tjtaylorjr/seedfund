@@ -73,3 +73,9 @@ def deleteProject(id):
         return {"id deleted": id}
     else:
         return {"error": f'id {id} not found'}
+
+
+@project_routes.route('/search')
+def searchForProjects():
+    query = request.json.get('query')
+    Project.query.get()
