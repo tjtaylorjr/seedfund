@@ -6,10 +6,11 @@ from flask_login import current_user
 
 project_routes = Blueprint('projects', __name__)
 
+
 @project_routes.route('/')
 def getAllProjects():
     result = Project.query.all()
-    data = [ project.to_dict() for project in result ]
+    data = [project.to_dict() for project in result]
     return {"projects": data}
 
 
@@ -44,7 +45,7 @@ def getSpecificProject(id):
 @project_routes.route('/trending')
 def getTrending():
     result = Project.query.order_by(Project.date_goal.desc()).limit(5).all()
-    data = [ project.to_dict() for project in result ]
+    data = [project.to_dict() for project in result]
     return {"trending_projects": data}
 
 
@@ -55,7 +56,8 @@ def updateProject(id):
     project.user_id = request.json.get('userId', project.user_id)
     project.title = request.json.get('title', project.title)
     project.description = request.json.get('description', project.description)
-    project.funding_goal = request.json.get('fundingGoal', project.funding_goal)
+    project.funding_goal = request.json.get(
+        'fundingGoal', project.funding_goal)
     project.balance = request.json.get('balance', project.balance)
     project.image = request.json.get('image', project.image)
     project.date_goal = request.json.get('date_goal', project.date_goal)
@@ -80,6 +82,6 @@ def deleteProject(id):
 def searchForProjects():
     query = request.json.get('query')
     result = Project.query.filter(Project.title.ilike(f"%{query}%")).all()
-    data = [ project.to_dict() for project in result ]
+    data = [project.to_dict() for project in result]
 
     return {"result": data}
