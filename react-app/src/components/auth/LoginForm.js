@@ -1,6 +1,7 @@
 import React, { useState } from "react";
-import { Redirect } from "react-router-dom";
+import { Redirect, NavLink } from "react-router-dom";
 import { login } from "../../services/auth";
+import Footer from "../Footer/Footer";
 
 const LoginForm = ({ authenticated, setAuthenticated }) => {
   const [errors, setErrors] = useState([]);
@@ -30,34 +31,53 @@ const LoginForm = ({ authenticated, setAuthenticated }) => {
   }
 
   return (
-    <form onSubmit={onLogin}>
-      <div>
-        {errors.map((error) => (
-          <div>{error}</div>
-        ))}
+    <>
+      <div className="login-page__main-container">
+        <div className="login-form__main-container">
+          <form className="login-form__form-container" onSubmit={onLogin}>
+            {errors.length ? (
+              <div className="errors__main-container">
+                <strong>We encountered the following errors:</strong>
+                {errors.map((error, idx) => (
+                  <div key={idx} className="error-message">
+                    {error}
+                  </div>
+                ))}
+              </div>
+            ) : (
+              <span></span>
+            )}
+            <div className="login-form__title">Log In</div>
+            <input
+              name="email"
+              type="email"
+              className="login-form__input-field"
+              placeholder="Email"
+              value={email}
+              onChange={updateEmail}
+            />
+            <input
+              name="password"
+              type="password"
+              placeholder="Password"
+              className="login-form__input-field"
+              value={password}
+              onChange={updatePassword}
+            />
+            <button className="login-form__submit-button" type="submit">
+              Log in
+            </button>
+          </form>
+          <div className="signup-link__main-container">
+            <div className="signup-link__message">New to SeedFund?</div>
+            <NavLink className="signup-link__link" to="/signup" exact={true}>
+              Sign Up
+            </NavLink>
+          </div>
+        </div>
       </div>
-      <div>
-        <label htmlFor="email">Email</label>
-        <input
-          name="email"
-          type="text"
-          placeholder="Email"
-          value={email}
-          onChange={updateEmail}
-        />
-      </div>
-      <div>
-        <label htmlFor="password">Password</label>
-        <input
-          name="password"
-          type="password"
-          placeholder="Password"
-          value={password}
-          onChange={updatePassword}
-        />
-        <button type="submit">Login</button>
-      </div>
-    </form>
+      <Footer />
+    </>
   );
 };
 

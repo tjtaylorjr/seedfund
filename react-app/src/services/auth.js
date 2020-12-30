@@ -30,7 +30,13 @@ export const logout = async () => {
   return await response.json();
 };
 
-export const signUp = async (firstname, lastname, username, email, password) => {
+export const signUp = async (
+  firstname,
+  lastname,
+  username,
+  email,
+  password
+) => {
   const response = await fetch("/users/signup", {
     method: "POST",
     headers: {

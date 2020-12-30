@@ -14,7 +14,7 @@ def validation_errors_to_error_messages(validation_errors):
     errorMessages = []
     for field in validation_errors:
         for error in validation_errors[field]:
-            errorMessages.append(f"{field} : {error}")
+            errorMessages.append(f"{field.title()} : {error}")
     return errorMessages
 
 
@@ -25,7 +25,8 @@ def authenticate():
     """
     if current_user.is_authenticated:
         return current_user.to_dict()
-    return {'errors': ['Unauthorized']}, 401
+    print("\n\nERROR (401): User not authenticated\n\n")
+    return {'errors': ['Unauthorized']}
 
 
 @user_routes.route('/login', methods=['POST'])
@@ -43,7 +44,9 @@ def login():
         user = User.query.filter(User.email == form.data['email']).first()
         login_user(user)
         return user.to_dict()
-    return {'errors': validation_errors_to_error_messages(form.errors)}, 401
+
+    print("\n\nERROR (401): Log in not validated\n\n")
+    return {'errors': validation_errors_to_error_messages(form.errors)}
 
 
 @user_routes.route('/logout')
