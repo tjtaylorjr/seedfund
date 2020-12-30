@@ -1,6 +1,8 @@
-import React, {useState} from 'react';
+import React, {useReducer, useState} from 'react';
 import { NavLink } from 'react-router-dom';
 import LogoutButton from './auth/LogoutButton';
+import { Redirect } from "react-router-dom";
+import { login } from "../services/auth";
 
 const NavBar = ({ authenticated, setAuthenticated }) => {
   const [isHidden, setIsHidden] = useState(true)
@@ -14,9 +16,21 @@ const NavBar = ({ authenticated, setAuthenticated }) => {
     setIsHidden(false)
   }
 
-  const demoLogin = async() => {
+  const demoLogin = async(e) => {
+    e.preventDefault();
+    setAuthenticated(true);
+    const email = "demo@user.io";
+    const password = "password";
+    const user = await login(email, password);
+    if (!user.errors) {
+      setAuthenticated(true);
+    }
 
+    if (authenticated) {
+      return <Redirect to="/" />;
+    }
   }
+
   const searchFunction = (
     <>
       <div className="navbar__searchfield-container">
@@ -132,8 +146,8 @@ const NavBar = ({ authenticated, setAuthenticated }) => {
               </NavLink>
               </li>
               <li>
-                <NavLink to="/login" exact={true} activeClassName="active">
-                  Login
+                <NavLink to="/signup" exact={true} activeClassName="active">
+                  Signup
                 </NavLink>
               </li>
             </ul>
@@ -141,30 +155,6 @@ const NavBar = ({ authenticated, setAuthenticated }) => {
         </section>
       </nav>
     )
-    // return (
-    //   <nav className="navbar">
-    //     <section className="navbar__wrapper">
-    //       {!isHidden && searchFunction}
-    //       <ul>
-    //         <li>
-    //           <NavLink to="/" exact={true} activeClassName="active">
-    //             Home
-    //         </NavLink>
-    //         </li>
-    //         <li>
-    //           <NavLink to="/login" exact={true} activeClassName="active">
-    //             Login
-    //         </NavLink>
-    //         </li>
-    //         <li>
-    //           <NavLink to="/signup" exact={true} activeClassName="active">
-    //             Sign Up
-    //         </NavLink>
-    //         </li>
-    //       </ul>
-    //     </section>
-    //   </nav>
-    // )
   }
 }
 
