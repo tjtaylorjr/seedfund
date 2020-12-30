@@ -86,3 +86,16 @@
   font-size: 14px;
   color: #2752ff;
 }
+
+.errors__main-container {
+  box-sizing: border-box;
+  padding: 10px;
+  background-color: rgb(255, 213, 213);
+  color: darkred;
+  margin-bottom: 10px;
+  border-radius: 3px;
+}
+
+.error-message {
+  padding-top: 3px;
+}
