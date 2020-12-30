@@ -1,5 +1,5 @@
 {
-    "python.pythonPath": "/Users/miguelmunoz/.pyenv/versions/3.8.3/bin/python",
+    "python.pythonPath": "/usr/bin/python3",
     "python.linting.pylintEnabled": false,
     "python.linting.enabled": true,
     "python.linting.pycodestyleEnabled": true,
