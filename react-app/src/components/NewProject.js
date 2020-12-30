@@ -38,9 +38,8 @@ function NewProject() {
         />
       </div>
       <div>
-        <input
-          placeholder="Description"
-          type="text"
+        <textarea
+          placeholder="a solid description or your idea"
           value={description}
           onChange={(e) => setDescription(e.target.value)}
         />
