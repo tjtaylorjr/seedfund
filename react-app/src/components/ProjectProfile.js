@@ -5,7 +5,7 @@ function ProjectProfile(props) {
   const [project, setProject] = useState({});
   const [canEdit, setCanEdit] = useState(false);
   const [amount, setAmount] = useState('');
-  const [pledged, setPledged] = useState(false):
+  const [pledged, setPledged] = useState(false);
   const history = useHistory();
 
   const { id } = useParams();
