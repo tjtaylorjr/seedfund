@@ -62,3 +62,20 @@ def updateProject(id):
 
     db.session.commit()
     return project.to_dict()
+
+
+@project_routes.route('/<id>', methods=["DELETE"])
+def deleteProject(id):
+    project = Project.query.get(id)
+    if project != None:
+        db.session.delete(project)
+        db.session.commit()
+        return {"id deleted": id}
+    else:
+        return {"error": f'id {id} not found'}
+
+
+@project_routes.route('/search')
+def searchForProjects():
+    query = request.json.get('query')
+    Project.query.get()
