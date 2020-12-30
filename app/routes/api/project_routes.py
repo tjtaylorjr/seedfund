@@ -38,6 +38,8 @@ def newProject():
 @project_routes.route('/<id>')
 def getSpecificProject(id):
     result = Project.query.get(id)
+    if result is None:
+        return {"error": "Not found"}
     return result.to_dict()
 
 
