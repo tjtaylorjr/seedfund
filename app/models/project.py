@@ -1,4 +1,5 @@
 from .db import db
+import datetime
 
 class Project(db.Model):
   __tablename__ = 'projects'
@@ -15,3 +16,16 @@ class Project(db.Model):
 
   user = db.relationship("User", back_populates="projects")
   pledges = db.relationship("Pledge", back_populates="project") #project is not a typo
+
+  def to_dict(self):
+    return {
+      "id": self.id,
+      "user_id": self.user_id,
+      "title": self.title,
+      "description": self.description,
+      "funding_goal": self.funding_goal,
+      "balance": self.balance,
+      "image": self.image,
+      "date_goal": self.date_goal.isoformat(),
+      "category": self.category
+    }

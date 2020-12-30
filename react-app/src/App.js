@@ -29,7 +29,7 @@ function App() {
     <BrowserRouter>
       <NavBar setAuthenticated={setAuthenticated} />
       <ProtectedRoute path="/" exact={true} authenticated={authenticated}>
-        <h1>My Home Page</h1>
+        <h1>SeedFund</h1>
       </ProtectedRoute>
       <Route path="/users/login" exact={true}>
         <LoginForm
@@ -37,17 +37,23 @@ function App() {
           setAuthenticated={setAuthenticated}
         />
       </Route>
-      <Route path="/users/signup" exact={true}>
+      <Route path="users/signup" exact={true}>
         <SignUpForm
           authenticated={authenticated}
           setAuthenticated={setAuthenticated}
         />
       </Route>
+      <ProtectedRoute path="/start" exact={true} authenticated={authenticated}>
+        <UsersList />
+      </ProtectedRoute>
       <ProtectedRoute
-        path="/new-project"
+        path="/profile"
         exact={true}
         authenticated={authenticated}
       >
+        <User />
+      </ProtectedRoute>
+      <ProtectedRoute path="/start" exact={true} authenticated={authenticated}>
         <NewProject />
       </ProtectedRoute>
     </BrowserRouter>
