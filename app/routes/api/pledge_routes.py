@@ -11,3 +11,22 @@ def getAllPledges():
     result = Pledge.query.all()
     data = [pledge.to_dict() for pledge in result]
     return {"pledges": data}
+
+
+@pledge_routes.route('/projects/<id>/pledges', methods=["POST"])
+def newPledge(id):
+    user_id = request.body.userId
+    project_id = request.body.projectId
+    amount = request.body.amount
+    project = Project.query.get(id)
+    if project:
+        project.balance += amount
+        pledge = dict()
+        pledge.user_id = user_id
+        pledge.project_id = project_id
+        pledge.amount = amount
+        db.session.add(pledge)
+        db.session.commit()
+        return pledge.to_dict()
+    else:
+        return {"error": f'project id {id} not found'}

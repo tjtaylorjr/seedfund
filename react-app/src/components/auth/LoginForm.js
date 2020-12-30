@@ -23,6 +23,10 @@ const LoginForm = ({ authenticated, setAuthenticated }) => {
     e.preventDefault();
     const emailField = document.querySelector(".email");
     const passwordField = document.querySelector(".password");
+    if (email || password) {
+      setEmail("");
+      setPassword("");
+    }
     emailField.value = "demo@user.io";
     passwordField.value = "password";
 
