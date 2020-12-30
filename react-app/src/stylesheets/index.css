@@ -1,0 +1,13 @@
+/* TODO Add site wide styles */
+@import "LoginForm.css";
+@import "SignupForm.css";
+@import "Footer.css";
+
+* {
+  font-family: "Maison Neue Book", "Helvetica Neue", Helvetica, Arial,
+    sans-serif;
+}
+
+body {
+  margin: 0;
+}
