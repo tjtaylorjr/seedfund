@@ -72,4 +72,4 @@ def deleteProject(id):
         db.session.commit()
         return {"id deleted": id}
     else:
-        return {"id not found": id}
+        return {"error": f'id {id} not found'}
