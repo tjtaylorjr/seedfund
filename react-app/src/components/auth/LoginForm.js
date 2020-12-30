@@ -35,15 +35,22 @@ const LoginForm = ({ authenticated, setAuthenticated }) => {
       <div className="login-page__main-container">
         <div className="login-form__main-container">
           <form className="login-form__form-container" onSubmit={onLogin}>
-            <div>
-              {errors.map((error) => (
-                <div>{error}</div>
-              ))}
-            </div>
+            {errors.length ? (
+              <div className="errors__main-container">
+                <strong>We encountered the following errors:</strong>
+                {errors.map((error, idx) => (
+                  <div key={idx} className="error-message">
+                    {error}
+                  </div>
+                ))}
+              </div>
+            ) : (
+              <span></span>
+            )}
             <div className="login-form__title">Log In</div>
             <input
               name="email"
-              type="text"
+              type="email"
               className="login-form__input-field"
               placeholder="Email"
               value={email}
@@ -63,11 +70,7 @@ const LoginForm = ({ authenticated, setAuthenticated }) => {
           </form>
           <div className="signup-link__main-container">
             <div className="signup-link__message">New to SeedFund?</div>
-            <NavLink
-              className="signup-link__link"
-              to="/users/signup"
-              exact={true}
-            >
+            <NavLink className="signup-link__link" to="/signup" exact={true}>
               Sign Up
             </NavLink>
           </div>
