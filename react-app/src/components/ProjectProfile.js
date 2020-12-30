@@ -76,7 +76,7 @@ function ProjectProfile(props) {
       </div>
       <div>
         <label>Goal Date</label>
-        <h1>{project.goalDate}</h1>
+        <h1>{project.date_goal}</h1>
       </div>
       <div>
         <h1>{project.balance}</h1>
