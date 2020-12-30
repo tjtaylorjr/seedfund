@@ -49,19 +49,14 @@ function App() {
             setAuthenticated={setAuthenticated}
           />
         </Route>
-        <ProtectedRoute
-          path="/start"
-          exact={true}
-          authenticated={authenticated}
-        ></ProtectedRoute>
+        <ProtectedRoute path="/start" exact={true} authenticated={authenticated}>
+          <NewProject />
+        </ProtectedRoute>
         <ProtectedRoute
           path="/profile"
           exact={true}
           authenticated={authenticated}
         ></ProtectedRoute>
-        <ProtectedRoute path="/start" exact={true} authenticated={authenticated}>
-          <NewProject />
-        </ProtectedRoute>
         <ProtectedRoute path='/project/:id' exact={true} authenticated={authenticated}>
           <ProjectProfile />
         </ProtectedRoute>
