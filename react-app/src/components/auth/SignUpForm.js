@@ -4,6 +4,7 @@ import { signUp } from "../../services/auth";
 import Footer from "../Footer/Footer";
 
 const SignUpForm = ({ authenticated, setAuthenticated }) => {
+  const [errors, setErrors] = useState([]);
   const [firstname, setFirstname] = useState("");
   const [lastname, setLastname] = useState("");
   const [username, setUsername] = useState("");
@@ -17,7 +18,12 @@ const SignUpForm = ({ authenticated, setAuthenticated }) => {
       const user = await signUp(firstname, lastname, username, email, password);
       if (!user.errors) {
         setAuthenticated(true);
+      } else {
+        console.log("there are errors");
+        setErrors(user.errors);
       }
+    } else {
+      setErrors(["Password: The password did not match"]);
     }
   };
 
@@ -55,15 +61,23 @@ const SignUpForm = ({ authenticated, setAuthenticated }) => {
         <div className="signup-form__main-container">
           <div className="login-link__main-container">
             <div className="login-link__message">Already have an account?</div>
-            <NavLink
-              className="login-link__link"
-              to="/users/login"
-              exact={true}
-            >
+            <NavLink className="login-link__link" to="/login" exact={true}>
               Log In
             </NavLink>
           </div>
           <form className="signup-form__form-container" onSubmit={onSignUp}>
+            {errors.length ? (
+              <div className="errors__main-container">
+                <strong>We encountered the following errors:</strong>
+                {errors.map((error, idx) => (
+                  <div key={idx} className="error-message">
+                    {error}
+                  </div>
+                ))}
+              </div>
+            ) : (
+              <span></span>
+            )}
             <div className="signup-form__title">Sign Up</div>
             <input
               type="text"
@@ -90,7 +104,7 @@ const SignUpForm = ({ authenticated, setAuthenticated }) => {
               value={username}
             ></input>
             <input
-              type="text"
+              type="email"
               name="email"
               placeholder="Email"
               className="signup-form__input-field"
