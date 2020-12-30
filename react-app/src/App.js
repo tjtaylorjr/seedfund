@@ -12,6 +12,7 @@ import { authenticate } from "./services/auth";
 
 function App() {
   const [authenticated, setAuthenticated] = useState(false);
+  const [currentUser, setCurrentUser] = useState({})
   const [loaded, setLoaded] = useState(false);
 
   useEffect(() => {
@@ -19,6 +20,7 @@ function App() {
       const user = await authenticate();
       if (!user.errors) {
         setAuthenticated(true);
+        setCurrentUser(user)
       }
       setLoaded(true);
     })();
@@ -71,6 +73,7 @@ function App() {
           path="/project/:id"
           exact={true}
           authenticated={authenticated}
+          user={currentUser}
         >
           <ProjectProfile />
         </ProtectedRoute>
