@@ -1,6 +1,6 @@
-import React from 'react';
-import { NavLink } from 'react-router-dom';
-import LogoutButton from './auth/LogoutButton';
+import React from "react";
+import { NavLink } from "react-router-dom";
+import LogoutButton from "./auth/LogoutButton";
 
 const NavBar = ({ authenticated, setAuthenticated }) => {
   if (authenticated) {
@@ -10,22 +10,22 @@ const NavBar = ({ authenticated, setAuthenticated }) => {
           <li>
             <NavLink to="/" exact={true} activeClassName="active">
               Home
-          </NavLink>
+            </NavLink>
           </li>
           <li>
             <NavLink to="/start" exact={true} activeClassName="active">
               Start A Project
-          </NavLink>
+            </NavLink>
           </li>
           <li>
             <NavLink to="/profile" exact={true} activeClassName="active">
               Profile
-          </NavLink>
+            </NavLink>
           </li>
           <LogoutButton setAuthenticated={setAuthenticated} />
         </ul>
       </nav>
-    )
+    );
   } else {
     return (
       <nav>
@@ -33,22 +33,22 @@ const NavBar = ({ authenticated, setAuthenticated }) => {
           <li>
             <NavLink to="/" exact={true} activeClassName="active">
               Home
-          </NavLink>
+            </NavLink>
           </li>
           <li>
             <NavLink to="/login" exact={true} activeClassName="active">
               Login
-          </NavLink>
+            </NavLink>
           </li>
           <li>
             <NavLink to="/signup" exact={true} activeClassName="active">
               Sign Up
-          </NavLink>
+            </NavLink>
           </li>
         </ul>
       </nav>
-    )
+    );
   }
-}
+};
 
 export default NavBar;

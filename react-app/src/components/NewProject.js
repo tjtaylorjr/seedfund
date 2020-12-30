@@ -1,20 +1,20 @@
-import React, { useState } from 'react';
-import { useHistory } from 'react-router-dom';
+import React, { useState } from "react";
+import { useHistory } from "react-router-dom";
 
 function NewProject() {
-  const [title, setTitle] = useState('');
-  const [description, setDescription] = useState('');
-  const [fundingGoal, setFundingGoal] = useState('');
-  const [image, setImage] = useState('');
-  const [category, setCategory] = useState('');
+  const [title, setTitle] = useState("");
+  const [description, setDescription] = useState("");
+  const [fundingGoal, setFundingGoal] = useState("");
+  const [image, setImage] = useState("");
+  const [category, setCategory] = useState("");
   const history = useHistory();
 
   const submit = async (e) => {
-    e.preventDefault()
-    const response = await fetch('/api/project/', {
-      method: 'POST',
+    e.preventDefault();
+    const response = await fetch("/api/project/", {
+      method: "POST",
       headers: {
-        'Content-Type': 'application/json',
+        "Content-Type": "application/json",
       },
       body: JSON.stringify({
         title,

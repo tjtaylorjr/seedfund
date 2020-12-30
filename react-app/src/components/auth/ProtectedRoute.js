@@ -1,15 +1,13 @@
-import React from 'react';
-import { Route, Redirect } from 'react-router-dom';
+import React from "react";
+import { Route, Redirect, useLocation } from "react-router-dom";
 
-const ProtectedRoute = props => {
-
-  if (!props.authenticated) {
-    return <Redirect to="/login"/>
+const ProtectedRoute = (props) => {
+  const { pathname } = useLocation();
+  if (!props.authenticated && pathname !== "/signup") {
+    return <Redirect to="/login" />;
   }
 
-  return (
-    <Route {...props}/>
-  );
+  return <Route {...props} />;
 };
 
 export default ProtectedRoute;
