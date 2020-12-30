@@ -1,6 +1,8 @@
 @import "reset.css";
 @import "navbar.css";
-
+@import "LoginForm.css";
+@import "SignupForm.css";
+@import "Footer.css";
 
 html {
     font-family: "Maison Neue Book", "Helvetica Neue", Helvetica, Arial, "Liberation Sans", FreeSans, sans-serif;
@@ -10,6 +12,7 @@ html {
 }
 
 body {
+    margin: 0;
     font-size: 1.4rem;
     line-height: 1.5;
     color: #282828;

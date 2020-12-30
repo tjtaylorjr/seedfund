@@ -103,7 +103,7 @@ const NavBar = ({ authenticated, setAuthenticated }) => {
           </section>
         </section>
       </nav>
-    )
+    );
   } else {
     return (
       <nav className="navbar">
@@ -154,8 +154,8 @@ const NavBar = ({ authenticated, setAuthenticated }) => {
           </section>
         </section>
       </nav>
-    )
+    );
   }
-}
+};
 
 export default NavBar;
