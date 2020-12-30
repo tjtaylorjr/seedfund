@@ -31,28 +31,28 @@ function App() {
       <ProtectedRoute path="/" exact={true} authenticated={authenticated}>
         <h1>SeedFund</h1>
       </ProtectedRoute>
-      <Route path="/users/login" exact={true}>
+      <Route path="/login" exact={true}>
         <LoginForm
           authenticated={authenticated}
           setAuthenticated={setAuthenticated}
         />
       </Route>
-      <Route path="users/signup" exact={true}>
+      <Route path="/signup" exact={true}>
         <SignUpForm
           authenticated={authenticated}
           setAuthenticated={setAuthenticated}
         />
       </Route>
-      <ProtectedRoute path="/start" exact={true} authenticated={authenticated}>
-        <UsersList />
-      </ProtectedRoute>
+      <ProtectedRoute
+        path="/start"
+        exact={true}
+        authenticated={authenticated}
+      ></ProtectedRoute>
       <ProtectedRoute
         path="/profile"
         exact={true}
         authenticated={authenticated}
-      >
-        <User />
-      </ProtectedRoute>
+      ></ProtectedRoute>
       <ProtectedRoute path="/start" exact={true} authenticated={authenticated}>
         <NewProject />
       </ProtectedRoute>
