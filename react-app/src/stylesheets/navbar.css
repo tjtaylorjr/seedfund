@@ -8,7 +8,6 @@
 
 .navbar__wrapper {
   width: 100%;
-  -webkit-box-pack: justify;
   display: flex;
   justify-content: space-between;
   background-color: #fff;
@@ -48,7 +47,6 @@
   position: relative;
   padding: 0rem;
   display: flex;
-  -webkit-box-align: center;
   align-items: center;
   width: 100%;
 }
@@ -81,9 +79,7 @@
   padding: 0rem;
   display: flex;
   outline: none;
-  -webkit-box-pack: center;
   justify-content: center;
-  -webkit-box-align: center;
   align-items: center;
   background-color: #fff;
   border: 0;
@@ -113,12 +109,102 @@
   padding-left: 1.8rem;
   display: flex;
   order: 2;
-  -webkit-box-ordinal-group: 21;
+}
+
+.navbar__left-links-list {
+  display: flex;
+}
+
+.navbar__right-links-list {
+  display: flex;
 }
 
 .navbar__navlink-home {
   margin-right: 1.2rem;
   display: flex;
+  align-items: center;
+  color: #282828;
+  font-size: 1.4rem;
+}
+
+.navbar__navlink-start {
+  padding-right: 1.8rem;
+  margin-right: 1.2rem;
+  display: flex;
+  align-items: center;
+  color: #282828;
+  font-size: 1.4rem;
+}
+
+
+.navbar__right-links-container {
+  padding-top: 1.2rem !important;
+  padding-bottom: 1.2rem !important;
+  display: flex;
+  order: 3;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.navbar__navlink-search-container {
+  padding-right: 1.8rem;
+  margin-right: 1.2rem;
+  padding: 0rem;
+  display: flex;
+  border: 0;
+  cursor: pointer;
+}
+
+.navbar__navlink-search-container svg{
+  cursor: pointer;
+  margin-left: 0.6rem;
+  width: 1.5rem;
+  height: 1.5rem;
+  overflow: hidden;
+  font-size: 1.4rem;
+  line-height: unset !important;
+  padding-top: .2rem;
+}
+
+.navbar__sitename-container {
+  height: 3rem;
+  width: 150px;
+  position: relative;
+  padding-top: 2.4rem !important;
+  padding-bottom: 2.4rem !important;
+  display: flex;
+  flex-grow: 5;
+  order: 2;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  border-bottom: 0.1rem solid #dcdedd;
+  font-size: 5rem;
+  font-weight: 700;
+  color: #76a912;
+  font-family: "RNS-B";
+}
+
+.navlink__sitename-text {
+  display: flex;
+  align-items: center;
+  margin-bottom: 0rem;
+
+}
+
+.navbar__navlink-profile {
+  margin-right: 1.8rem;
+}
+
+.navbar__navlink-logout {
+  border: none;
+  background-color: #fff;
+  font-size: 1.4rem;
+  color: #282828;
+  cursor: pointer;
+  /* margin-right: .4rem; */
+  text-decoration: none;
+
 }
 
 @keyframes fade_in {
@@ -128,6 +214,16 @@
 
   100% {
     opacity: 1;
+  }
+}
+
+@media only screen and (min-width: 600px) {
+  .navbar__right-links-container {
+    padding-right: 2.4rem;
+  }
+
+  .navbar__navlink-start {
+    display: flex;
   }
 }
 
@@ -145,13 +241,31 @@
     padding-left: 4.2rem;
   }
 
+  .navbar__sitename-container {
+    height: 4.2rem;
+    width: auto;
+    padding-top: 1.2rem !important;
+    padding-bottom: 1.2rem !important;
+    flex-grow: 0;
+    border: none;
+}
+
   .navbar__left-links-container {
     padding-left: 2.4rem;
     flex-basis: 50%;
     flex-grow: 1;
-    -webkit-box-flex: 1;
     order: 1;
-    -webkit-box-ordinal-group: 11;
-
   }
+
+  .navbar__right-links-container {
+    flex-basis: 50%;
+    flex-grow: 1;
+  }
+
+
+}
+
+@font-face {
+  font-family: "RNS-B";
+  src: url("RNS-B.ttf")
 }
