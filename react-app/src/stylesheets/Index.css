@@ -7,6 +7,8 @@
 @import "LoginForm.css";
 @import "SignupForm.css";
 @import "Footer.css";
+@import "ProjectForm.css";
+@import "ProjectProfile.css";
 
 html {
     font-family: "Maison Neue Book", "Helvetica Neue", Helvetica, Arial, "Liberation Sans", FreeSans, sans-serif;
