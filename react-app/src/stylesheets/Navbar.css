@@ -24,7 +24,8 @@
   /* animation: fade_in ease 6s cubic-bezier(0.175 0.885, 0.335, 1); */
 }
 
-.navbar__searchfield-container--hidden {
+.navbar__searchfield-container--hidden, .navbar__searchfield-button--hidden,
+.navbar__searchfield-form-hidden {
   display: none;
 }
 

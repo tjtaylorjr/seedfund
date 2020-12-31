@@ -7,6 +7,7 @@ import NavBar from "./components/NavBar";
 import ProtectedRoute from "./components/auth/ProtectedRoute";
 import NewProject from "./components/NewProject";
 import ProjectProfile from "./components/ProjectProfile";
+import DiscoverPage from "./components/DiscoverPage"
 import { authenticate } from "./services/auth";
 import UserProfile from "./components/UserProfile/UserProfile";
 
@@ -75,6 +76,11 @@ function App() {
           >
             <ProjectProfile user={currentUser} authenticated={authenticated} />
           </ProtectedRoute>
+          <Route
+            path="/discover/:query"
+            exact={true}>
+              <DiscoverPage />
+          </Route>
         </Switch>
       </BrowserRouter>
     )
