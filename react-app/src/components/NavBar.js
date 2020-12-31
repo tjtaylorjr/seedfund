@@ -25,7 +25,7 @@ const NavBar = ({ authenticated, setAuthenticated }) => {
     if (!user.errors) {
       setAuthenticated(true);
     }
-
+  }
   //   if (authenticated) {
   //     return <Redirect to="/" />;
   //   }
@@ -43,12 +43,12 @@ const NavBar = ({ authenticated, setAuthenticated }) => {
         <div className="navbar__searchfield-wrapper">
           <div className="navbar__searchfield-component-container">
             <form className="navbar__searchfield-input-container">
-                <input
-                  className="navbar__searchfield-input"
-                  placeholder="Search for projects or categories"
-                  value={searchText}
-                  onChange={e => setSearchText(e.target.value)} />
-                <button className="navbar__searchfield-button--hidden" onClick={handleSearchQuery}></button>
+              <input
+                className="navbar__searchfield-input"
+                placeholder="Search for projects or categories"
+                value={searchText}
+                onChange={e => setSearchText(e.target.value)} />
+              <button className="navbar__searchfield-button--hidden" onClick={handleSearchQuery}></button>
               <div className="navbar__searchfield-close-button-container">
                 <button className="navbar__searchfield-close-button">
                   <svg onClick={hideSearch} className="navbar__searchfield-close-button-icon" viewBox="0 0 60 60">

@@ -76,6 +76,11 @@ function App() {
           >
             <ProjectProfile user={currentUser} authenticated={authenticated} />
           </ProtectedRoute>
+          <Route
+            path="/discover/:query"
+            exact={true}>
+              <DiscoverPage />
+          </Route>
         </Switch>
       </BrowserRouter>
     )
