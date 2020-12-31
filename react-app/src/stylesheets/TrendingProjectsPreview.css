@@ -138,6 +138,7 @@
   justify-content: space-between;
   align-items: flex-start;
   cursor: pointer;
+  margin-top: 2rem;
 }
 
 .trending-projects__right-panel-list-item-navlink {
