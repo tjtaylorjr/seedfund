@@ -34,5 +34,6 @@ class Project(db.Model):
             "date_goal": self.date_goal.isoformat(),
             "category": self.category,
             "created_at": self.created_at,
-            "updated_at": self.updated_at
+            "updated_at": self.updated_at,
+            "user": self.user.to_dict()
         }

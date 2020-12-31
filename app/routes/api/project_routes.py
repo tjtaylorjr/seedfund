@@ -1,8 +1,9 @@
 from flask import Blueprint, jsonify, redirect, request
 from datetime import datetime, timedelta
-from app.models import db, Project
+from app.models import db, Project, User
 from app.forms.project_form import ProjectForm
 from flask_login import current_user
+from sqlalchemy.orm import joinedload
 
 project_routes = Blueprint('projects', __name__)
 
@@ -99,9 +100,9 @@ def deleteProject(id):
         return {"error": f'id {id} not found'}
 
 
-@project_routes.route('/search')
-def searchForProjects():
-    query = request.json.get('query')
-    result = Project.query.filter(Project.title.ilike(f"%{query}%")).all()
-    data = [project.to_dict() for project in result]
-    return {"result": data}
+@project_routes.route('/search/<query>')
+def searchForProjects(query):
+    result = Project.query.filter(Project.title.ilike(f"%{query}%")).options(joinedload(Project.user)).all()
+    data = [ project.to_dict() for project in result ]
+
+    return {"projects": data}

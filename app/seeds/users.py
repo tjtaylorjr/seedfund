@@ -13,8 +13,52 @@ def seed_users():
         email='demo@user.io',
         password='password'
     )
-
     db.session.add(demo)
+
+    demo2 = User(
+        firstname='James',
+        lastname='Lee',
+        username='jlee513',
+        email='jlee@test.com',
+        password='password'
+    )
+    db.session.add(demo2)
+
+    demo3 = User(
+        firstname='Mike',
+        lastname='Henders',
+        username='mh5412',
+        email='mikehen5412@test.com',
+        password='password'
+    )
+    db.session.add(demo3)
+
+    demo4 = User(
+        firstname='Jay',
+        lastname='Leung',
+        username='seedfundmaster',
+        email='jtl1132@test.com',
+        password='password'
+    )
+    db.session.add(demo4)
+
+    demo5 = User(
+        firstname='Savannah',
+        lastname='White',
+        username='savwhite',
+        email='swhite212923@test.com',
+        password='password'
+    )
+    db.session.add(demo5)
+
+    demo6 = User(
+        firstname='Chris',
+        lastname='Lemma',
+        username='CLemma',
+        email='CLemma@test.com',
+        password='password'
+    )
+    db.session.add(demo6)
 
     db.session.commit()
 
