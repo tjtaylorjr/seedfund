@@ -1,12 +1,13 @@
-import React, {useReducer, useState} from 'react';
+import React, { useReducer, useState } from 'react';
 import { NavLink } from 'react-router-dom';
 import LogoutButton from './auth/LogoutButton';
-import { Redirect } from "react-router-dom";
+import { Redirect, useHistory } from "react-router-dom";
 import { login } from "../services/auth";
 
 const NavBar = ({ authenticated, setAuthenticated }) => {
-  const [isHidden, setIsHidden] = useState(true)
-  const [searchText, setSearchText] = useState(null)
+  const [isHidden, setIsHidden] = useState(true);
+  const [searchText, setSearchText] = useState('');
+  const history = useHistory();
 
   const hideSearch = () => {
     setIsHidden(true)
@@ -16,7 +17,7 @@ const NavBar = ({ authenticated, setAuthenticated }) => {
     setIsHidden(false)
   }
 
-  const demoLogin = async(e) => {
+  const demoLogin = async (e) => {
     e.preventDefault();
     const email = "demo@user.io";
     const password = "password";
@@ -30,13 +31,24 @@ const NavBar = ({ authenticated, setAuthenticated }) => {
     }
   }
 
+  const handleSearchQuery = e => {
+    e.preventDefault();
+    hideSearch();
+    history.push(`/discover/${searchText}`);
+  }
+
   const searchFunction = (
     <>
       <div className="navbar__searchfield-container">
         <div className="navbar__searchfield-wrapper">
           <div className="navbar__searchfield-component-container">
-            <div className="navbar__searchfield-input-container">
-              <input className="navbar__searchfield-input" placeholder="Search for projects or categories" />
+            <form className="navbar__searchfield-input-container">
+                <input
+                  className="navbar__searchfield-input"
+                  placeholder="Search for projects or categories"
+                  value={searchText}
+                  onChange={e => setSearchText(e.target.value)} />
+                <button className="navbar__searchfield-button--hidden" onClick={handleSearchQuery}></button>
               <div className="navbar__searchfield-close-button-container">
                 <button className="navbar__searchfield-close-button">
                   <svg onClick={hideSearch} className="navbar__searchfield-close-button-icon" viewBox="0 0 60 60">
@@ -46,7 +58,7 @@ const NavBar = ({ authenticated, setAuthenticated }) => {
                   </svg>
                 </button>
               </div>
-            </div>
+            </form>
             <div className="navbar__searchfield-results-container">
               <ul></ul>
             </div>
