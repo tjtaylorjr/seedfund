@@ -1,0 +1,47 @@
+.project-profile-page__input-field {
+  box-sizing: border-box;
+  margin-bottom: 20px;
+  padding: 12px;
+  font-size: 14px;
+  line-height: 17px;
+  width: 100%;
+}
+
+.project-profile-page__input-field:focus {
+  border-color: #009e74;
+  transition: all 300ms;
+  outline: 0;
+}
+
+.project-profile-page__fund-button {
+  box-sizing: border-box;
+  background-color: #028858;
+  border: 1px solid #028858;
+  color: white;
+  height: 35px;
+  font-size: 14px;
+  font-weight: 300;
+  letter-spacing: 1px;
+  margin: 0px 1px;
+}
+
+.project-profile__main-container {
+  box-sizing: border-box;
+  display: flex;
+  justify-content: center;
+  background-color: #f7f7f6;
+  vertical-align: baseline;
+  padding: 60px 18px;
+  height: 100vh;
+  border-top: 1px solid #f1eeea;
+}
+
+.project-profile-page__info {
+  display: flex;
+  flex-direction: row;
+  margin: 0px 10px;
+}
+
+project-profile-page__info-container {
+  padding: 1px;
+}

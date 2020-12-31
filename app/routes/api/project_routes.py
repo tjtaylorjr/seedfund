@@ -7,10 +7,11 @@ from sqlalchemy.orm import joinedload
 
 project_routes = Blueprint('projects', __name__)
 
+
 @project_routes.route('/')
 def getAllProjects():
     result = Project.query.all()
-    data = [ project.to_dict() for project in result ]
+    data = [project.to_dict() for project in result]
     return {"projects": data}
 
 
@@ -44,12 +45,17 @@ def getSpecificProject(id):
     return result.to_dict()
 
 
+@project_routes.route('/newest')
+def getNewest():
+    result = Project.query.order_by(Project.date_goal.asc()).limit(9).all()
+    data = [ project.to_dict() for project in result ]
+    return {"newest_projects": data}
+
 @project_routes.route('/trending')
 def getTrending():
-    result = Project.query.order_by(Project.date_goal.desc()).limit(5).all()
+    result = Project.query.order_by(Project.balance.desc()).limit(5).all()
     data = [ project.to_dict() for project in result ]
     return {"trending_projects": data}
-
 
 @project_routes.route('/<id>', methods=["PUT"])
 def updateProject(id):
@@ -58,7 +64,8 @@ def updateProject(id):
     project.user_id = request.json.get('userId', project.user_id)
     project.title = request.json.get('title', project.title)
     project.description = request.json.get('description', project.description)
-    project.funding_goal = request.json.get('fundingGoal', project.funding_goal)
+    project.funding_goal = request.json.get(
+        'fundingGoal', project.funding_goal)
     project.balance = request.json.get('balance', project.balance)
     project.image = request.json.get('image', project.image)
     project.date_goal = request.json.get('date_goal', project.date_goal)
@@ -71,7 +78,7 @@ def updateProject(id):
 @project_routes.route('/<id>', methods=["DELETE"])
 def deleteProject(id):
     project = Project.query.get(id)
-    if project != None:
+    if project is not None:
         db.session.delete(project)
         db.session.commit()
         return {"id deleted": id}

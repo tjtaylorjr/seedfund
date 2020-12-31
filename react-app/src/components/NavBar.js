@@ -26,10 +26,10 @@ const NavBar = ({ authenticated, setAuthenticated }) => {
       setAuthenticated(true);
     }
 
-    if (authenticated) {
-      return <Redirect to="/" />;
-    }
-  }
+  //   if (authenticated) {
+  //     return <Redirect to="/" />;
+  //   }
+  // }
 
   const handleSearchQuery = e => {
     e.preventDefault();
@@ -151,11 +151,11 @@ const NavBar = ({ authenticated, setAuthenticated }) => {
                   </g>
                 </svg>
               </div>
-              <li className="navbar__navlink-profile">
+              {/* <li className="navbar__navlink-profile">
                 <NavLink to="#" exact={true} activeClassName="active" onClick={demoLogin}>
                   Demo
               </NavLink>
-              </li>
+              </li> */}
               <li className="navbar__navlink-login">
                 <NavLink to="/login" exact={true} activeClassName="active">
                   Login
