@@ -16,19 +16,19 @@ const NavBar = ({ authenticated, setAuthenticated }) => {
     setIsHidden(false)
   }
 
-  const demoLogin = async(e) => {
-    e.preventDefault();
-    const email = "demo@user.io";
-    const password = "password";
-    const user = await login(email, password);
-    if (!user.errors) {
-      setAuthenticated(true);
-    }
+  // const demoLogin = async(e) => {
+  //   e.preventDefault();
+  //   const email = "demo@user.io";
+  //   const password = "password";
+  //   const user = await login(email, password);
+  //   if (!user.errors) {
+  //     setAuthenticated(true);
+  //   }
 
-    if (authenticated) {
-      return <Redirect to="/" />;
-    }
-  }
+  //   if (authenticated) {
+  //     return <Redirect to="/" />;
+  //   }
+  // }
 
   const searchFunction = (
     <>
@@ -139,11 +139,11 @@ const NavBar = ({ authenticated, setAuthenticated }) => {
                   </g>
                 </svg>
               </div>
-              <li className="navbar__navlink-profile">
+              {/* <li className="navbar__navlink-profile">
                 <NavLink to="#" exact={true} activeClassName="active" onClick={demoLogin}>
                   Demo
               </NavLink>
-              </li>
+              </li> */}
               <li className="navbar__navlink-login">
                 <NavLink to="/login" exact={true} activeClassName="active">
                   Login

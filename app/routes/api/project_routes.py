@@ -56,9 +56,16 @@ def getUserProjects(user_id):
     return {"error": "Not found"}
 
 
+@project_routes.route('/newest')
+def getNewest():
+    result = Project.query.order_by(Project.date_goal.asc()).limit(9).all()
+    data = [project.to_dict() for project in result]
+    return {"newest_projects": data}
+
+
 @project_routes.route('/trending')
 def getTrending():
-    result = Project.query.order_by(Project.date_goal.desc()).limit(5).all()
+    result = Project.query.order_by(Project.balance.desc()).limit(5).all()
     data = [project.to_dict() for project in result]
     return {"trending_projects": data}
 
