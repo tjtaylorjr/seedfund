@@ -46,7 +46,7 @@ def getSpecificProject(id):
 
 @project_routes.route('/newest')
 def getNewest():
-    result = Project.query.order_by(Project.date_goal.asc()).limit(10).all()
+    result = Project.query.order_by(Project.date_goal.asc()).limit(9).all()
     data = [ project.to_dict() for project in result ]
     return {"newest_projects": data}
 

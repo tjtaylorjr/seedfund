@@ -38,9 +38,9 @@ function App() {
           setAuthenticated={setAuthenticated}
         />
         <Switch>
-          <ProtectedRoute path="/" exact={true} authenticated={authenticated}>
-            <h1>SeedFund</h1>
-          </ProtectedRoute>
+          <Route path="/" exact={true} authenticated={authenticated}>
+            <Home />
+          </Route>
           <Route path="/login" exact={true}>
             <LoginForm
               authenticated={authenticated}

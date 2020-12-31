@@ -104,16 +104,6 @@ const RecentProjectsPreview = () => {
     {
       id: 14,
       user_id: 1,
-      title: "Example Project 14",
-      description: "This is an example project",
-      funding_goal: 435000.00,
-      balance: 18000.00,
-      date_goal: "01/27/2021",
-      category: "Comics",
-    },
-    {
-      id: 15,
-      user_id: 1,
       title: "Example Project 15",
       description: "This is an example project",
       funding_goal: 70000.00,
@@ -126,7 +116,7 @@ const RecentProjectsPreview = () => {
 
   let databaseInfo;
 
-  if (newest.length) {
+  if (newest) {
     databaseInfo = newest;
   } else {
     databaseInfo = fakenewest;

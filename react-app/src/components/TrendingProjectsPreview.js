@@ -81,7 +81,7 @@ const TrendingProjectsPreview = () => {
   };
   let databaseInfo;
 
-  if(trending.length) {
+  if(trending) {
     databaseInfo = trending;
   } else {
     databaseInfo = faketrending
