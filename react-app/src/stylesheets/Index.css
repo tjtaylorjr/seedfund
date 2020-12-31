@@ -2,6 +2,8 @@
 @import "Navbar.css";
 @import "QuickSelectBar.css";
 @import "TrendingProjectsPreview.css";
+@import "RecentProjectsPreview.css";
+@import "ProjectCard.css";
 @import "LoginForm.css";
 @import "SignupForm.css";
 @import "Footer.css";

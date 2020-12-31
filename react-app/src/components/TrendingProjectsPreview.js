@@ -52,7 +52,7 @@ const TrendingProjectsPreview = () => {
       funding_goal: 50000.00,
       balance: 105000.00,
       date_goal: "01/15/2021",
-      category: "Art",
+      category: "Arts",
     },
     {
       id: 4,
