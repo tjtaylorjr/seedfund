@@ -85,5 +85,4 @@ def searchForProjects():
     query = request.json.get('query')
     result = Project.query.filter(Project.title.ilike(f"%{query}%")).all()
     data = [project.to_dict() for project in result]
-
     return {"result": data}

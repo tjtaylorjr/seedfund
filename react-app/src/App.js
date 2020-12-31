@@ -7,6 +7,7 @@ import ProtectedRoute from "./components/auth/ProtectedRoute";
 import NewProject from "./components/NewProject";
 import ProjectProfile from "./components/ProjectProfile";
 import { authenticate } from "./services/auth";
+import UserProfile from "./components/UserProfile/UserProfile";
 
 function App() {
   const [authenticated, setAuthenticated] = useState(false);
@@ -56,7 +57,9 @@ function App() {
             exact={true}
             authenticated={authenticated}
             setAuthenticated={setAuthenticated}
-          ></ProtectedRoute>
+          >
+            <UserProfile user={currentUser} />
+          </ProtectedRoute>
           <ProtectedRoute
             path="/start"
             exact={true}

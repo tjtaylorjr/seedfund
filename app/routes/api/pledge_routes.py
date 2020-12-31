@@ -2,6 +2,7 @@ from flask import Blueprint, jsonify, redirect, request
 from datetime import datetime, timedelta
 from app.models import db, Project, Pledge, User
 from app.forms.project_form import ProjectForm
+from sqlalchemy.orm import joinedload
 
 pledge_routes = Blueprint('pledges', __name__)
 
@@ -56,6 +57,8 @@ def editPledge(id):
 @pledge_routes.route('/users/<id>/pledges')
 def getAllUserPledges(id):
     user = User.query.get(id)
-    pledges = Pledge.query.filter_by(user_id=user.id).all()
-    data = [pledge.to_dict() for pledge in result]
+    # queries for pledges attached to user, including project data
+    pledges = Pledge.query.options(
+        joinedload(Pledge.project)).filter_by(user_id=user.id).all()
+    data = [pledge.to_dict_projects() for pledge in pledges]
     return {"pledges": data}

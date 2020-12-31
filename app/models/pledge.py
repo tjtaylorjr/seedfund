@@ -25,3 +25,14 @@ class Pledge(db.Model):
             "created_at": self.created_at,
             "updated_at": self.updated_at
         }
+
+    def to_dict_projects(self):
+        return {
+            "id": self.id,
+            "user_id": self.user_id,
+            "project_id": self.project_id,
+            "amount": float(self.amount),
+            "created_at": self.created_at,
+            "updated_at": self.updated_at,
+            "project": self.project.to_dict()
+        }
