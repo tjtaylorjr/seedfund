@@ -35,6 +35,8 @@ def newProject():
     print(form.errors)
     return jsonify(form.errors)
 
+# GET route for a specific project id
+
 
 @project_routes.route('/<id>')
 def getSpecificProject(id):
@@ -42,6 +44,16 @@ def getSpecificProject(id):
     if result is None:
         return {"error": "Not found"}
     return result.to_dict()
+
+
+# GET route for projects started by user
+@project_routes.route('/user/<user_id>')
+def getUserProjects(user_id):
+    projects = Project.query.filter_by(user_id=user_id).all()
+    if projects:
+        data = [project.to_dict() for project in projects]
+        return {"projects": data}
+    return {"error": "Not found"}
 
 
 @project_routes.route('/trending')

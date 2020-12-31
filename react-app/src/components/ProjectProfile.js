@@ -61,7 +61,7 @@ function ProjectProfile(props) {
     const response = await fetch(`/api/projects/${id}/pledges`, {
       method,
       headers: {
-        'Content-Type': 'application/json',
+        "Content-Type": "application/json",
       },
       body: JSON.stringify({
         userId,
@@ -73,11 +73,12 @@ function ProjectProfile(props) {
     setProject(res.project);
     setAmount("");
     setAmountError("");
+    if (method === "POST") setPledged(true);
   };
 
   const deleteProject = async () => {
     const response = await fetch(`/api/projects/${id}`, {
-      method: 'DELETE',
+      method: "DELETE",
     });
     if (response.ok) {
       history.push("/");
@@ -97,7 +98,7 @@ function ProjectProfile(props) {
         </div>
         <div className="project-profile-page__info">
           <div className="project-profile-page__image-container">
-            <img src={project.image} alt="Project Image" />
+            <img src={project.image} alt={`${project.title}`} />
           </div>
           <div className="project-profile-page__info-container">
             <div className="project-profile-page__description">
