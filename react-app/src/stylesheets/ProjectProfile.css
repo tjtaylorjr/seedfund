@@ -1,4 +1,6 @@
 .project-profile-page__input-field {
+  display: grid;
+  grid-area: funding;
   box-sizing: border-box;
   margin-bottom: 20px;
   padding: 12px;
@@ -8,12 +10,16 @@
 }
 
 .project-profile-page__input-field:focus {
+  display: grid;
+  grid-area: funding;
   border-color: #009e74;
   transition: all 300ms;
   outline: 0;
 }
 
-.project-profile-page__fund-button {
+.project-profile-page__button {
+  display: grid;
+  grid-area: button;
   box-sizing: border-box;
   background-color: #028858;
   border: 1px solid #028858;
@@ -25,9 +31,16 @@
   margin: 0px 1px;
 }
 
-.project-profile__main-container {
-  box-sizing: border-box;
-  display: flex;
+.project-profile-page__main-container {
+  display: grid;
+  grid-template-areas:
+    'title title title'
+    'category category category'
+    'image image balance'
+    'image image goal-date'
+    'image image description'
+    'funding funding edit'
+    'button button edit';
   justify-content: center;
   background-color: #f7f7f6;
   vertical-align: baseline;
@@ -36,12 +49,43 @@
   border-top: 1px solid #f1eeea;
 }
 
-.project-profile-page__info {
-  display: flex;
-  flex-direction: row;
-  margin: 0px 10px;
+.project-profile-page__header-title {
+  display: grid;
+  grid-area: title;
+  justify-content: center;
+  font-weight: 700;
+  font-size: xx-large;
 }
 
-project-profile-page__info-container {
-  padding: 1px;
+project-profile-page__header-category {
+  display: grid;
+  grid-area: category;
+  justify-content: center;
+  font-weight: 700;
+  font-size: xx-large;
+}
+
+.project-profile-page__image-container {
+  display: grid;
+  grid-area: image;
+}
+
+.project-profile-page__balance {
+  display: grid;
+  grid-area: balance;
+}
+
+.project-profile-page__goal-date {
+  display: grid;
+  grid-area: goal-date;
+}
+
+.project-profile-page__description {
+  display: grid;
+  grid-area: description;
+}
+
+.project-profile-page__edit-button {
+  display: grid;
+  grid-area: edit;
 }
