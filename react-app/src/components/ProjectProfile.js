@@ -18,8 +18,8 @@ function ProjectProfile() {
         const response = await fetch(`/api/projects/${id}`);
         const project = await response.json();
         setProject(project);
-      })();
-    }, []);
+    })();
+  }, []);
 
   if (!project) {
     return null;
