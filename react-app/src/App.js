@@ -51,11 +51,6 @@ function App() {
           />
         </Route>
         <ProtectedRoute
-          path="/start"
-          exact={true}
-          authenticated={authenticated}
-        ></ProtectedRoute>
-        <ProtectedRoute
           path="/profile"
           exact={true}
           authenticated={authenticated}
