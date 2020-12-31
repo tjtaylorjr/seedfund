@@ -1,0 +1,116 @@
+.quick-select {
+  border-color: #E8E8E8;
+  border-bottom: 0.1rem solid #DCDEDD;
+}
+
+.quick-select__container {
+  max-width: 1366px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 24px;
+  padding-right: 24px;
+  box-sizing: border-box;
+}
+
+.quick-select__container * {
+  box-sizing: inherit;
+}
+
+.quick-select__content-wrapper {
+  margin-left: 2.4rem;
+  margin-right: 2.4rem;
+  display: flex;
+}
+
+.quick-select__bookend {
+  width: 3.6rem;
+  display: flex;
+  justify-content: center;
+}
+
+.quick-select__navigation {
+  width: 100%;
+  margin-top: 1.8rem;
+  margin-bottom: 1.8rem;
+}
+
+.quick-select__navigation-list {
+  white-space: nowrap;
+  display: flex;
+  list-style-type: none;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.quick-select__navigation-link {
+  position: relative;
+  display: inline-block;
+  margin-left: 1.2rem;
+  margin-right: 1.2rem;
+  outline: none;
+  text-decoration: none !important;
+  color: #656969;
+  font-size: 1.6rem;
+  line-height: 2.4rem;
+}
+
+.quick-select__navigation-navlink {
+  color: inherit;
+  text-decoration: inherit;
+}
+
+.quick-select__navigation-link:after {
+  position: absolute;
+  top: 90%;
+  left: 0;
+  width: 100%;
+  height: 1px;
+  background: #034752;
+  content: '';
+  opacity: 0;
+  transition: height 0.3s, opacity 0.5s, transform 0.3s, color 0.3s;
+  transform: translateY(-5px);
+}
+
+.quick-select__navigation-link:hover::after {
+  opacity: 1;
+  height: 2px;
+  transition: height 0.3s, opacity 0.5s, transform 0.3s, color 0.3s;
+  transform: translateY(-0px);
+}
+
+@media only screen and (min-width: 600px) {
+  .quick-select__container {
+    padding-left: 24px;
+    padding-right: 24px;
+  }
+}
+
+@media only screen and (min-width: 795px) {
+  .quick-select__container {
+    padding-left: 60px;
+    padding-right: 60px;
+  }
+
+  .quick-select__content-wrapper {
+    margin-left: 0rem;
+    margin-right: 0rem;
+  }
+
+  .quick-select__navigation-list {
+    justify-content: center;
+  }
+}
+
+@media only screen and (min-width: 1025px) {
+  .quick-select__container {
+    padding-left: 60px;
+    padding-right: 60px;
+  }
+
+  .quick-select__navigation-link {
+    margin-left: 1.8rem;
+    margin-right: 1.8rem;
+  }
+}
