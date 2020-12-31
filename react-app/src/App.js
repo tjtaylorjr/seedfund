@@ -5,11 +5,12 @@ import LoginForm from "./components/auth/LoginForm";
 import SignUpForm from "./components/auth/SignUpForm";
 import NavBar from "./components/NavBar";
 import ProtectedRoute from "./components/auth/ProtectedRoute";
-import NewProject from "./components/NewProject";
-import ProjectProfile from "./components/ProjectProfile";
+import NewProject from "./components/Project/NewProject";
+import ProjectProfile from "./components/Project/ProjectProfile";
 import DiscoverPage from "./components/DiscoverPage"
 import { authenticate } from "./services/auth";
 import UserProfile from "./components/UserProfile/UserProfile";
+import ProjectEdit from "./components/Project/ProjectEdit";
 
 function App() {
   const [authenticated, setAuthenticated] = useState(false);
@@ -76,11 +77,21 @@ function App() {
           >
             <ProjectProfile user={currentUser} authenticated={authenticated} />
           </ProtectedRoute>
+<<<<<<< HEAD
+          <ProtectedRoute
+            path="/project/:id/edit"
+            exact={true}
+            authenticated={authenticated}
+          >
+            <ProjectEdit />
+          </ProtectedRoute>
+=======
           <Route
             path="/discover/:query"
             exact={true}>
               <DiscoverPage />
           </Route>
+>>>>>>> main
         </Switch>
       </BrowserRouter>
     )
