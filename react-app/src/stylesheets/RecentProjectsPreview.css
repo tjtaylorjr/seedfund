@@ -1,0 +1,42 @@
+.recent-projects {
+  padding-bottom: 6rem;
+  padding-top: 12rem;
+  display: block;
+
+}
+
+.recent-projects__wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  padding-left: 60px;
+  padding-right: 60px;
+  max-width: 1366px;
+  margin-left: auto;
+  margin-right: auto;
+  box-sizing: border-box;
+}
+
+.recent-projects__header {
+  padding-top: 1.2rem;
+  margin-bottom: 3rem;
+  padding-left: 5.5rem;
+  font-weight: 400;
+  box-sizing: inherit;
+}
+
+.recent-projects__list {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  max-width: 1366px;
+  margin-left: auto;
+  margin-right: auto;
+  box-sizing: border-box;
+}
+
+@media only screen and (min-width: 640px) {
+  .recent-projects__header {
+    font-size: 22px;
+    line-height: 30px;
+  }
+}

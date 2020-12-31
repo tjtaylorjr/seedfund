@@ -1,11 +1,13 @@
 import React, { useState, useEffect } from "react";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
+import Home from "./components/Home";
 import LoginForm from "./components/auth/LoginForm";
 import SignUpForm from "./components/auth/SignUpForm";
 import NavBar from "./components/NavBar";
 import ProtectedRoute from "./components/auth/ProtectedRoute";
 import NewProject from "./components/Project/NewProject";
 import ProjectProfile from "./components/Project/ProjectProfile";
+import DiscoverPage from "./components/DiscoverPage"
 import { authenticate } from "./services/auth";
 import UserProfile from "./components/UserProfile/UserProfile";
 import ProjectEdit from "./components/Project/ProjectEdit";
@@ -38,9 +40,9 @@ function App() {
           setAuthenticated={setAuthenticated}
         />
         <Switch>
-          <ProtectedRoute path="/" exact={true} authenticated={authenticated}>
-            <h1>SeedFund</h1>
-          </ProtectedRoute>
+          <Route path="/" exact={true} authenticated={authenticated}>
+            <Home />
+          </Route>
           <Route path="/login" exact={true}>
             <LoginForm
               authenticated={authenticated}
@@ -75,6 +77,7 @@ function App() {
           >
             <ProjectProfile user={currentUser} authenticated={authenticated} />
           </ProtectedRoute>
+<<<<<<< HEAD
           <ProtectedRoute
             path="/project/:id/edit"
             exact={true}
@@ -82,6 +85,13 @@ function App() {
           >
             <ProjectEdit />
           </ProtectedRoute>
+=======
+          <Route
+            path="/discover/:query"
+            exact={true}>
+              <DiscoverPage />
+          </Route>
+>>>>>>> main
         </Switch>
       </BrowserRouter>
     )
