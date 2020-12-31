@@ -50,7 +50,7 @@ function ProjectProfile(props) {
     //error handling for user's pledge amount
     if (amount < 0) {
       return setAmountError("Pledge amount must be at least $1.00");
-    } else if (amount > project.balance - amount) {
+    } else if (amount > project.funding_goal - amount) {
       return setAmountError("Pledge cannot exceed funding goal");
     } else if (!Number(amount)) {
       return setAmountError("Pledge amount must be numerical");
@@ -61,7 +61,7 @@ function ProjectProfile(props) {
     const response = await fetch(`/api/projects/${id}/pledges`, {
       method,
       headers: {
-        "Content-Type": "application/json",
+        'Content-Type': 'application/json',
       },
       body: JSON.stringify({
         userId,
@@ -77,7 +77,7 @@ function ProjectProfile(props) {
 
   const deleteProject = async () => {
     const response = await fetch(`/api/projects/${id}`, {
-      method: "DELETE",
+      method: 'DELETE',
     });
     if (response.ok) {
       history.push("/");
@@ -85,53 +85,64 @@ function ProjectProfile(props) {
   };
 
   return (
-    <div>
-      <div>
-        <h1>{project.title}</h1>
-      </div>
-      <div>
-        <h1>{project.category}</h1>
-      </div>
-      <div>
-        <img src={project.image} alt={`${project.title}`} />
-      </div>
-      <div>
-        <label>Description</label>
-        <p>{project.description}</p>
-      </div>
-      <div>
-        <label>Goal Date</label>
-        <h1>{project.date_goal}</h1>
-      </div>
-      <div>
-        <h1>{project.balance}</h1>
-        <p>pledge of ${project.funding_goal} goal</p>
-      </div>
-      {canEdit && (
-        <div>
-          <button onClick={editProject}>Edit</button>
-          <br />
-          <button onClick={deleteProject}>Delete</button>
+    <div className="project-profile__main-container">
+      <div className="project-profile-page__main-container">
+        <div className="project-profile-page__header">
+          <div className="project-profile-page__header-title">
+            <h1>{project.title}</h1>
+          </div>
+          <div className="project-profile-page__header-category">
+            <h1>{project.category}</h1>
+          </div>
         </div>
-      )}
-      <form>
-        {amountError ? <span>{amountError}</span> : <></>}
-        <input
-          placeholder="Your funding goal "
-          type="number"
-          min="0.00"
-          step="1.00"
-          value={amount}
-          onChange={(e) => {
-            setAmount(e.target.value);
-          }}
-        />
-        {pledged ? (
-          <button onClick={handlePledge}>Update Pledge</button>
-        ) : (
-          <button onClick={handlePledge}>Pledge</button>
-        )}
-      </form>
+        <div className="project-profile-page__info">
+          <div className="project-profile-page__image-container">
+            <img src={project.image} alt="Project Image" />
+          </div>
+          <div className="project-profile-page__info-container">
+            <div className="project-profile-page__description">
+              <label>Description</label>
+              <p>{project.description}</p>
+            </div>
+            <div className="project-profile-page__goal-date">
+              <label>Goal Date</label>
+              <h1>{project.date_goal}</h1>
+            </div>
+            <div className="project-profile-page__balance">
+              <h1>{project.balance}</h1>
+              <p>pledge of ${project.funding_goal} goal</p>
+            </div>
+            {canEdit && (
+              <div>
+                <button onClick={editProject}>Edit</button>
+                <br />
+                <button onClick={deleteProject}>Delete</button>
+              </div>
+            )}
+          </div>
+        </div>
+        <div>
+          <form>
+            {amountError ? <span>{amountError}</span> : <></>}
+            <input
+              placeholder="Your funding goal "
+              type="number"
+              min="0.00"
+              step="1.00"
+              value={amount}
+              className="project-profile-page__input-field"
+              onChange={(e) => {
+                setAmount(e.target.value);
+              }}
+            />
+            {pledged ? (
+              <button onClick={handlePledge}>Update Pledge</button>
+            ) : (
+              <button onClick={handlePledge}>Pledge</button>
+            )}
+          </form>
+        </div>
+      </div>
     </div>
   );
 }
