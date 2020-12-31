@@ -17,7 +17,7 @@ const TrendingProjectsPreview = () => {
       });
       data = await res.json();
       console.log(data)
-      if(data) {
+      if (data) {
         setTrending(data.data)
       }
     })();

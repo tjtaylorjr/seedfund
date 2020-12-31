@@ -60,8 +60,6 @@ const ProjectCard = (data) => {
 
   const percentage = () => {
     const current = parseInt((balance * 100) / funding_goal)
-    console.log(typeof(current));
-    console.log(current)
     let progress;
     if(current > 100) {
       progress = "100%"
@@ -91,11 +89,9 @@ const ProjectCard = (data) => {
   const pledge = pledged.length;
 
   const currentDate = new Date().toLocaleString();
-  console.log(currentDate)
   const timeLeft = "shut up";
   return (
     <>
-
       <div className="projectcard">
         <div>
           <div className="projectcard__wrapper">

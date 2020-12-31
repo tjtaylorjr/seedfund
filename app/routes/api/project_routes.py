@@ -91,3 +91,8 @@ def searchForProjects():
     result = Project.query.filter(Project.title.ilike(f"%{query}%")).all()
     data = [project.to_dict() for project in result]
     return {"result": data}
+
+@project_routes.route('/random')
+def get_random_project():
+    result = Project.query.order_by(func.random()).first()
+    return result.to_dict()
