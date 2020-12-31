@@ -113,10 +113,18 @@ function ProjectProfile(props) {
               <p>pledge of ${project.funding_goal} goal</p>
             </div>
             {canEdit && (
-              <div>
-                <button onClick={editProject}>Edit</button>
+              <div className="project-profile-page__edit-button">
+                <button
+                  onClick={editProject}
+                >
+                  Edit
+                </button>
                 <br />
-                <button onClick={deleteProject}>Delete</button>
+                <button
+                  onClick={deleteProject}
+                >
+                  Delete
+                </button>
               </div>
             )}
           </div>
@@ -136,9 +144,19 @@ function ProjectProfile(props) {
               }}
             />
             {pledged ? (
-              <button onClick={handlePledge}>Update Pledge</button>
+              <button
+                className="project-profile-page__button"
+                onClick={handlePledge}
+              >
+                Update Pledge
+              </button>
             ) : (
-              <button onClick={handlePledge}>Pledge</button>
+              <button
+                className="project-profile-page__button"
+                onClick={handlePledge}
+              >
+                Pledge
+              </button>
             )}
           </form>
         </div>

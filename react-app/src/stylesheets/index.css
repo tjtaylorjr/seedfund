@@ -5,6 +5,7 @@
 @import "Footer.css";
 @import "ProjectForm.css";
 @import "ProjectProfile.css";
+@import "ProjectEdit.css";
 
 html {
     font-family: "Maison Neue Book", "Helvetica Neue", Helvetica, Arial, "Liberation Sans", FreeSans, sans-serif;
