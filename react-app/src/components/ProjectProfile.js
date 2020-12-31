@@ -50,7 +50,7 @@ function ProjectProfile(props) {
     //error handling for user's pledge amount
     if (amount < 0) {
       return setAmountError("Pledge amount must be at least $1.00");
-    } else if (amount > project.balance - amount) {
+    } else if (amount > project.funding_goal - amount) {
       return setAmountError("Pledge cannot exceed funding goal");
     } else if (!Number(amount)) {
       return setAmountError("Pledge amount must be numerical");
@@ -121,27 +121,26 @@ function ProjectProfile(props) {
             )}
           </div>
         </div>
-        <div className="project-profile-page__input-field">
-          <input
-            placeholder="Amount you would like to pledge"
-            type="number"
-            min="0.00"
-            step="1.00"
-            max={project.fundingGoal}
-            value={amount}
-            onChange={(e) => {
-              setAmount(e.target.value);
-            }}
-          />
-          <br />
-          <button className="project-profile-page__fund-button" onClick={fund}>
-            Fund
-          </button>
-          {pledged ? (
-          <button onClick={handlePledge}>Update Pledge</button>
-        ) : (
-          <button onClick={handlePledge}>Pledge</button>
-        )}
+        <div>
+          <form>
+            {amountError ? <span>{amountError}</span> : <></>}
+            <input
+              placeholder="Your funding goal "
+              type="number"
+              min="0.00"
+              step="1.00"
+              value={amount}
+              className="project-profile-page__input-field"
+              onChange={(e) => {
+                setAmount(e.target.value);
+              }}
+            />
+            {pledged ? (
+              <button onClick={handlePledge}>Update Pledge</button>
+            ) : (
+              <button onClick={handlePledge}>Pledge</button>
+            )}
+          </form>
         </div>
       </div>
     </div>
