@@ -69,7 +69,6 @@
 
 /* NOTE: progression color is a dynamic bar that I am handwaving for now.  Ideally would need to code a function that will set an inline style for width based on the percentage of funding attained.  Will come back and code width calculation out if time permits */
 .trending-projects__featured-card-progression-color {
-  width: 100%;
   height: 1.2rem;
   background-color: #037362;
 }
@@ -153,7 +152,7 @@
 }
 
 .trending-projects__right-panel-list-item-navlink-wrapper {
-  background-image: url(../assets/images/default_img560by315.png);
+  /* background-image: url(../assets/images/default_img560by315.png); */
   height: 9rem;
   background-color: #F0F0F0;
   background-repeat: no-repeat;

@@ -1,11 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import { NavLink } from 'react-router-dom';
+import { fillBar } from '../services/utils';
 import default_img620by350 from "../assets/images/default_img620by350.png";
 import ProjectProfile from "./Project/ProjectProfile";
 import TrendingList from "./TrendingList";
 
 const TrendingProjectsPreview = () => {
   const [trending, setTrending] = useState([])
+  const [featured, setFeatured] = useState({})
 
   useEffect(() => {
     let data;
@@ -16,11 +18,19 @@ const TrendingProjectsPreview = () => {
         },
       });
       data = await res.json();
+
       if (data) {
-        setTrending(data.data)
+        setTrending(data.trending_projects)
       }
     })();
   }, []);
+
+  useEffect(() => {
+    let data;
+    (async () => {
+      const res = await fetch('/')
+    })
+  })
 
   const faketrending = [
     {
@@ -99,7 +109,7 @@ const TrendingProjectsPreview = () => {
                     <div className="trending-projects__featured-card-focusable-link">
                       <img className="trending-projects__featured-card-image" src={default_img620by350} />
                       <div className="trending-projects__featured-card-progress-bar">
-                        <div className="trending-projects__featured-card-progression-color"></div>
+                        <div className="trending-projects__featured-card-progression-color" style={fillBar()}></div>
                       </div>
                     </div>
                     <h3 className="trending-projects__featured-card-project-name">Project Name Placeholder</h3>

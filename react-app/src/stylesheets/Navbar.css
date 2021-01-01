@@ -4,6 +4,7 @@
 
 .navbar li a {
   text-decoration: none;
+  color: #282828;
 }
 
 .navbar__wrapper {

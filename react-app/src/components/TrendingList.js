@@ -4,7 +4,7 @@ import {NavLink} from 'react-router-dom';
 const TrendingList = (data) => {
   const [project, setProject] = useState({});
   const [creator, setCreator] = useState('');
-  const {id, user_id, title, description, funding_goal, balance, date_goal, category} = data.data;
+  const {id, user_id, title, description, funding_goal, balance, image, date_goal, category} = data.data;
   const projectData = {
     id: id,
     user_id: user_id,
@@ -12,6 +12,7 @@ const TrendingList = (data) => {
     description: description,
     funding_goal: funding_goal,
     balance: balance,
+    image: image,
     date_goal: date_goal,
     category: category
   }
@@ -58,7 +59,7 @@ const TrendingList = (data) => {
       <li className="trending-projects__right-panel-list-item">
         <div className="trending-projects__right-panel-list-item-container">
           <NavLink to={'/project/' + id} className="trending-projects__right-panel-list-item-navlink">
-            <div className="trending-projects__right-panel-list-item-navlink-wrapper"></div>
+            <div className="trending-projects__right-panel-list-item-navlink-wrapper" style={{backgroundImage: `url(${image})`}}></div>
           </NavLink>
           <div className="trending-projects__right-panel-list-item-info-container">
             <div>

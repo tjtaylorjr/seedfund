@@ -53,7 +53,7 @@ def getNewest():
 
 @project_routes.route('/trending')
 def getTrending():
-    result = Project.query.order_by(Project.balance.desc()).limit(5).all()
+    result = Project.query.order_by(Project.balance.desc()).limit(4).all()
     data = [ project.to_dict() for project in result ]
     return {"trending_projects": data}
 
