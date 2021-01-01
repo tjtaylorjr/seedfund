@@ -13,7 +13,6 @@ const RecentProjectsPreview = () => {
         },
       });
       data = await res.json();
-      console.log(data)
       if (data) {
         setNewest(data.data)
       }

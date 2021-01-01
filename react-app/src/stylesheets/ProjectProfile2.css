@@ -1,0 +1,106 @@
+.project-profile-page__form {
+  grid-area: form;
+  margin-bottom: 50px;
+}
+
+.project-profile-page__input-field {
+
+
+  box-sizing: border-box;
+  margin-bottom: 20px;
+  padding: 12px;
+  font-size: 14px;
+  line-height: 17px;
+  width: 100%;
+}
+
+
+
+.project-profile-page__input-field:focus {
+
+
+  border-color: #009e74;
+  transition: all 300ms;
+  outline: 0;
+}
+
+.project-profile-page__button {
+
+
+  box-sizing: border-box;
+  background-color: #028858;
+  border: 1px solid #028858;
+  color: white;
+  height: 35px;
+  font-size: 14px;
+  font-weight: 300;
+  letter-spacing: 1px;
+  margin: 0px 1px;
+}
+
+.project-profile-page__main-container {
+  display: grid;
+  grid-template-areas:
+    'title title title'
+    'category category category'
+    'image image balance'
+    'image image goal-date'
+    '. . description'
+    'form form edit'
+    'form form edit';
+  /* grid-template-columns: 33% 34% 33%;
+  grid-template-rows: 20% 60% 20%; */
+  justify-content: center;
+  background-color: #f7f7f6;
+  /* vertical-align: baseline;
+  padding: 60px 18px;
+  height: 100vh; */
+  border-top: 1px solid #f1eeea;
+}
+
+.project-profile-page__header-title {
+  grid-area: title;
+  justify-content: center;
+  font-weight: 700;
+  font-size: xx-large;
+}
+
+.project-profile-page__header-category {
+
+  grid-area: category;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 25px333333333333;
+}
+
+.project-profile-page__image-container {
+  grid-area: image;
+}
+
+.project-profile-page__image {
+  /* width: 75%;
+  height: 75%; */
+  width: 820px;
+  height: 460px;
+
+
+}
+
+.project-profile-page__balance {
+
+  grid-area: balance;
+}
+
+.project-profile-page__goal-date {
+  grid-area: goal-date;
+}
+
+.project-profile-page__description {
+
+  grid-area: description;
+}
+
+.project-profile-page__edit-button {
+
+  grid-area: edit;
+}

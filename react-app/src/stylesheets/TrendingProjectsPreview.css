@@ -138,6 +138,7 @@
   justify-content: space-between;
   align-items: flex-start;
   cursor: pointer;
+  margin-top: 2rem;
 }
 
 .trending-projects__right-panel-list-item-navlink {
@@ -163,9 +164,10 @@
 .trending-projects__right-panel-list-item-info-container {
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: space-around;
   align-items: flex-start;
   flex-basis: 65%;
+  margin-top: 1.5rem;
 }
 
 .trending-projects__right-panel-list-item-name {
@@ -238,7 +240,8 @@
   height: 25px;
   cursor: pointer;
   line-height: unset !important;
-  display: flex;
+  display: none;
+  /* display: flex; */
   flex-direction: column;
   justify-content: center;
   align-items: center;

@@ -27,7 +27,6 @@ function App() {
       setLoaded(true);
     })();
   }, []);
-
   if (!loaded) {
     return null;
   }
@@ -70,14 +69,13 @@ function App() {
           >
             <NewProject />
           </ProtectedRoute>
-          <ProtectedRoute
+          <Route
             path="/project/:id"
             exact={true}
             authenticated={authenticated}
           >
             <ProjectProfile user={currentUser} authenticated={authenticated} />
-          </ProtectedRoute>
-<<<<<<< HEAD
+          </Route>
           <ProtectedRoute
             path="/project/:id/edit"
             exact={true}
@@ -85,13 +83,11 @@ function App() {
           >
             <ProjectEdit />
           </ProtectedRoute>
-=======
           <Route
             path="/discover/:query"
             exact={true}>
               <DiscoverPage />
           </Route>
->>>>>>> main
         </Switch>
       </BrowserRouter>
     )
