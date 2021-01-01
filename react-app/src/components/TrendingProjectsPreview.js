@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { NavLink } from 'react-router-dom';
 import default_img620by350 from "../assets/images/default_img620by350.png";
-import ProjectProfile from "./ProjectProfile";
+import ProjectProfile from "../components/Project/ProjectProfile";
 import TrendingList from "./TrendingList";
 
 const TrendingProjectsPreview = () => {
