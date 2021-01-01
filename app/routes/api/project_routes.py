@@ -4,6 +4,7 @@ from app.models import db, Project, User
 from app.forms.project_form import ProjectForm
 from flask_login import current_user
 from sqlalchemy.orm import joinedload
+from sqlalchemy import func
 
 project_routes = Blueprint('projects', __name__)
 
@@ -90,5 +91,10 @@ def deleteProject(id):
 def searchForProjects(query):
     result = Project.query.filter(Project.title.ilike(f"%{query}%")).options(joinedload(Project.user)).all()
     data = [ project.to_dict() for project in result ]
-
     return {"projects": data}
+
+@project_routes.route('/random')
+def get_random_project():
+    result = Project.query.order_by(func.random()).limit(1).all()
+    print(result)
+    return result.to_dict()

@@ -7,7 +7,7 @@ import TrendingList from "./TrendingList";
 
 const TrendingProjectsPreview = () => {
   const [trending, setTrending] = useState([])
-  const [featured, setFeatured] = useState({})
+  // const [featured, setFeatured] = useState({})
 
   useEffect(() => {
     let data;
@@ -18,7 +18,6 @@ const TrendingProjectsPreview = () => {
         },
       });
       data = await res.json();
-
       if (data) {
         setTrending(data.trending_projects)
       }
@@ -28,9 +27,21 @@ const TrendingProjectsPreview = () => {
   useEffect(() => {
     let data;
     (async () => {
-      const res = await fetch('/')
-    })
-  })
+      const res = await fetch('/api/projects/random', {
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+      data = await res.json();
+      console.log(data)
+
+      // if (data) {
+      //   console.log(data)
+      //   // setFeatured({})
+      // }
+    })();
+    
+  }, []);
 
   const faketrending = [
     {

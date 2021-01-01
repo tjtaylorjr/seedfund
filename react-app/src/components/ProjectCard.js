@@ -7,7 +7,7 @@ const ProjectCard = (data) => {
   const [project, setProject] = useState({});
   const[pledgeCount, setPledgeCount] = useState(0);
   const [creator, setCreator] = useState('');
-  const { id, user_id, title, description, funding_goal, balance, date_goal, category } = data.data;
+  const { id, user_id, title, description, funding_goal, balance, image, date_goal, category } = data.data;
   const projectData = {
     id: id,
     user_id: user_id,
@@ -15,6 +15,7 @@ const ProjectCard = (data) => {
     description: description,
     funding_goal: funding_goal,
     balance: balance,
+    image: image,
     date_goal: date_goal,
     category: category
   }
@@ -90,7 +91,7 @@ const ProjectCard = (data) => {
             <div className="projectcard__container">
               <div className="projectcard__picturebox">
                 <NavLink to={'/project/' + id} className="projectcard__picturebox-navlink">
-                  <img src={defaultimg350by200} className="projectcard__picture"/>
+                  <div style={{backgroundImage: `url(${project.image})`}} className="projectcard__picture"></div>
                 </NavLink>
               </div>
               <div>

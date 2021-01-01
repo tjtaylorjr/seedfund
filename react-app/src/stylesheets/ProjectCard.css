@@ -37,6 +37,7 @@
 }
 
 .projectcard__picture {
+
   width: 100%;
   top: 0rem;
   position: absolute;
@@ -45,6 +46,11 @@
   border: none;
   max-width: 100%;
   cursor: pointer;
+  height: 21rem;
+  background-color: #F0F0F0;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
 }
 
 .projectcard__topdata {
