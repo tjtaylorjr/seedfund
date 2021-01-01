@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { NavLink } from 'react-router-dom';
 import default_img620by350 from "../assets/images/default_img620by350.png";
-import ProjectProfile from "./ProjectProfile";
+import ProjectProfile from "./Project/ProjectProfile";
 import TrendingList from "./TrendingList";
 
 const TrendingProjectsPreview = () => {
@@ -16,7 +16,6 @@ const TrendingProjectsPreview = () => {
         },
       });
       data = await res.json();
-      console.log(data)
       if (data) {
         setTrending(data.data)
       }

@@ -1,9 +1,11 @@
 import React, {useState, useEffect} from 'react';
 import {NavLink} from 'react-router-dom';
 import defaultimg350by200 from "../assets/images/default_img350by200.png";
+import {getPledgeCount, fillBar} from '../services/utils';
 
 const ProjectCard = (data) => {
   const [project, setProject] = useState({});
+  const[pledgeCount, setPledgeCount] = useState(0);
   const [creator, setCreator] = useState('');
   const { id, user_id, title, description, funding_goal, balance, date_goal, category } = data.data;
   const projectData = {
@@ -58,35 +60,25 @@ const ProjectCard = (data) => {
   };
 
 
-  const percentage = () => {
-    const current = parseInt((balance * 100) / funding_goal)
-    let progress;
-    if(current > 100) {
-      progress = "100%"
-    } else {
-      progress = current + "%"
-    }
-    const styling = {width: progress}
-    return styling;
-  }
+  // const percentage = () => {
+  //   const current = parseInt((balance * 100) / funding_goal)
+  //   let progress;
+  //   if(current > 100) {
+  //     progress = "100%"
+  //   } else {
+  //     progress = current + "%"
+  //   }
+  //   const styling = {width: progress}
+  //   return styling;
+  // }
 
-
-  const pledged = async() => {
-    const res = await fetch('/api/projects/<id>/pledges', {
-      headers: {
-        "Content-Type": "application/json",
-      },
-    })
-
-    if(!res.ok) {
-      throw res
-    }
-
-    data = await res.json();
-    return data;
-  }
-
-  const pledge = pledged.length;
+  //get total pledges
+  useEffect(() => {
+    (async () => {
+      const pledgeNum = await getPledgeCount(id);
+      setPledgeCount(pledgeNum);
+    })();
+  }, [])
 
   const currentDate = new Date().toLocaleString();
   const timeLeft = "shut up";
@@ -120,11 +112,11 @@ const ProjectCard = (data) => {
               </div>
               <div className="projectcard__bottomdata">
                 <div className="projectcard__bottomdata-fillbar">
-                  <div className="projectcard__bottomdata-fillbar-progress"style={percentage()}></div>
+                  <div className="projectcard__bottomdata-fillbar-progress"style={fillBar(balance, funding_goal)}></div>
                 </div>
                 <div className="projectcard__bottomdata-campaign">
                   <div className="projectcard__bottomdata-pledged">
-                    <span>{pledge + ' pledged'}</span>
+                    <span>{pledgeCount + ' pledged'}</span>
                   </div>
                   <div className="projectcard__bottomdata-percent-funded">
                     <span>{funding() + ' funded'}</span>

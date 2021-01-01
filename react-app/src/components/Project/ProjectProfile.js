@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from "react";
-import { Redirect, useHistory, useParams } from "react-router-dom";
+import { NavLink, Redirect, useHistory, useParams } from "react-router-dom";
+import Footer from '../Footer/Footer';
+import { dateDiffInDays, getPledgeCount, fillBar } from '../../services/utils';
 
 function ProjectProfile(props) {
   const [project, setProject] = useState({});
@@ -7,6 +9,7 @@ function ProjectProfile(props) {
   const [amount, setAmount] = useState("");
   const [amountError, setAmountError] = useState("");
   const [pledged, setPledged] = useState(false);
+  const [pledgeCount, setPledgeCount] = useState(null);
   const history = useHistory();
 
   const { id } = useParams();
@@ -18,7 +21,7 @@ function ProjectProfile(props) {
       const response = await fetch(`/api/projects/${id}`);
       const res = await response.json();
       setProject(res);
-      if (project.user_id === props.user.id) {
+      if (props.user.id !== undefined && project.user_id === props.user.id) {
         setCanEdit(true);
       }
     })();
@@ -41,6 +44,13 @@ function ProjectProfile(props) {
     history.push(`/project/${id}/edit`);
   };
 
+  //get total pledges
+  useEffect(() => {
+    (async() => {
+      const pledgeNum = await getPledgeCount(id);
+      setPledgeCount(pledgeNum);
+    })();
+  },[id, pledged])
   //handle pledge submission
   const handlePledge = async (e) => {
     e.preventDefault();
@@ -85,83 +95,94 @@ function ProjectProfile(props) {
   };
 
   return (
-    <div className="project-profile__main-container">
-      <div className="project-profile-page__main-container">
-        <div className="project-profile-page__header">
-          <div className="project-profile-page__header-title">
-            <h1>{project.title}</h1>
-          </div>
-          <div className="project-profile-page__header-category">
-            <h1>{project.category}</h1>
-          </div>
-        </div>
-        <div className="project-profile-page__info">
-          <div className="project-profile-page__image-container">
-            <img src={project.image} alt="Project Image" />
-          </div>
-          <div className="project-profile-page__info-container">
-            <div className="project-profile-page__description">
-              <label>Description</label>
+    <>
+      <main className="project-profile-page__main">
+        <div className="project-profile-page__main-container">
+          {/* header section */}
+          <div className="project-profile-page__header">
+            <div className="project-profile-page__header-title">
+              <h1>{project.title}</h1>
+            </div>
+            <div className="project-profile-page__header-description">
               <p>{project.description}</p>
             </div>
-            <div className="project-profile-page__goal-date">
-              <label>Goal Date</label>
-              <h1>{project.date_goal}</h1>
+          </div>
+                {/* body for picture and informational box */}
+          <div className="project-profile-page__image-container">
+            <img className="project-profile-page__image" src={project.image} alt="Project Image" />
+            <NavLink to={('/search?q=' + project.category).toLowerCase()} className="project-profile-page__category">
+              <h1>{'Category: ' + project.category}</h1>
+            </NavLink>
+          </div>
+          <div className="project-profile-page__info-container">
+            <div className="project-profile-page__progress-bar">
+              <div className="project-profile-page__progress-color" style={fillBar(project.balance, project.funding_goal)}></div>
             </div>
-            <div className="project-profile-page__balance">
-              <h1>{project.balance}</h1>
-              <p>pledge of ${project.funding_goal} goal</p>
+            <div className="project-profile-page__info-container-stats">
+              <div className="project-profile-page__balance">
+                <h1>${project.balance}</h1>
+                <p>pledged of ${project.funding_goal} goal</p>
+              </div>
+              <div className="project-profile-page__backer-total">
+                <h1>{pledgeCount}</h1>
+                <p>backers</p>
+              </div>
+              <div className="project-profile-page__goal-date">
+                <h1>{dateDiffInDays(project.date_goal)}</h1>
+                <p>days to go</p>
+              </div>
             </div>
+            <form className="project-profile-page__form">
+              {amountError ? <span>{amountError}</span> : <></>}
+              <input
+                placeholder="Enter Pledge Amount"
+                type="number"
+                min="0.00"
+                step="1.00"
+                value={amount}
+                className="project-profile-page__input-field"
+                onChange={(e) => {
+                  setAmount(e.target.value);
+                }}
+              />
+              {pledged ? (
+                <button
+                  className="project-profile-page__button"
+                  onClick={handlePledge}
+                >
+                  Update Pledge
+                </button>
+              ) : (
+                  <button
+                    className="project-profile-page__button"
+                    onClick={handlePledge}
+                  >
+                    Pledge
+                  </button>
+                )}
+            </form>
             {canEdit && (
-              <div className="project-profile-page__edit-button">
+              <div className="project-profile-page__project-management">
                 <button
                   onClick={editProject}
+                  className="project-profile-page__edit-button"
                 >
                   Edit
                 </button>
-                <br />
                 <button
                   onClick={deleteProject}
+                  className="project-profile-page__delete-button"
                 >
                   Delete
                 </button>
               </div>
             )}
           </div>
+          {/* </div> */}
         </div>
-        <div>
-          <form>
-            {amountError ? <span>{amountError}</span> : <></>}
-            <input
-              placeholder="Your funding goal "
-              type="number"
-              min="0.00"
-              step="1.00"
-              value={amount}
-              className="project-profile-page__input-field"
-              onChange={(e) => {
-                setAmount(e.target.value);
-              }}
-            />
-            {pledged ? (
-              <button
-                className="project-profile-page__button"
-                onClick={handlePledge}
-              >
-                Update Pledge
-              </button>
-            ) : (
-              <button
-                className="project-profile-page__button"
-                onClick={handlePledge}
-              >
-                Pledge
-              </button>
-            )}
-          </form>
-        </div>
-      </div>
-    </div>
+      </main>
+      <Footer />
+    </>
   );
 }
 
