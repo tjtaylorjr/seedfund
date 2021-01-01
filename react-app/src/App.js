@@ -77,7 +77,6 @@ function App() {
           >
             <ProjectProfile user={currentUser} authenticated={authenticated} />
           </ProtectedRoute>
-<<<<<<< HEAD
           <ProtectedRoute
             path="/project/:id/edit"
             exact={true}
@@ -85,13 +84,11 @@ function App() {
           >
             <ProjectEdit />
           </ProtectedRoute>
-=======
           <Route
             path="/discover/:query"
             exact={true}>
               <DiscoverPage />
           </Route>
->>>>>>> main
         </Switch>
       </BrowserRouter>
     )
