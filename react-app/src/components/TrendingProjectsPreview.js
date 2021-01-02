@@ -79,10 +79,12 @@ const TrendingProjectsPreview = () => {
                 <div className="trending-projects__featured-card-hover-field">
                   <NavLink to="#" className="trending-projects__featured-card-navlink">
                     <div className="trending-projects__featured-card-focusable-link">
-                      <div className="trending-projects__featured-card-image" style={{ backgroundImage: `url(${featured.image})`}} ></div>
-                      <div className="trending-projects__featured-card-progress-bar">
-                        <div className="trending-projects__featured-card-progression-color" style={fillBar(featured.balance, featured.funding_goal)}></div>
-                      </div>
+                      <NavLink to={'/project/' + featured.id}>
+                        <div className="trending-projects__featured-card-image" style={{ backgroundImage: `url(${featured.image})`}} ></div>
+                        <div className="trending-projects__featured-card-progress-bar">
+                          <div className="trending-projects__featured-card-progression-color" style={fillBar(featured.balance, featured.funding_goal)}></div>
+                        </div>
+                      </NavLink>
                     </div>
                     <h3 className="trending-projects__featured-card-project-name">{featured.title}</h3>
                     <p className="trending-projects__featured-card-project-desc">{featured.description}</p>
