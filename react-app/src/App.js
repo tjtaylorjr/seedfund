@@ -7,7 +7,7 @@ import NavBar from "./components/NavBar";
 import ProtectedRoute from "./components/auth/ProtectedRoute";
 import NewProject from "./components/Project/NewProject";
 import ProjectProfile from "./components/Project/ProjectProfile";
-import DiscoverPage from "./components/DiscoverPage"
+import DiscoverPage from "./components/DiscoverPage";
 import { authenticate } from "./services/auth";
 import UserProfile from "./components/UserProfile/UserProfile";
 import ProjectEdit from "./components/Project/ProjectEdit";
@@ -69,11 +69,7 @@ function App() {
           >
             <NewProject />
           </ProtectedRoute>
-          <Route
-            path="/project/:id"
-            exact={true}
-            authenticated={authenticated}
-          >
+          <Route path="/project/:id" exact={true} authenticated={authenticated}>
             <ProjectProfile user={currentUser} authenticated={authenticated} />
           </Route>
           <ProtectedRoute
@@ -83,10 +79,8 @@ function App() {
           >
             <ProjectEdit />
           </ProtectedRoute>
-          <Route
-            path="/discover/:query"
-            exact={true}>
-              <DiscoverPage />
+          <Route path="/discover/:query" exact={true}>
+            <DiscoverPage />
           </Route>
         </Switch>
       </BrowserRouter>
