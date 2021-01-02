@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import {NavLink} from 'react-router-dom';
 import defaultimg350by200 from "../assets/images/default_img350by200.png";
-import {getPledgeCount, getCreatorName, fillBar} from '../services/utils';
+import {getPledgeCount, getCreatorName, dateDiffInDays, fillBar} from '../services/utils';
 
 const ProjectCard = (data) => {
   const [project, setProject] = useState({});
@@ -52,8 +52,30 @@ const ProjectCard = (data) => {
     })();
   }, [])
 
-  const currentDate = new Date().toLocaleString();
-  const timeLeft = "shut up";
+  const remainingDays = () => {
+    const days = dateDiffInDays(project.date_goal);
+    const fundingResult = project.balance >= project.funding_goal
+    if (days > 0) {
+      return (
+        <div className='projectcard__bottomdata-days'>
+          <span>{days + ' days to go'}</span>
+        </div>
+      )
+    } else if (days === -1) {
+      return (
+        <div className='projectcard__bottomdata-days'>
+          <span>{`Ended ${Math.abs(days)} day ago`}</span>
+        </div>
+      )
+    }
+
+    return (
+      <div className='projectcard__bottomdata-days'>
+        <span>{`Ended ${Math.abs(days)} days ago`}</span>
+      </div>
+    )
+  }
+
   return (
     <>
       <div className="projectcard">
@@ -93,11 +115,12 @@ const ProjectCard = (data) => {
                   <div className="projectcard__bottomdata-percent-funded">
                     <span>{funding() + ' funded'}</span>
                   </div>
+                  {remainingDays()}
                   <div className="projectcard__bottomdata-days">
-                    <span className="projectcard__bottomdata-days-text">{date_goal}</span>
+                    <span className="projectcard__bottomdata-days-text">{'End date: ' + date_goal}</span>
                   </div>
                   <div>
-                    <NavLink to={'/search?q=' + category.toLowerCase()} className="projectcard__bottomdata-category">{category}</NavLink>
+                    <NavLink to={'/discover/' + category.toLowerCase()} className="projectcard__bottomdata-category">{category}</NavLink>
                   </div>
                 </div>
               </div>

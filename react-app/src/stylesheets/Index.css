@@ -10,6 +10,7 @@
 @import "ProjectForm.css";
 @import "ProjectProfile.css";
 @import "ProjectEdit.css";
+@import "DiscoverPage.css";
 
 html {
     font-family: "Maison Neue Book", "Helvetica Neue", Helvetica, Arial, "Liberation Sans", FreeSans, sans-serif;

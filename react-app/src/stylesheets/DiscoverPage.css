@@ -1,0 +1,26 @@
+.query-results__wrapper {
+  padding-bottom: 6rem;
+  padding-top: 1.8rem;
+}
+
+.query-results__container {
+  padding-left: 7rem;
+  padding-right: 7rem;
+  box-sizing: border-box;
+}
+
+.query-results__header {
+  padding-top: 1.2rem;
+  margin-bottom: 3rem;
+  font-weight: 700;
+  font-size: 22px;
+  line-height: 30px;
+  display: flex;
+  justify-content: center;
+}
+
+.query-results__list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+}
