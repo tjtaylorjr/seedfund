@@ -38,7 +38,7 @@ const TrendingList = (data) => {
   }, [project])
 
   const funding = () => {
-    const current = (balance * 100) / funding_goal
+    const current = parseInt((balance * 100) / funding_goal)
     const percentFunded = current + "% funded"
     return percentFunded
   };
