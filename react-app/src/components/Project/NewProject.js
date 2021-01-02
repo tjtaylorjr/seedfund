@@ -38,12 +38,13 @@ function NewProject() {
                 placeholder="Title"
                 className="new-project-form__input-field"
                 value={title}
+                placeholder="Enter a title for your project"
                 onChange={(e) => setTitle(e.target.value)}
               />
             </div>
             <div className="new-project-form__description">
               <textarea
-                placeholder="Enter a solid description or your idea"
+                placeholder="Enter a solid description of your project"
                 className="new-project-form__textarea"
                 value={description}
                 onChange={(e) => setDescription(e.target.value)}
@@ -51,7 +52,7 @@ function NewProject() {
             </div>
             <div className="new-project-form__description">
               <input
-                placeholder="Your funding goal"
+                placeholder="Enter your target funding goal"
                 className="new-project-form__input-field"
                 type="number"
                 min="0.00"
@@ -63,7 +64,7 @@ function NewProject() {
             </div>
             <div className="new-project-form__image">
               <input
-                placeholder="Http://your-image-url-here"
+                placeholder="Enter your image url: Http://your-url-here"
                 className="new-project-form__input-field"
                 value={image}
                 onChange={(e) => setImage(e.target.value)}

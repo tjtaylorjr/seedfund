@@ -52,6 +52,7 @@ function ProjectEdit(props) {
               <input
                 className="edit-project-form__input-field"
                 value={title}
+                Placeholder="Enter a title for your project"
                 onChange={(e) => setTitle(e.target.value)}
               />
             </div>
@@ -59,6 +60,7 @@ function ProjectEdit(props) {
               <textarea
                 value={description}
                 className="edit-project-form__textarea"
+                placeholder="Enter a solid description of your project"
                 onChange={(e) => setDescription(e.target.value)}
               />
             </div>
@@ -70,6 +72,7 @@ function ProjectEdit(props) {
                 min="0.00"
                 step="1.00"
                 max="10000000.00"
+                placeholder="Enter your target funding goal"
                 onChange={(e) => setFundingGoal(e.target.value)}
               />
             </div>
@@ -77,6 +80,7 @@ function ProjectEdit(props) {
               <input
                 value={image}
                 className="edit-project-form__input-field"
+                placeholder="Enter your image url: Http://your-url-here"
                 onChange={(e) => setImage(e.target.value)}
               />
             </div>
@@ -85,18 +89,20 @@ function ProjectEdit(props) {
                 className="edit-project-form__select-field"
                 onChange={(e) => setCategory(e.target.value)}
               >
-                <option value=""></option>
+                <option value="">
+                  Select a Category
+                </option>
                 <option
                   selected={category === 'Arts' ? true : false}
-                  value="Art"
+                  value="Arts"
                 >
-                  Art
+                  Arts
                 </option>
                 <option
                   selected={category === 'Comics' ? true : false}
-                  value="Comic"
+                  value="Comics"
                 >
-                  Comic
+                  Comics
                 </option>
                 <option
                   selected={category === 'Crafts' ? true : false}
@@ -124,9 +130,9 @@ function ProjectEdit(props) {
                 </option>
                 <option
                   selected={category === 'Film' ? true : false}
-                  value="Film/Video"
+                  value="Film"
                 >
-                  Film & Video
+                  Film
                 </option>
                 <option
                   selected={category === 'Food' ? true : false}
