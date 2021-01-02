@@ -85,6 +85,33 @@ function ProjectProfile(props) {
     setAmountError("");
   };
 
+  const remainingDays = () => {
+    const days = dateDiffInDays(project.date_goal);
+    const fundingResult = project.balance >= project.funding_goal
+    if (days > 0) {
+      return (
+        <div className="project-profile-page__goal-date">
+          <h1>{dateDiffInDays(project.date_goal)}</h1>
+          <p>days to go</p>
+        </div>
+      )
+    } else if (days === -1) {
+      return (
+        <div className="project-profile-page__goal-date">
+          <h1>{fundingResult ? 'Funded' : 'Did not reach goal'}</h1>
+          <p>{`Ended ${Math.abs(days)} day ago`}</p>
+        </div>
+      )
+    }
+
+    return (
+      <div className="project-profile-page__goal-date">
+        <h1>{fundingResult ? 'Funded' : 'Did not reach goal'}</h1>
+        <p>{`Ended ${Math.abs(days)} days ago`}</p>
+      </div>
+    )
+  }
+
   const deleteProject = async () => {
     const response = await fetch(`/api/projects/${id}`, {
       method: 'DELETE',
@@ -127,10 +154,7 @@ function ProjectProfile(props) {
                 <h1>{pledgeCount}</h1>
                 <p>backers</p>
               </div>
-              <div className="project-profile-page__goal-date">
-                <h1>{dateDiffInDays(project.date_goal)}</h1>
-                <p>days to go</p>
-              </div>
+              {remainingDays()}
             </div>
             <form className="project-profile-page__form">
               {amountError ? <span>{amountError}</span> : <></>}

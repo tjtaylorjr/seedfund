@@ -25,6 +25,22 @@ export const getPledgeCount = async(id) => {
   return totalPledged;
 }
 
+export const getCreatorName = async(id) => {
+  const res = await fetch(`/users/${id}`, {
+    headers: {
+      "Content-Type": "application/json",
+    },
+  })
+
+  if (!res.ok) {
+    throw res
+  }
+
+  const data = await res.json();
+  const {firstname, lastname} = data;
+  return firstname + ' ' + lastname;
+}
+
 export const fillBar = (balance, funding_goal) => {
   const current = parseInt((balance * 100) / funding_goal)
   let progress;

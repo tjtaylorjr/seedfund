@@ -1,11 +1,15 @@
 import React, { useEffect, useState } from 'react';
 import { NavLink } from 'react-router-dom';
+import { fillBar, getCreatorName } from '../services/utils';
 import default_img620by350 from "../assets/images/default_img620by350.png";
 import ProjectProfile from "./Project/ProjectProfile";
 import TrendingList from "./TrendingList";
 
+
 const TrendingProjectsPreview = () => {
-  const [trending, setTrending] = useState([])
+  const [trending, setTrending] = useState([]);
+  const [featured, setFeatured] = useState({});
+  const [creator, setCreator] = useState('Fake User');
 
   useEffect(() => {
     let data;
@@ -17,61 +21,39 @@ const TrendingProjectsPreview = () => {
       });
       data = await res.json();
       if (data) {
-        setTrending(data.data)
+        setTrending(data.trending_projects)
       }
     })();
   }, []);
 
-  const faketrending = [
-    {
-      id: 1,
-      user_id: 1,
-      title: "Example Project 1",
-      description: "This is an example project",
-      funding_goal: 500000.00,
-      balance: 495000.00,
-      date_goal: "01/03/2021",
-      category: "Other",
-    },
-    {
-      id: 2,
-      user_id: 1,
-      title: "Example Project 2",
-      description: "This is an example project",
-      funding_goal: 250000.00,
-      balance: 55000.00,
-      date_goal: "01/11/2021",
-      category: "Music",
-    },
-    {
-      id: 3,
-      user_id: 1,
-      title: "Example Project 3",
-      description: "This is an example project",
-      funding_goal: 50000.00,
-      balance: 105000.00,
-      date_goal: "01/15/2021",
-      category: "Arts",
-    },
-    {
-      id: 4,
-      user_id: 1,
-      title: "Example Project 4",
-      description: "This is an example project",
-      funding_goal: 1000000.00,
-      balance: 733000.00,
-      date_goal: "01/24/2021",
-      category: "Games",
-    }
-  ]
-  const creator = "Creator Placeholder";
-  let project =
-    {
-      id: "placeholder",
-      title: "Project Name Placeholder",
-      goal: 1000000,
-      balance: 2000000
-    };
+  useEffect(() => {
+    let random;
+    (async () => {
+      const res = await fetch('/api/projects/random', {
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+      random = await res.json();
+
+      if (random) {
+        setFeatured(random.random_project[0])
+      }
+    })();
+  }, []);
+
+  useEffect(() => {
+    (async () => {
+      if(featured.user_id) {
+        try {
+          const ownerName = await getCreatorName(featured.user_id);
+          setCreator(ownerName);
+        }catch(err) {
+          console.log(err)
+        }
+      }
+    })();
+  }, [featured])
 
   const funding = () => {
     const current = (project.balance * 100) / project.goal
@@ -97,13 +79,15 @@ const TrendingProjectsPreview = () => {
                 <div className="trending-projects__featured-card-hover-field">
                   <NavLink to="#" className="trending-projects__featured-card-navlink">
                     <div className="trending-projects__featured-card-focusable-link">
-                      <img className="trending-projects__featured-card-image" src={default_img620by350} />
-                      <div className="trending-projects__featured-card-progress-bar">
-                        <div className="trending-projects__featured-card-progression-color"></div>
-                      </div>
+                      <NavLink to={'/project/' + featured.id}>
+                        <div className="trending-projects__featured-card-image" style={{ backgroundImage: `url(${featured.image})`}} ></div>
+                        <div className="trending-projects__featured-card-progress-bar">
+                          <div className="trending-projects__featured-card-progression-color" style={fillBar(featured.balance, featured.funding_goal)}></div>
+                        </div>
+                      </NavLink>
                     </div>
-                    <h3 className="trending-projects__featured-card-project-name">Project Name Placeholder</h3>
-                    <p className="trending-projects__featured-card-project-desc">Project Description Placeholder</p>
+                    <h3 className="trending-projects__featured-card-project-name">{featured.title}</h3>
+                    <p className="trending-projects__featured-card-project-desc">{featured.description}</p>
                     <div className="trending-projects__featured-card-project-creator-container">
                       <div>
                         <span className="trending-projects__featured-card-creator">By {creator}</span>

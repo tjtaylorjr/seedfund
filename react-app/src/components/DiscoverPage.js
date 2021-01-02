@@ -1,11 +1,21 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
+import ProjectCard from './ProjectCard';
+import Footer from './Footer/Footer';
 import {dateDiffInDays} from '../services/utils';
 
 const DiscoverPage = () => {
 
     const [queryResult, setqueryResult] = useState([]);
+    const [queryString, setQueryString] = useState('');
+
     const { query } = useParams();
+
+    useEffect(() => {
+        if(query) {
+            setQueryString(query);
+        }
+    }, [query])
 
     useEffect(() => {
         (async () => {
@@ -13,7 +23,7 @@ const DiscoverPage = () => {
             const json = await res.json();
             setqueryResult(json.projects);
         })()
-    }, [])
+    }, [queryString])
 
     //Moved this to a utils file so that we can use it in other pages on the site.  Didn't want to just delete your code so commented out instead.
 
@@ -29,22 +39,44 @@ const DiscoverPage = () => {
     // }
 
     return queryResult.length ? (
-        <ul className='query-results'>
-            <li className='query-results__li'>
-                <div>img goes here</div>
-                <div className='query-results__li-main'>
-                    <div className='query-results__title'>{queryResult[0].title}</div>
-                    <div>{queryResult[0].description}</div>
-                    <div>{queryResult[0].user.username}</div>
+        <>
+            <section className="query-results__wrapper">
+                <div className="query-results__container">
+                    <h3 className="query-results__header">
+                        {'Explore ' + queryResult.length + (queryResult.length > 1 ? ' Projects' : ' Project')}
+                    </h3>
+                    <ul className='query-results__list'>
+                        {queryResult.map((project, i) => (
+                            <ProjectCard key={i} data={project} />
+                        ))}
+                    </ul>
                 </div>
-                <div className='query-results__li-details'>
-                    <div>{queryResult[0].balance}</div>
-                    <div>{Math.floor(queryResult[0].balance / queryResult[0].funding_goal * 100)}% funded</div>
-                    <div className='query-results__title'>{dateDiffInDays(queryResult[0].date_goal) /* use date obj stuff*/} days to go</div>
+            </section>
+            {/* <ul className='query-results'>
+                <li className='query-results__li'>
+                    <div>img goes here</div>
+                    <div className='query-results__li-main'>
+                        <div className='query-results__title'>{queryResult[0].title}</div>
+                        <div>{queryResult[0].description}</div>
+                        <div>{queryResult[0].user.username}</div>
+                    </div>
+                    <div className='query-results__li-details'>
+                        <div>{queryResult[0].balance}</div>
+                        <div>{Math.floor(queryResult[0].balance / queryResult[0].funding_goal * 100)}% funded</div>
+                        <div className='query-results__title'>{dateDiffInDays(queryResult[0].date_goal) /* use date obj stuff*/} {/*days to go</div>
+                    </div>
+                </li>
+            </ul> */}
+            <Footer />
+        </>
+    ) : <>
+            <section className="query-results__wrapper">
+                <div className="query-results__container">
+                    <div className="query-results__loading-message">Loading...</div>
                 </div>
-            </li>
-        </ul>
-    ) : <div>Loading...</div>
+            </section>
+          <Footer />
+        </>
 }
 
 export default DiscoverPage;

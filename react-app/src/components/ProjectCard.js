@@ -1,13 +1,13 @@
 import React, {useState, useEffect} from 'react';
 import {NavLink} from 'react-router-dom';
 import defaultimg350by200 from "../assets/images/default_img350by200.png";
-import {getPledgeCount, fillBar} from '../services/utils';
+import {getPledgeCount, getCreatorName, dateDiffInDays, fillBar} from '../services/utils';
 
 const ProjectCard = (data) => {
   const [project, setProject] = useState({});
   const[pledgeCount, setPledgeCount] = useState(0);
   const [creator, setCreator] = useState('');
-  const { id, user_id, title, description, funding_goal, balance, date_goal, category } = data.data;
+  const { id, user_id, title, description, funding_goal, balance, image, date_goal, category } = data.data;
   const projectData = {
     id: id,
     user_id: user_id,
@@ -15,6 +15,7 @@ const ProjectCard = (data) => {
     description: description,
     funding_goal: funding_goal,
     balance: balance,
+    image: image,
     date_goal: date_goal,
     category: category
   }
@@ -23,56 +24,27 @@ const ProjectCard = (data) => {
     if (projectData) {
       setProject(projectData);
     }
-    let user;
+  },[data])
+
+  useEffect(() => {
     (async () => {
-      try {
-        const res = await fetch(`/users/${user_id}`, {
-          headers: {
-            "Content-Type": "application/json",
-          },
-        })
-
-        if (!res.ok) {
-          throw res
+      if(project.user_id) {
+        try {
+          const ownerName = await getCreatorName(project.user_id);
+          setCreator(ownerName);
+        }catch(err) {
+          console.log(err)
         }
-
-        user = await res.json();
-
-        if (user) {
-          const { firstname, lastname } = user;
-          setCreator(firstname + ' ' + lastname);
-        }
-
-      } catch (e) {
-        console.error(e);
       }
     })();
-
-  }, []);
-
-  let progress;
+  }, [project])
 
   const funding = () => {
     const current = parseInt((balance * 100) / funding_goal).toString()
-    progress = current + '%'
     const percentFunded = current + "%"
     return percentFunded
   };
 
-
-  // const percentage = () => {
-  //   const current = parseInt((balance * 100) / funding_goal)
-  //   let progress;
-  //   if(current > 100) {
-  //     progress = "100%"
-  //   } else {
-  //     progress = current + "%"
-  //   }
-  //   const styling = {width: progress}
-  //   return styling;
-  // }
-
-  //get total pledges
   useEffect(() => {
     (async () => {
       const pledgeNum = await getPledgeCount(id);
@@ -80,8 +52,30 @@ const ProjectCard = (data) => {
     })();
   }, [])
 
-  const currentDate = new Date().toLocaleString();
-  const timeLeft = "shut up";
+  const remainingDays = () => {
+    const days = dateDiffInDays(project.date_goal);
+    const fundingResult = project.balance >= project.funding_goal
+    if (days > 0) {
+      return (
+        <div className='projectcard__bottomdata-days'>
+          <span>{days + ' days to go'}</span>
+        </div>
+      )
+    } else if (days === -1) {
+      return (
+        <div className='projectcard__bottomdata-days'>
+          <span>{`Ended ${Math.abs(days)} day ago`}</span>
+        </div>
+      )
+    }
+
+    return (
+      <div className='projectcard__bottomdata-days'>
+        <span>{`Ended ${Math.abs(days)} days ago`}</span>
+      </div>
+    )
+  }
+
   return (
     <>
       <div className="projectcard">
@@ -90,7 +84,7 @@ const ProjectCard = (data) => {
             <div className="projectcard__container">
               <div className="projectcard__picturebox">
                 <NavLink to={'/project/' + id} className="projectcard__picturebox-navlink">
-                  <img src={defaultimg350by200} className="projectcard__picture"/>
+                  <div style={{backgroundImage: `url(${project.image})`}} className="projectcard__picture"></div>
                 </NavLink>
               </div>
               <div>
@@ -121,11 +115,12 @@ const ProjectCard = (data) => {
                   <div className="projectcard__bottomdata-percent-funded">
                     <span>{funding() + ' funded'}</span>
                   </div>
+                  {remainingDays()}
                   <div className="projectcard__bottomdata-days">
-                    <span className="projectcard__bottomdata-days-text">{date_goal}</span>
+                    <span className="projectcard__bottomdata-days-text">{'End date: ' + date_goal}</span>
                   </div>
                   <div>
-                    <NavLink to={'/search?q=' + category.toLowerCase()} className="projectcard__bottomdata-category">{category}</NavLink>
+                    <NavLink to={'/discover/' + category.toLowerCase()} className="projectcard__bottomdata-category">{category}</NavLink>
                   </div>
                 </div>
               </div>

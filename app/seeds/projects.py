@@ -12,8 +12,8 @@ def seed_projects():
         title='Severed Lego Heads',
         description=
         '''
-        Miss the sensation of stepping on a lego piece? Well, look no further! 
-        Back my project and you can have your own severed lego man head to 
+        Miss the sensation of stepping on a lego piece? Well, look no further!
+        Back my project and you can have your own severed lego man head to
         scatter in your living room or apartment floor!
         ''',
         funding_goal=400.00,
@@ -23,7 +23,7 @@ def seed_projects():
         category='Other'
     )
     db.session.add(project1)
-    
+
     project2 = Project(
         user_id=2,
         title='THE SIGN YOU\'VE BEEN LOOKING FOR',
@@ -39,13 +39,13 @@ def seed_projects():
         category='Design'
     )
     db.session.add(project2)
-    
+
     project3 = Project(
         user_id=3,
         title='an aesthetic looking lightbulb',
         description=
         '''
-        Come checkout this lightbulb. 
+        Come checkout this lightbulb.
         *Sunset not included
         ''',
         funding_goal=4000.00,
@@ -55,7 +55,7 @@ def seed_projects():
         category='Art'
     )
     db.session.add(project3)
-    
+
     project4 = Project(
         user_id=4,
         title='Help me take photos like this',
@@ -167,6 +167,21 @@ def seed_projects():
         category='Crafts'
     )
     db.session.add(project10)
+
+    project11 = Project(
+        user_id=3,
+        title='',
+        description=
+        '''
+        Fight Squad!  All new web comic drawn by me (100 issues!)
+        ''',
+        funding_goal=50000.00,
+        balance = 0.00,
+        image='https://images.unsplash.com/photo-1594712844133-d4193f13c17e?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=2167&q=80',
+        date_goal=(datetime.now() + timedelta(days=1)).isoformat(),
+        category='Comics'
+    )
+    db.session.add(project11)
 
     db.session.commit()
 
