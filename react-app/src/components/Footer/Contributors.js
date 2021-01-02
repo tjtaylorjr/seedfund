@@ -1,6 +1,6 @@
 import React from "react";
 
-function contributors() {
+function Contributors() {
   return (
     <div className="footer-contributors">
       CONTRIBUTORS
@@ -20,4 +20,4 @@ function contributors() {
   );
 }
 
-export default contributors;
+export default Contributors;
