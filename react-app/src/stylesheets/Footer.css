@@ -1,19 +1,19 @@
 .footer-grid__main-container {
   display: grid;
   grid-template-areas:
-    "contributer product community"
-    "contributer product community"
-    "contributer product community"
-    "contributer . ."
-    "contributer . .";
+    "contributor product community"
+    "contributor product community"
+    "contributor product community"
+    "contributor . ."
+    "contributor . .";
   justify-content: space-evenly;
   border-top: 2px solid #dcdedd;
   padding-top: 14px;
 }
 
-.footer-contributers {
+.footer-contributors {
   display: grid;
-  grid-area: contributer;
+  grid-area: contributor;
   font-weight: 525;
   opacity: 0.8;
 }
@@ -32,7 +32,7 @@
   opacity: 0.8;
 }
 
-.contributer-link,
+.contributor-link,
 .product-link,
 .community-link {
   text-decoration: none;

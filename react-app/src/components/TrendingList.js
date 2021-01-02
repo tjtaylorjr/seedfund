@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import {NavLink} from 'react-router-dom';
+import { getCreatorName } from '../services/utils';
 
 const TrendingList = (data) => {
   const [project, setProject] = useState({});
   const [creator, setCreator] = useState('');
-  const {id, user_id, title, description, funding_goal, balance, date_goal, category} = data.data;
+  const {id, user_id, title, description, funding_goal, balance, image, date_goal, category} = data.data;
   const projectData = {
     id: id,
     user_id: user_id,
@@ -12,6 +13,7 @@ const TrendingList = (data) => {
     description: description,
     funding_goal: funding_goal,
     balance: balance,
+    image: image,
     date_goal: date_goal,
     category: category
   }
@@ -20,36 +22,23 @@ const TrendingList = (data) => {
     if(projectData) {
       setProject(projectData);
     }
-    let user;
-    (async() => {
-      try{
-        const res = await fetch(`/users/${user_id}`, {
-          headers: {
-            "Content-Type": "application/json",
-          },
-        })
+  },[data]);
 
-        if(!res.ok) {
-          throw res
+  useEffect(() => {
+    (async () => {
+      if(project.user_id) {
+        try {
+          const ownerName = await getCreatorName(project.user_id);
+          setCreator(ownerName);
+        }catch(err) {
+          console.log(err)
         }
-
-        user = await res.json();
-
-        if(user) {
-          const {firstname, lastname} = user;
-          setCreator(firstname + ' ' + lastname);
-        }
-
-      }catch (e) {
-        console.error(e);
       }
     })();
-
-  },[]);
-
+  }, [project])
 
   const funding = () => {
-    const current = (balance * 100) / funding_goal
+    const current = parseInt((balance * 100) / funding_goal)
     const percentFunded = current + "% funded"
     return percentFunded
   };
@@ -58,7 +47,7 @@ const TrendingList = (data) => {
       <li className="trending-projects__right-panel-list-item">
         <div className="trending-projects__right-panel-list-item-container">
           <NavLink to={'/project/' + id} className="trending-projects__right-panel-list-item-navlink">
-            <div className="trending-projects__right-panel-list-item-navlink-wrapper"></div>
+            <div className="trending-projects__right-panel-list-item-navlink-wrapper" style={{backgroundImage: `url(${image})`}}></div>
           </NavLink>
           <div className="trending-projects__right-panel-list-item-info-container">
             <div>

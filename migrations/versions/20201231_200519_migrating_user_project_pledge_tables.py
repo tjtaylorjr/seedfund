@@ -1,8 +1,8 @@
-"""empty message
+"""migrating user, project, pledge tables
 
-Revision ID: 49b0034ca2db
+Revision ID: 36ac5976637a
 Revises: 
-Create Date: 2020-12-31 12:54:24.611037
+Create Date: 2020-12-31 20:05:19.064039
 
 """
 from alembic import op
@@ -10,7 +10,7 @@ import sqlalchemy as sa
 
 
 # revision identifiers, used by Alembic.
-revision = '49b0034ca2db'
+revision = '36ac5976637a'
 down_revision = None
 branch_labels = None
 depends_on = None

@@ -4,6 +4,7 @@ from app.models import db, Project, User
 from app.forms.project_form import ProjectForm
 from flask_login import current_user
 from sqlalchemy.orm import joinedload
+from sqlalchemy import func, or_
 
 project_routes = Blueprint('projects', __name__)
 
@@ -59,16 +60,23 @@ def getUserProjects(user_id):
 
 @project_routes.route('/newest')
 def getNewest():
-    result = Project.query.order_by(Project.date_goal.asc()).limit(9).all()
+    result = Project.query.order_by(Project.date_goal.desc()).limit(9).all()
     data = [project.to_dict() for project in result]
     return {"newest_projects": data}
 
 
 @project_routes.route('/trending')
 def getTrending():
-    result = Project.query.order_by(Project.balance.desc()).limit(5).all()
+    result = Project.query.order_by(Project.balance.desc()).limit(4).all()
     data = [project.to_dict() for project in result]
     return {"trending_projects": data}
+
+
+@project_routes.route('/random')
+def get_random_project():
+    result = Project.query.order_by(func.random()).limit(1).all()
+    data = [project.to_dict() for project in result]
+    return {"random_project": data}
 
 
 @project_routes.route('/<id>', methods=["PUT"])
@@ -99,10 +107,12 @@ def deleteProject(id):
     else:
         return {"error": f'id {id} not found'}
 
+# a little more robust but still not perfect.  Will search in multiple places on table but can't handle multiple search keywords well yet
+
 
 @project_routes.route('/search/<query>')
 def searchForProjects(query):
-    result = Project.query.filter(Project.title.ilike(f"%{query}%")).options(joinedload(Project.user)).all()
-    data = [ project.to_dict() for project in result ]
-
+    result = Project.query.filter(or_(Project.title.ilike(f"%{query}%"), Project.description.ilike(
+        f"%{query}%"), Project.category.ilike(f"%{query}%"))).options(joinedload(Project.user)).all()
+    data = [project.to_dict() for project in result]
     return {"projects": data}

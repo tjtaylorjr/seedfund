@@ -1,0 +1,102 @@
+.edit-project-page__main-container {
+  box-sizing: border-box;
+  display: flex;
+  justify-content: center;
+  background-color: #f7f7f6;
+  vertical-align: baseline;
+  padding: 60px 18px;
+  height: 100vh;
+  border-top: 1px solid #f1eeea;
+}
+
+.edit-project-form__main-container {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-width: 400px;
+  width: 100%;
+  height: fit-content;
+  padding: 20px;
+  background-color: #ffffff;
+  border: 1px solid #f1eeea;
+  border-radius: 2px;
+}
+
+.edit-project-form__form-container {
+  display: flex;
+  flex-direction: column;
+  padding: 20px 30px;
+  padding-top: 0;
+  max-width: 350px;
+  width: 100%;
+}
+
+.edit-project-form__title {
+  margin-top: 6px;
+  margin-bottom: 20px;
+  font-size: 24px;
+  color: #282828;
+}
+
+.edit-project-form__input-field {
+  box-sizing: border-box;
+  margin-bottom: 20px;
+  padding: 12px;
+  font-size: 14px;
+  line-height: 17px;
+  border: 1px solid #dcdedd;
+  border-radius: 3px;
+  width: 100%;
+}
+
+.edit-project-form__input-field:focus {
+  border-color: #009e74;
+  transition: all 300ms;
+  outline: 0;
+}
+
+.edit-project-form__select-field {
+  box-sizing: border-box;
+  margin-bottom: 20px;
+  padding: 12px;
+  font-size: 14px;
+  line-height: 17px;
+  border: 1px solid #dcdedd;
+  border-radius: 3px;
+  width: 100%;
+}
+
+.edit-project-form__select-field:focus {
+  border-color: #009e74;
+  transition: all 300ms;
+  outline: 0;
+}
+
+.edit-project-form__textarea {
+  box-sizing: border-box;
+  margin-bottom: 20px;
+  padding: 12px;
+  font-size: 14px;
+  line-height: 17px;
+  border: 2px solid #dcdedd;
+  border-radius: 3px;
+  width: 100%;
+}
+
+.edit-project-form__textarea:focus {
+  border-color: #009e74;
+  transition: all 300ms;
+  outline: 0;
+}
+
+.edit-project-form__submit-button {
+  box-sizing: border-box;
+  background-color: #028858;
+  border: 1px solid #028858;
+  color: white;
+  height: 35px;
+  font-size: 14px;
+  font-weight: 300;
+  letter-spacing: 1px;
+}

@@ -13,9 +13,9 @@ const RecentProjectsPreview = () => {
         },
       });
       data = await res.json();
-      console.log(data)
       if (data) {
-        setNewest(data.data)
+        
+        setNewest(data.newest_projects)
       }
     })();
   }, []);

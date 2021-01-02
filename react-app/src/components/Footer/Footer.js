@@ -1,13 +1,13 @@
 import React from "react";
 import Community from "./Community";
-import Contributers from "./Contributers";
+import Contributors from "./Contributors";
 import Product from "./Product";
 
 function Footer() {
   return (
     <>
       <div className="footer-grid__main-container">
-        <Contributers />
+        <Contributors />
         <Product />
         <Community />
       </div>
