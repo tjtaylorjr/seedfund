@@ -1,7 +1,7 @@
 """empty message
 
 Revision ID: cd21f7fe2d33
-Revises: 
+Revises:
 Create Date: 2020-12-31 17:06:44.893730
 
 """

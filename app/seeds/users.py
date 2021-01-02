@@ -60,6 +60,60 @@ def seed_users():
     )
     db.session.add(demo6)
 
+    demo7 = User(
+        firstname='Eric',
+        lastname='Peterson',
+        username='EPeterson',
+        email='epeterson@test.com',
+        password='password'
+    )
+    db.session.add(demo7)
+
+    demo8 = User(
+        firstname='Xi',
+        lastname='Ming',
+        username='mingxi',
+        email='mingxi@test.com',
+        password='password'
+    )
+    db.session.add(demo8)
+
+    demo9 = User(
+        firstname='Latrice',
+        lastname='Johnson',
+        username='ljohnson',
+        email='ljohnson@test.com',
+        password='password'
+    )
+    db.session.add(demo9)
+
+    demo10 = User(
+        firstname='Aidan',
+        lastname='MacLachlan',
+        username='amaclachlan',
+        email='amaclachlan@test.com',
+        password='password'
+    )
+    db.session.add(demo10)
+
+    demo11 = User(
+        firstname='Simon',
+        lastname='Katz',
+        username='skatz',
+        email='skatz@test.com',
+        password='password'
+    )
+    db.session.add(demo11)
+
+    demo12 = User(
+        firstname='Isabis',
+        lastname='Laghari',
+        username='ilaghari',
+        email='ilaghari@test.com',
+        password='password'
+    )
+    db.session.add(demo12)
+
     db.session.commit()
 
 # Uses a raw SQL query to TRUNCATE the users table.
