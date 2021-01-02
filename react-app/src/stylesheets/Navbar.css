@@ -183,7 +183,8 @@
   border-bottom: 0.1rem solid #dcdedd;
   font-size: 5rem;
   font-weight: 700;
-  color: #76a912;
+  /* color: #76a912; */
+  color: #028858;
   font-family: "RNS-B";
 }
 
@@ -191,7 +192,6 @@
   display: flex;
   align-items: center;
   margin-bottom: 0rem;
-
 }
 
 .navbar__navlink-profile {

@@ -24,3 +24,13 @@
   flex-wrap: wrap;
   justify-content: space-evenly;
 }
+
+.query-results__loading-message {
+  height: 100vh;
+  text-align: center;
+  padding-top: 5rem;
+  font-size: 22px;
+  line-height: 30px;
+  font-weight: 700;
+  color: #037362;
+}

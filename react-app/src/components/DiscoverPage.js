@@ -1,12 +1,21 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import ProjectCard from './ProjectCard';
+import Footer from './Footer/Footer';
 import {dateDiffInDays} from '../services/utils';
 
 const DiscoverPage = () => {
 
     const [queryResult, setqueryResult] = useState([]);
+    const [queryString, setQueryString] = useState('');
+
     const { query } = useParams();
+
+    useEffect(() => {
+        if(query) {
+            setQueryString(query);
+        }
+    }, [query])
 
     useEffect(() => {
         (async () => {
@@ -14,7 +23,7 @@ const DiscoverPage = () => {
             const json = await res.json();
             setqueryResult(json.projects);
         })()
-    }, [])
+    }, [queryString])
 
     //Moved this to a utils file so that we can use it in other pages on the site.  Didn't want to just delete your code so commented out instead.
 
@@ -58,8 +67,16 @@ const DiscoverPage = () => {
                     </div>
                 </li>
             </ul> */}
+            <Footer />
         </>
-    ) : <div>Loading...</div>
+    ) : <>
+            <section className="query-results__wrapper">
+                <div className="query-results__container">
+                    <div className="query-results__loading-message">Loading...</div>
+                </div>
+            </section>
+          <Footer />
+        </>
 }
 
 export default DiscoverPage;
