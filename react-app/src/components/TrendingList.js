@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import {NavLink} from 'react-router-dom';
+import { getCreatorName } from '../services/utils';
 
 const TrendingList = (data) => {
   const [project, setProject] = useState({});
@@ -21,33 +22,20 @@ const TrendingList = (data) => {
     if(projectData) {
       setProject(projectData);
     }
-    let user;
-    (async() => {
-      try{
-        const res = await fetch(`/users/${user_id}`, {
-          headers: {
-            "Content-Type": "application/json",
-          },
-        })
+  },[data]);
 
-        if(!res.ok) {
-          throw res
+  useEffect(() => {
+    (async () => {
+      if(project.user_id) {
+        try {
+          const ownerName = await getCreatorName(project.user_id);
+          setCreator(ownerName);
+        }catch(err) {
+          console.log(err)
         }
-
-        user = await res.json();
-
-        if(user) {
-          const {firstname, lastname} = user;
-          setCreator(firstname + ' ' + lastname);
-        }
-
-      }catch (e) {
-        console.error(e);
       }
     })();
-
-  },[]);
-
+  }, [project])
 
   const funding = () => {
     const current = (balance * 100) / funding_goal

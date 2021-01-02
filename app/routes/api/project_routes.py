@@ -58,6 +58,12 @@ def getTrending():
     data = [ project.to_dict() for project in result ]
     return {"trending_projects": data}
 
+@project_routes.route('/random')
+def get_random_project():
+    result = Project.query.order_by(func.random()).limit(1).all()
+    data = [project.to_dict() for project in result ]
+    return {"random_project": data}
+
 @project_routes.route('/<id>', methods=["PUT"])
 def updateProject(id):
     project = Project.query.get(id)
@@ -92,9 +98,3 @@ def searchForProjects(query):
     result = Project.query.filter(Project.title.ilike(f"%{query}%")).options(joinedload(Project.user)).all()
     data = [ project.to_dict() for project in result ]
     return {"projects": data}
-
-@project_routes.route('/random')
-def get_random_project():
-    result = Project.query.order_by(func.random()).limit(1).all()
-    print(result)
-    return result.to_dict()
