@@ -43,7 +43,7 @@ function NewProject() {
             </div>
             <div className="new-project-form__description">
               <textarea
-                placeholder="a solid description or your idea"
+                placeholder="Enter a solid description or your idea"
                 className="new-project-form__textarea"
                 value={description}
                 onChange={(e) => setDescription(e.target.value)}
@@ -63,7 +63,7 @@ function NewProject() {
             </div>
             <div className="new-project-form__image">
               <input
-                placeholder="Image for project"
+                placeholder="Http://your-image-url-here"
                 className="new-project-form__input-field"
                 value={image}
                 onChange={(e) => setImage(e.target.value)}
@@ -75,14 +75,14 @@ function NewProject() {
                 className="new-project-form__select-field"
                 onChange={(e) => setCategory(e.target.value)}
               >
-                <option value=""></option>
-                <option value="Art">Art</option>
-                <option value="Comic">Comic</option>
+                <option value="">Select a Category</option>
+                <option value="Arts">Arts</option>
+                <option value="Comics">Comics</option>
                 <option value="Crafts">Crafts</option>
                 <option value="Dance">Dance</option>
                 <option value="Design">Design</option>
                 <option value="Fashion">Fashion</option>
-                <option value="Film/Video">Film & Video</option>
+                <option value="Film">Film</option>
                 <option value="Food">Food</option>
                 <option value="Games">Games</option>
                 <option value="Journalism">Journalism</option>

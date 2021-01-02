@@ -87,13 +87,13 @@ function ProjectEdit(props) {
               >
                 <option value=""></option>
                 <option
-                  selected={category === 'Art' ? true : false}
+                  selected={category === 'Arts' ? true : false}
                   value="Art"
                 >
                   Art
                 </option>
                 <option
-                  selected={category === 'Comic' ? true : false}
+                  selected={category === 'Comics' ? true : false}
                   value="Comic"
                 >
                   Comic
@@ -123,7 +123,7 @@ function ProjectEdit(props) {
                   Fashion
                 </option>
                 <option
-                  selected={category === 'Film/Video' ? true : false}
+                  selected={category === 'Film' ? true : false}
                   value="Film/Video"
                 >
                   Film & Video

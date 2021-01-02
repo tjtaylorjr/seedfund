@@ -10,7 +10,7 @@ const QuickSelectBar = () => {
           <nav className="quick-select__navigation">
             <ul className="quick-select__navigation-list">
               <li className="quick-select__navigation-link">
-                <NavLink to="/discover/art" className="quick-select__navigation-navlink">Arts</NavLink>
+                <NavLink to="/discover/arts" className="quick-select__navigation-navlink">Arts</NavLink>
               </li>
               <li className="quick-select__navigation-link">
                 <NavLink to="/discover/comics+illustration" className="quick-select__navigation-navlink">Comics & Illustration</NavLink>
@@ -22,7 +22,7 @@ const QuickSelectBar = () => {
                 <NavLink to="/discover/film" className="quick-select__navigation-navlink">Film</NavLink>
               </li>
               <li className="quick-select__navigation-link">
-                <NavLink to="/discover/food+craft" className="quick-select__navigation-navlink">Food & Craft</NavLink>
+                <NavLink to="/discover/food+crafts" className="quick-select__navigation-navlink">Food & Craft</NavLink>
               </li>
               <li className="quick-select__navigation-link">
                 <NavLink to="/discover/games" className="quick-select__navigation-navlink">Games</NavLink>
