@@ -16,7 +16,7 @@ def seed_users():
     db.session.add(demo)
 
     demo2 = User(
-        firstname='James',
+        firstname='Jeff',
         lastname='Lee',
         username='jlee513',
         email='jlee@test.com',
