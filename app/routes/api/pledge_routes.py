@@ -41,12 +41,14 @@ def newPledge(id):
 @pledge_routes.route('/projects/<id>/pledges', methods=["PUT"])
 def editPledge(id):
     data = request.get_json()
+    user_id = data["userId"]
     amount = float(data["amount"])
     project = Project.query.get(id)
     if project:
-        pledge = Pledge.query.filter_by(project_id=project.id).first()
-        project.balance = float(project.balance) + amount
-        pledge.amount = float(pledge.amount) + amount
+        pledge = Pledge.query.filter_by(project_id=id, user_id=user_id).first()
+        pledge_difference = amount - float(pledge.amount)
+        project.balance = float(project.balance) + pledge_difference
+        pledge.amount = amount
         db.session.commit()
         return {"pledge": pledge.to_dict(), "project": project.to_dict()}
     else:

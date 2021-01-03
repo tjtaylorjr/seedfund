@@ -9,7 +9,7 @@ def seed_projects():
 
     project1 = Project(
         user_id=1,
-        title='Severed Lego Heads',
+        title='Random Lego Heads',
         description=
         '''
         Miss the sensation of stepping on a lego piece? Well, look no further!
@@ -17,7 +17,7 @@ def seed_projects():
         scatter in your living room or apartment floor!
         ''',
         funding_goal=400.00,
-        balance = 0.00,
+        balance = 50.00,
         image='https://images.unsplash.com/photo-1485550409059-9afb054cada4?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1001&q=80',
         date_goal=(datetime.now() + timedelta(days=5)).isoformat(),
         category='Other'
@@ -33,7 +33,7 @@ def seed_projects():
         for all this time!
         ''',
         funding_goal=4000.00,
-        balance = 0.00,
+        balance = 1773.00,
         image='https://images.unsplash.com/photo-1496449903678-68ddcb189a24?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80',
         date_goal=(datetime.now() + timedelta(days=30)).isoformat(),
         category='Design'
@@ -49,7 +49,7 @@ def seed_projects():
         *Sunset not included
         ''',
         funding_goal=4000.00,
-        balance = 0.00,
+        balance = 1090.00,
         image='https://images.unsplash.com/photo-1493612276216-ee3925520721?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1000&q=80',
         date_goal=(datetime.now() + timedelta(days=25)).isoformat(),
         category='Arts'
@@ -66,7 +66,7 @@ def seed_projects():
         encounter.
         ''',
         funding_goal=500.00,
-        balance = 0.00,
+        balance = 140.00,
         image='https://images.unsplash.com/photo-1429087969512-1e85aab2683d?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=934&q=80',
         date_goal=(datetime.now() + timedelta(days=12)).isoformat(),
         category='Photography'
@@ -81,7 +81,7 @@ def seed_projects():
         Old and antique looking pianos, because you love the look of your piano too!
         ''',
         funding_goal=6000.00,
-        balance = 0.00,
+        balance = 13.00,
         image='https://images.unsplash.com/photo-1505248207594-9f9912dda70a?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80',
         date_goal=(datetime.now() + timedelta(days=2)).isoformat(),
         category='Music'
@@ -97,7 +97,7 @@ def seed_projects():
         special member discout at my shop!
         ''',
         funding_goal=20000.00,
-        balance = 0.00,
+        balance = 118900.00,
         image='https://images.unsplash.com/photo-1504937551116-cb8097e6f02a?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&auto=format&fit=crop&w=933&q=80',
         date_goal=(datetime.now() + timedelta(days=22)).isoformat(),
         category='Food'
@@ -113,7 +113,7 @@ def seed_projects():
         of your paperclips breaking, I'll make them indestructable.
         ''',
         funding_goal=1534.00,
-        balance = 0.00,
+        balance = 3176.00,
         image='https://images.unsplash.com/photo-1597484662317-9bd7bdda2a45?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&auto=format&fit=crop&w=1267&q=80',
         date_goal=(datetime.now() + timedelta(days=10)).isoformat(),
         category='Crafts'
@@ -129,7 +129,7 @@ def seed_projects():
         with this magical device!
         ''',
         funding_goal=1000.00,
-        balance = 0.00,
+        balance = 20.00,
         image='https://images.unsplash.com/photo-1605870445919-838d190e8e1b?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1352&q=80',
         date_goal=(datetime.now() + timedelta(days=10)).isoformat(),
         category='Technology'
@@ -146,7 +146,7 @@ def seed_projects():
         be right. Back me and I'll send you one for all your random silver pineapple needs.
         ''',
         funding_goal=500.00,
-        balance = 0.00,
+        balance = 1000.00,
         image='https://images.unsplash.com/photo-1496551572277-76011ca2a6e9?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&auto=format&fit=crop&w=1351&q=80',
         date_goal=(datetime.now() + timedelta(days=20)).isoformat(),
         category='Other'
