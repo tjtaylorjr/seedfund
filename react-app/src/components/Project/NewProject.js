@@ -39,6 +39,7 @@ function NewProject() {
                 placeholder="Title"
                 className="new-project-form__input-field"
                 value={title}
+                placeholder="Enter a title for your project"
                 onChange={(e) => setTitle(e.target.value)}
               />
             </div>
@@ -85,7 +86,7 @@ function NewProject() {
                 <option value="Dance">Dance</option>
                 <option value="Design">Design</option>
                 <option value="Fashion">Fashion</option>
-                <option value="Film/Video">Film & Video</option>
+                <option value="Film">Film</option>
                 <option value="Food">Food</option>
                 <option value="Games">Games</option>
                 <option value="Journalism">Journalism</option>

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { NavLink } from "react-router-dom";
-import { fillBar, getCreatorName } from "../services/utils";
+import { fillBar, getCreatorName } from "../../services/utils";
 // import default_img620by350 from "../assets/images/default_img620by350.png";
 // import ProjectProfile from "./Project/ProjectProfile";
 import TrendingList from "./TrendingList";
@@ -111,11 +111,13 @@ const TrendingProjectsPreview = () => {
                       {featured.description}
                     </p>
                     <div className="trending-projects__featured-card-project-creator-container">
-                      <div>
+                      <NavLink to={{
+                        pathname: "/discover/members/" + creator,
+                        state: { creator_id: featured.user_id }}} style={{textDecoration: "none"}}>
                         <span className="trending-projects__featured-card-creator">
                           By {creator}
                         </span>
-                      </div>
+                      </NavLink>
                     </div>
                   </div>
                 </div>

@@ -74,29 +74,6 @@
   text-decoration: none;
 }
 
-/* .projectcard__topdata-name:after {
-    position: absolute;
-    top: 90%;
-    left: 2rem;
-    bottom: 0;
-    right: 0;
-    width: 55%;
-    height: 1px;
-    background: #034752;
-    content: '';
-    opacity: 0;
-    transition: height 0.3s, opacity 0.5s, transform 0.3s, color 0.3s;
-    transform: translateY(-1px);
-} */
-
-/* .projectcard__topdata-name:hover:after {
-  opacity: 1;
-  height: 2px;
-  transition: height 0.3s, opacity 0.5s, transform 0.3s, color 0.3s;
-  transform: translateY(-0px);
-}
-*/
-
 .projectcard__topdata-header {
   margin-bottom: 0/6rem;
   font-weight: 200;
@@ -107,12 +84,16 @@
 .projectcard__topdata-desc {
   overflow: hidden;
   text-overflow: ellipsis;
+  white-space: nowrap;
+  /* width: 100%; */
   position: relative;
-  max-height: 4.8rem;
+  padding-top: 2rem;
+  max-height: 3.8rem;
   text-decoration: none;
   color: #696969;
   font-size: 1.4rem;
   line-height: 2.4rem;
+
 
 }
 

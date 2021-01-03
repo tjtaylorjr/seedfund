@@ -6,7 +6,7 @@ from datetime import datetime, timedelta
 
 
 def seed_pledges():
-    
+
     pledge1 = Pledge(
         user_id = 1,
         project_id = 2,
@@ -34,7 +34,7 @@ def seed_pledges():
         amount = 230
     )
     db.session.add(pledge4)
-    
+
     pledge5 = Pledge(
         user_id = 6,
         project_id = 2,
@@ -146,6 +146,76 @@ def seed_pledges():
         amount = 800
     )
     db.session.add(pledge20)
+
+    pledge21 = Pledge(
+        user_id = 9,
+        project_id = 10,
+        amount = 10
+    )
+    db.session.add(pledge21)
+
+    pledge22 = Pledge(
+        user_id = 6,
+        project_id = 11,
+        amount = 2000
+    )
+    db.session.add(pledge22)
+
+    pledge23 = Pledge(
+        user_id = 10,
+        project_id = 12,
+        amount = 500
+    )
+    db.session.add(pledge23)
+
+    pledge24 = Pledge(
+        user_id = 2,
+        project_id = 13,
+        amount = 25
+    )
+    db.session.add(pledge24)
+
+    pledge25 = Pledge(
+        user_id = 11,
+        project_id = 14,
+        amount = 2000
+    )
+    db.session.add(pledge25)
+
+    pledge26 = Pledge(
+        user_id = 10,
+        project_id = 14,
+        amount = 2500000
+    )
+    db.session.add(pledge26)
+
+    pledge27 = Pledge(
+        user_id = 5,
+        project_id = 14,
+        amount = 5000
+    )
+    db.session.add(pledge27)
+
+    pledge28 = Pledge(
+        user_id = 4,
+        project_id = 15,
+        amount = 1000
+    )
+    db.session.add(pledge28)
+
+    pledge29 = Pledge(
+        user_id = 11,
+        project_id = 16,
+        amount = 500
+    )
+    db.session.add(pledge29)
+
+    pledge30 = Pledge(
+        user_id = 3,
+        project_id = 16,
+        amount = 50
+    )
+    db.session.add(pledge30)
 
     db.session.commit()
 
