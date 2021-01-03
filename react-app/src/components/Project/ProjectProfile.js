@@ -8,6 +8,7 @@ function ProjectProfile(props) {
   const [amount, setAmount] = useState("");
   const [amountError, setAmountError] = useState("");
   const [pledged, setPledged] = useState(false);
+  const [userPledgeAmount, setUserPledgeAmount] = useState(0);
   const [pledgeCount, setPledgeCount] = useState(null);
   const history = useHistory();
 
@@ -35,7 +36,10 @@ function ProjectProfile(props) {
       const response = await fetch(`/api/projects/${id}/pledges`);
       const res = await response.json();
       let match = res.pledges.filter((pledge) => pledge.user_id === userId);
-      if (match.length) setPledged(true);
+      if (match.length)  {
+        setUserPledgeAmount(match[0].amount)
+        setPledged(true);
+      }
     })();
   }, [id, userId]);
 
@@ -58,10 +62,8 @@ function ProjectProfile(props) {
       history.push("/login");
     }
     //error handling for user's pledge amount
-    if (amount < 0) {
+    if (amount <= 0) {
       return setAmountError("Pledge amount must be at least $1.00");
-    } else if (amount > project.funding_goal - amount) {
-      return setAmountError("Pledge cannot exceed funding goal");
     } else if (!Number(amount)) {
       return setAmountError("Pledge amount must be numerical");
     }
@@ -170,7 +172,7 @@ function ProjectProfile(props) {
             <form className="project-profile-page__form">
               {amountError ? <span>{amountError}</span> : <></>}
               <input
-                placeholder="Enter Pledge Amount"
+                placeholder={pledged ? `Current Pledge Amount $${userPledgeAmount}` : "Enter Pledge Amount"}
                 type="number"
                 min="0.00"
                 step="1.00"
@@ -202,13 +204,13 @@ function ProjectProfile(props) {
                   onClick={editProject}
                   className="project-profile-page__edit-button"
                 >
-                  Edit
+                  Edit Project
                 </button>
                 <button
                   onClick={deleteProject}
                   className="project-profile-page__delete-button"
                 >
-                  Delete
+                  Delete Project
                 </button>
               </div>
             )}
