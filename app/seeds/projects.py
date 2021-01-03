@@ -170,7 +170,7 @@ def seed_projects():
 
     project11 = Project(
         user_id=3,
-        title='',
+        title='Fight Squad!',
         description=
         '''
         Fight Squad!  All new web comic drawn by me (100 issues!)
