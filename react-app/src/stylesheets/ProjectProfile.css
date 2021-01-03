@@ -1,7 +1,7 @@
 .project-profile-page__main {
   /* padding-bottom: 50rem; */
   background-color: #f7f7f6;
-  height: 100vh;
+  height: 100%;
 }
 .project-profile-page__main-container {
   display: grid;
@@ -85,6 +85,15 @@
   line-height: 1.8rem;
 }
 
+.project-profile-page__creator {
+  margin-bottom: 0rem;
+  padding-top: 1.8rem;
+  padding-bottom: 1.8rem;
+  text-decoration: none;
+  color: #656969;
+  font-size: 1.2rem;
+  line-height: 1.8rem;
+}
 .project-profile-page__info-container {
   grid-area: info;
   color: #028858;

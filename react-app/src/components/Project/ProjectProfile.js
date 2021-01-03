@@ -4,6 +4,7 @@ import { dateDiffInDays, getPledgeCount, fillBar } from "../../services/utils";
 
 function ProjectProfile(props) {
   const [project, setProject] = useState({});
+  const [creator, setCreator] = useState({})
   const [canEdit, setCanEdit] = useState(false);
   const [amount, setAmount] = useState("");
   const [amountError, setAmountError] = useState("");
@@ -14,6 +15,7 @@ function ProjectProfile(props) {
 
   const { id } = useParams();
   const userId = props.user.id;
+  const creatorName = creator.firstname + ' ' + creator.lastname
 
   //check if project belongs to user
   useEffect(() => {
@@ -42,6 +44,28 @@ function ProjectProfile(props) {
       }
     })();
   }, [id, userId]);
+
+  useEffect(() => {
+    (async () => {
+      try {
+        const res = await fetch(`/users/${project.user_id}`, {
+          headers: {
+            "Content-Type": "application/json",
+          },
+        })
+        if(!res.ok) {
+          throw res
+        }
+
+        const data = await res.json();
+        if (data) {
+          setCreator(data)
+        }
+      }catch(err) {
+        console.error(err);
+      }
+    })()
+  }, [project])
 
   const editProject = () => {
     history.push(`/project/${id}/edit`);
@@ -149,10 +173,13 @@ function ProjectProfile(props) {
               alt={project.title}
             />
             <NavLink
-              to={("/search?q=" + project.category).toLowerCase()}
+              to={("/discover/" + project.category).toLowerCase()}
               className="project-profile-page__category"
             >
               <h1>{"Category: " + project.category}</h1>
+            </NavLink>
+            <NavLink to={{ pathname: "/discover/members/" + creator, state: { creator_id: project.user_id } }} className="project-profile-page__creator">
+              <h1>{"By " + creatorName}</h1>
             </NavLink>
           </div>
           <div className="project-profile-page__info-container">

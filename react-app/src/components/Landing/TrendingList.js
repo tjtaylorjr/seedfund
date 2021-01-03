@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { NavLink } from "react-router-dom";
-import { getCreatorName } from "../services/utils";
+import { getCreatorName } from "../../services/utils";
 
 const TrendingList = (data) => {
   const [project, setProject] = useState({});
