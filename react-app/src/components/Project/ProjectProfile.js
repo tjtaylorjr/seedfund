@@ -145,7 +145,7 @@ function ProjectProfile(props) {
               alt={project.title}
             />
             <NavLink
-              to={("/search?q=" + project.category).toLowerCase()}
+              to={("/discover/" + project.category).toLowerCase()}
               className="project-profile-page__category"
             >
               <h1>{"Category: " + project.category}</h1>
