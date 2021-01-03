@@ -6,9 +6,9 @@ import {
   getCreatorName,
   dateDiffInDays,
   fillBar,
-} from "../services/utils";
+} from "../../services/utils";
 
-const ProjectCard = (data) => {
+const UserProjectCard = (data) => {
   const [project, setProject] = useState({});
   const [pledgeCount, setPledgeCount] = useState(0);
   const [creator, setCreator] = useState("");
@@ -72,20 +72,20 @@ const ProjectCard = (data) => {
     const fundingResult = project.balance >= project.funding_goal;
     if (days > 0) {
       return (
-        <div className="projectcard__bottomdata-days">
+        <div className="userprojectcard__bottomdata-days">
           <span>{days + " days to go"}</span>
         </div>
       );
     } else if (days === -1) {
       return (
-        <div className="projectcard__bottomdata-days">
+        <div className="userprojectcard__bottomdata-days">
           <span>{`Ended ${Math.abs(days)} day ago`}</span>
         </div>
       );
     }
 
     return (
-      <div className="projectcard__bottomdata-days">
+      <div className="userprojectcard__bottomdata-days">
         <span>{`Ended ${Math.abs(days)} days ago`}</span>
       </div>
     );
@@ -93,14 +93,14 @@ const ProjectCard = (data) => {
 
   return (
     <>
-      <div className="projectcard">
+      <div className="userprojectcard">
         <div>
-          <div className="projectcard__wrapper">
-            <div className="projectcard__container">
-              <div className="projectcard__picturebox">
+          <div className="userprojectcard__wrapper">
+            <div className="userprojectcard__container">
+              <div className="userprojectcard__picturebox">
                 <NavLink
                   to={"/project/" + id}
-                  className="projectcard__picturebox-navlink"
+                  className="userprojectcard__picturebox-navlink"
                 >
                   <div
                     style={
@@ -108,57 +108,53 @@ const ProjectCard = (data) => {
                         ? { backgroundImage: `url(${project.image})` }
                         : null
                     }
-                    className="projectcard__picture"
+                    className="userprojectcard__picture"
                   ></div>
                 </NavLink>
               </div>
               <div>
-                <div className="projectcard__topdata">
-                  <div className="projectcard__topdata-text-container">
+                <div className="userprojectcard__topdata">
+                  <div className="userprojectcard__topdata-text-container">
                     <NavLink
                       to={"/project/" + id}
-                      className="projectcard__topdata-name"
+                      className="userprojectcard__topdata-name"
                     >
-                      <h3 className="projectcard__topdata-header">{title}</h3>
-                      <p className="projectcard__topdata-desc">{description}</p>
+                      <h3 className="userprojectcard__topdata-header">
+                        {title}
+                      </h3>
                     </NavLink>
                   </div>
                 </div>
-                <div className="projectcard__topdata-creator">
+                <div className="userprojectcard__topdata-creator">
                   <div style={{ display: "inline-block" }}>
                     <NavLink
                       to="#"
-                      className="projectcard__topdata-creator-link"
+                      className="userprojectcard__topdata-creator-link"
                     >
                       <span>{"By " + creator}</span>
                     </NavLink>
                   </div>
                 </div>
               </div>
-              <div className="projectcard__bottomdata">
-                <div className="projectcard__bottomdata-fillbar">
+              <div className="userprojectcard__bottomdata">
+                <div className="userprojectcard__bottomdata-fillbar">
                   <div
-                    className="projectcard__bottomdata-fillbar-progress"
+                    className="userprojectcard__bottomdata-fillbar-progress"
                     style={fillBar(balance, funding_goal)}
                   ></div>
                 </div>
-                <div className="projectcard__bottomdata-campaign">
-                  <div className="projectcard__bottomdata-pledged">
+                <div className="userprojectcard__bottomdata-campaign">
+                  <div className="userprojectcard__bottomdata-pledged">
                     <span>{pledgeCount + " pledged"}</span>
                   </div>
-                  <div className="projectcard__bottomdata-percent-funded">
+                  <div className="userprojectcard__bottomdata-percent-funded">
                     <span>{funding() + " funded"}</span>
                   </div>
                   {remainingDays()}
-                  <div className="projectcard__bottomdata-days">
-                    <span className="projectcard__bottomdata-days-text">
-                      {"End date: " + date_goal}
-                    </span>
-                  </div>
                   <div>
                     <NavLink
                       to={"/discover/" + category.toLowerCase()}
-                      className="projectcard__bottomdata-category"
+                      className="userprojectcard__bottomdata-category"
                     >
                       {category}
                     </NavLink>
@@ -173,4 +169,4 @@ const ProjectCard = (data) => {
   );
 };
 
-export default ProjectCard;
+export default UserProjectCard;

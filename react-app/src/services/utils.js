@@ -9,46 +9,46 @@ export function dateDiffInDays(date_goal) {
   return Math.floor((utc2 - utc1) / _MS_PER_DAY);
 }
 
-export const getPledgeCount = async(id) => {
+export const getPledgeCount = async (id) => {
   const res = await fetch(`/api/projects/${id}/pledges`, {
     headers: {
       "Content-Type": "application/json",
     },
-  })
+  });
 
   if (!res.ok) {
-    throw res
+    throw res;
   }
 
   const data = await res.json();
   const totalPledged = data.pledges.length;
   return totalPledged;
-}
+};
 
-export const getCreatorName = async(id) => {
+export const getCreatorName = async (id) => {
   const res = await fetch(`/users/${id}`, {
     headers: {
       "Content-Type": "application/json",
     },
-  })
+  });
 
   if (!res.ok) {
-    throw res
+    throw res;
   }
 
   const data = await res.json();
-  const {firstname, lastname} = data;
-  return firstname + ' ' + lastname;
-}
+  const { firstname, lastname } = data;
+  return firstname + " " + lastname;
+};
 
 export const fillBar = (balance, funding_goal) => {
-  const current = parseInt((balance * 100) / funding_goal)
+  const current = parseInt((balance * 100) / funding_goal);
   let progress;
   if (current > 100) {
-    progress = "100%"
+    progress = "100%";
   } else {
-    progress = current + "%"
+    progress = current + "%";
   }
-  const styling = { width: progress }
+  const styling = { width: progress };
   return styling;
-}
+};
