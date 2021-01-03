@@ -117,18 +117,3 @@ def searchForProjects(query):
     data = [project.to_dict() for project in result]
     return {"projects": data}
 
-
-
-# @project_routes.route('/search/<query>')
-# def searchForProjects(query):
-#     search_terms = query.split()
-
-#     total_data = []
-#     for term in search_terms:
-#         result = (Project.query.filter(or_(Project.title.ilike(f"%{search_term}%"), Project.description.ilike(
-#             f"%{search_term}%"), Project.category.ilike(f"%{search_term}%"))).options(joinedload(Project.user)).all())
-#         if (result):
-#             data = [project.to_dict() for project in result]
-#             total_data.extend(data)
-#     filtered_data = list(set(total_data))
-#     return {"projects": filtered_data}
