@@ -32,6 +32,13 @@
   width: 100%;
 }
 
+.new-project-form__header {
+  align-self: start;
+  margin-bottom: 10px;
+  font-size: 24px;
+  color: #282828;
+}
+
 .new-project-form__title {
   margin-top: 6px;
   margin-bottom: 20px;
@@ -75,11 +82,13 @@
 
 .new-project-form__textarea {
   box-sizing: border-box;
+  font-family: "Maison Neue Book", "Helvetica Neue", Helvetica, Arial,
+    "Liberation Sans", FreeSans, sans-serif;
   margin-bottom: 20px;
   padding: 12px;
   font-size: 14px;
   line-height: 17px;
-  border: 2px solid #dcdedd;
+  border: 1px solid #dcdedd;
   border-radius: 3px;
   width: 100%;
 }

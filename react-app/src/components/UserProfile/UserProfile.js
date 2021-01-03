@@ -1,20 +1,97 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
+import { NavLink } from "react-router-dom";
+import UserProjectCard from "./UserProjectCard";
 
 const UserProfile = (props) => {
   const user = props.user;
   const userName = `${user.firstname} ${user.lastname}`;
+  const [pledgeMatch, setPledgeMatch] = useState(false);
+  const [projectMatch, setProjectMatch] = useState(false);
+  const [pledges, setPledges] = useState([]);
+  const [projects, setProjects] = useState([]);
 
   useEffect(() => {
     (async () => {
-      const response = await fetch(`/api/users/${user.id}/pledges`);
-      const res = await response.json();
-      let match = res.pledges.filter((pledge) => pledge.user_id === user.id);
-      // if (match.length) setPledges(true);
-      console.log(res);
+      const projectRes = await fetch(`/api/projects/users/${user.id}`);
+      const projectJSON = await projectRes.json();
+      if (projectRes.ok && projectJSON.projects) {
+        if (!projectMatch && projectJSON.projects.length) {
+          setProjectMatch(true);
+          setProjects(projectJSON.projects);
+          return;
+        }
+        return;
+      }
     })();
   }, [user]);
 
-  return <h1>{userName}</h1>;
+  useEffect(() => {
+    (async () => {
+      const pledgeRes = await fetch(`/api/users/${user.id}/pledges`);
+      const pledgeJSON = await pledgeRes.json();
+
+      if (pledgeRes.ok && pledgeJSON.pledges) {
+        if (!pledgeMatch && pledgeJSON.pledges.length) {
+          setPledgeMatch(true);
+          setPledges(pledgeJSON.pledges);
+          return;
+        }
+        return;
+      }
+    })();
+  }, [user]);
+  console.log(user);
+  console.log("pledges", pledges);
+  console.log("projects", projects);
+
+  return (
+    <div className="user-profile__main-container">
+      <div className="user-username">{userName}</div>
+      <div className="user-project-summary">
+        <div className="user-project-summary__num-projects">
+          {`You own ${projectMatch ? projects.length : "0"} projects`}
+        </div>
+        <div className="user-project-summary__num-pledges">
+          {`You've backed ${pledgeMatch ? pledges.length : "0"} projects`}
+        </div>
+      </div>
+      <div className="my-projects__main-container">
+        <h1 className="my-projects-header">My Projects</h1>
+        <div className="my-project__project-container">
+          {projectMatch ? (
+            projects.map((project) => {
+              return <UserProjectCard key={project.id} data={project} />;
+            })
+          ) : (
+            <div className="empty-message">
+              You currently don't own any projects.
+              <NavLink className="start-project-link" to="/start">
+                Start one today!
+              </NavLink>
+            </div>
+          )}
+        </div>
+      </div>
+      <div className="my-pledges__main-container">
+        <h1 className="my-pledges-header">Projects Backed</h1>
+        <div className="my-pledge__pledge-container">
+          {pledgeMatch ? (
+            pledges.map((pledge) => {
+              return (
+                <div key={pledge.id} className="my-pledge__pledge-container">
+                  <UserProjectCard data={pledge.project} />
+                </div>
+              );
+            })
+          ) : (
+            <div className="empty-message">
+              You have not backed any projects.
+            </div>
+          )}
+        </div>
+      </div>
+    </div>
+  );
 };
 
 export default UserProfile;

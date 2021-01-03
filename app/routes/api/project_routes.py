@@ -37,6 +37,8 @@ def newProject():
     print(form.errors)
     return jsonify(form.errors)
 
+# GET route for a specific project id
+
 
 @project_routes.route('/<id>')
 def getSpecificProject(id):
@@ -46,23 +48,36 @@ def getSpecificProject(id):
     return result.to_dict()
 
 
+# GET route for projects started by user
+@project_routes.route('/users/<user_id>')
+def getUserProjects(user_id):
+    projects = Project.query.filter_by(user_id=user_id).all()
+    if projects:
+        data = [project.to_dict() for project in projects]
+        return {"projects": data}
+    return {"error": "Not found"}
+
+
 @project_routes.route('/newest')
 def getNewest():
     result = Project.query.order_by(Project.date_goal.desc()).limit(9).all()
-    data = [ project.to_dict() for project in result ]
+    data = [project.to_dict() for project in result]
     return {"newest_projects": data}
+
 
 @project_routes.route('/trending')
 def getTrending():
     result = Project.query.order_by(Project.balance.desc()).limit(4).all()
-    data = [ project.to_dict() for project in result ]
+    data = [project.to_dict() for project in result]
     return {"trending_projects": data}
+
 
 @project_routes.route('/random')
 def get_random_project():
     result = Project.query.order_by(func.random()).limit(1).all()
-    data = [project.to_dict() for project in result ]
+    data = [project.to_dict() for project in result]
     return {"random_project": data}
+
 
 @project_routes.route('/<id>', methods=["PUT"])
 def updateProject(id):
@@ -93,8 +108,11 @@ def deleteProject(id):
         return {"error": f'id {id} not found'}
 
 # a little more robust but still not perfect.  Will search in multiple places on table but can't handle multiple search keywords well yet
+
+
 @project_routes.route('/search/<query>')
 def searchForProjects(query):
-    result = Project.query.filter(or_(Project.title.ilike(f"%{query}%"),Project.description.ilike(f"%{query}%"),Project.category.ilike(f"%{query}%"))).options(joinedload(Project.user)).all()
-    data = [ project.to_dict() for project in result ]
+    result = Project.query.filter(or_(Project.title.ilike(f"%{query}%"), Project.description.ilike(
+        f"%{query}%"), Project.category.ilike(f"%{query}%"))).options(joinedload(Project.user)).all()
+    data = [project.to_dict() for project in result]
     return {"projects": data}

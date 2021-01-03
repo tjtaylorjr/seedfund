@@ -1,0 +1,46 @@
+.user-profile__main-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.user-username {
+  margin: 20px auto;
+  margin-bottom: 10px;
+  font-size: 30px;
+}
+.user-project-summary {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: auto;
+}
+
+.my-projects__main-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.my-project__project-container,
+.my-pledge__project-container {
+  display: flex;
+}
+
+.my-projects-header,
+.my-pledges-header {
+  box-sizing: border-box;
+  font-size: 20px;
+  font-weight: 500;
+  margin: 10px 12px;
+  border-bottom: 2px solid #dcdedd;
+}
+
+.empty-message {
+  margin: 10px 12px;
+}
+
+.start-project-link {
+  padding-left: 3px;
+  text-decoration: none;
+  color: #2752ff;
+}

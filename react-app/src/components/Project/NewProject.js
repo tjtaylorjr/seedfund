@@ -32,6 +32,7 @@ function NewProject() {
     <>
       <div className="new-project-page__main-container">
         <div className="new-project-form__main-container">
+          <div className="new-project-form__header">New Project</div>
           <form className="new-project-form__form-container">
             <div className="new-project-form__title">
               <input
@@ -43,7 +44,7 @@ function NewProject() {
             </div>
             <div className="new-project-form__description">
               <textarea
-                placeholder="a solid description or your idea"
+                placeholder="Tell us more about your idea!"
                 className="new-project-form__textarea"
                 value={description}
                 onChange={(e) => setDescription(e.target.value)}
@@ -51,7 +52,7 @@ function NewProject() {
             </div>
             <div className="new-project-form__description">
               <input
-                placeholder="Your funding goal"
+                placeholder="Your funding goal ($USD)"
                 className="new-project-form__input-field"
                 type="number"
                 min="0.00"
@@ -63,7 +64,7 @@ function NewProject() {
             </div>
             <div className="new-project-form__image">
               <input
-                placeholder="Image for project"
+                placeholder="Project image (please insert an image link)"
                 className="new-project-form__input-field"
                 value={image}
                 onChange={(e) => setImage(e.target.value)}
@@ -75,7 +76,9 @@ function NewProject() {
                 className="new-project-form__select-field"
                 onChange={(e) => setCategory(e.target.value)}
               >
-                <option value=""></option>
+                <option value="" disabled defaultValue="">
+                  Select a category
+                </option>
                 <option value="Art">Art</option>
                 <option value="Comic">Comic</option>
                 <option value="Crafts">Crafts</option>

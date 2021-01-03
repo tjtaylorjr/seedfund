@@ -1,21 +1,20 @@
-import React, {useState, useEffect} from 'react';
-import ProjectCard from './ProjectCard';
+import React, { useState, useEffect } from "react";
+import ProjectCard from "./ProjectCard";
 
 const RecentProjectsPreview = () => {
-  const [newest, setNewest] = useState([])
+  const [newest, setNewest] = useState([]);
 
   useEffect(() => {
     let data;
     (async () => {
-      const res = await fetch('/api/projects/newest', {
+      const res = await fetch("/api/projects/newest", {
         headers: {
           "Content-Type": "application/json",
         },
       });
       data = await res.json();
       if (data) {
-        
-        setNewest(data.newest_projects)
+        setNewest(data.newest_projects);
       }
     })();
   }, []);
@@ -26,8 +25,8 @@ const RecentProjectsPreview = () => {
       user_id: 1,
       title: "Example Project 6",
       description: "This is an example project",
-      funding_goal: 200000.00,
-      balance: 384000.00,
+      funding_goal: 200000.0,
+      balance: 384000.0,
       date_goal: "01/31/2021",
       category: "Food",
     },
@@ -36,8 +35,8 @@ const RecentProjectsPreview = () => {
       user_id: 1,
       title: "Example Project 7",
       description: "This is an example project",
-      funding_goal: 5000000.00,
-      balance: 5000.00,
+      funding_goal: 5000000.0,
+      balance: 5000.0,
       date_goal: "01/31/2021",
       category: "Film",
     },
@@ -46,8 +45,8 @@ const RecentProjectsPreview = () => {
       user_id: 1,
       title: "Example Project 8",
       description: "This is an example project",
-      funding_goal: 300000.00,
-      balance: 99000.00,
+      funding_goal: 300000.0,
+      balance: 99000.0,
       date_goal: "01/30/2021",
       category: "Tech",
     },
@@ -56,8 +55,8 @@ const RecentProjectsPreview = () => {
       user_id: 1,
       title: "Example Project 9",
       description: "This is an example project",
-      funding_goal: 6000000.00,
-      balance: 950000.00,
+      funding_goal: 6000000.0,
+      balance: 950000.0,
       date_goal: "01/30/2021",
       category: "Publishing",
     },
@@ -66,8 +65,8 @@ const RecentProjectsPreview = () => {
       user_id: 1,
       title: "Example Project 10",
       description: "This is an example project",
-      funding_goal: 600000.00,
-      balance: 400000.00,
+      funding_goal: 600000.0,
+      balance: 400000.0,
       date_goal: "01/29/2021",
       category: "Illustration",
     },
@@ -76,8 +75,8 @@ const RecentProjectsPreview = () => {
       user_id: 1,
       title: "Example Project 11",
       description: "This is an example project",
-      funding_goal: 30000.00,
-      balance: 50000.00,
+      funding_goal: 30000.0,
+      balance: 50000.0,
       date_goal: "01/29/2021",
       category: "Dance",
     },
@@ -86,8 +85,8 @@ const RecentProjectsPreview = () => {
       user_id: 1,
       title: "Example Project 12",
       description: "This is an example project",
-      funding_goal: 3000000.00,
-      balance: 1750000.00,
+      funding_goal: 3000000.0,
+      balance: 1750000.0,
       date_goal: "01/28/2021",
       category: "Fashion",
     },
@@ -96,8 +95,8 @@ const RecentProjectsPreview = () => {
       user_id: 1,
       title: "Example Project 13",
       description: "This is an example project",
-      funding_goal: 200000.00,
-      balance: 50000.00,
+      funding_goal: 200000.0,
+      balance: 50000.0,
       date_goal: "01/27/2021",
       category: "Photography",
     },
@@ -106,13 +105,13 @@ const RecentProjectsPreview = () => {
       user_id: 1,
       title: "Example Project 15",
       description: "This is an example project",
-      funding_goal: 70000.00,
-      balance: 10000.00,
+      funding_goal: 70000.0,
+      balance: 10000.0,
       date_goal: "01/25/2021",
       category: "Theater",
     },
-  ]
-  const creator = "Creator Placeholder";
+  ];
+  // const creator = "Creator Placeholder";
 
   let databaseInfo;
 
@@ -135,7 +134,7 @@ const RecentProjectsPreview = () => {
         </div>
       </div>
     </>
-  )
-}
+  );
+};
 
 export default RecentProjectsPreview;
