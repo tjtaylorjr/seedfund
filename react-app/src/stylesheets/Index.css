@@ -4,26 +4,29 @@
 @import "TrendingProjectsPreview.css";
 @import "RecentProjectsPreview.css";
 @import "ProjectCard.css";
+@import "UserProjectCard.css";
 @import "LoginForm.css";
 @import "SignupForm.css";
 @import "Footer.css";
 @import "ProjectForm.css";
 @import "ProjectProfile.css";
+@import "UserProfile.css";
 @import "ProjectEdit.css";
 @import "DiscoverPage.css";
 
 html {
-    font-family: "Maison Neue Book", "Helvetica Neue", Helvetica, Arial, "Liberation Sans", FreeSans, sans-serif;
-    font-size: 62.5%;
-    font-weight: 400;
-    line-height: 1;
+  font-family: "Maison Neue Book", "Helvetica Neue", Helvetica, Arial,
+    "Liberation Sans", FreeSans, sans-serif;
+  font-size: 62.5%;
+  font-weight: 400;
+  line-height: 1;
 }
 
 body {
-    margin: 0;
-    font-size: 1.4rem;
-    line-height: 1.5;
-    color: #282828;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
+  margin: 0;
+  font-size: 1.4rem;
+  line-height: 1.5;
+  color: #282828;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }

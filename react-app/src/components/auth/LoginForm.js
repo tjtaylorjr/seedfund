@@ -1,9 +1,8 @@
 import React, { useState } from "react";
 import { Redirect, NavLink, useHistory } from "react-router-dom";
 import { login } from "../../services/auth";
-import Footer from "../Footer/Footer";
 
-const LoginForm = ({ authenticated, setAuthenticated }) => {
+const LoginForm = ({ authenticated, setAuthenticated, setCurrentUser }) => {
   const [errors, setErrors] = useState([]);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -14,6 +13,7 @@ const LoginForm = ({ authenticated, setAuthenticated }) => {
     const user = await login(email, password);
     if (!user.errors) {
       setAuthenticated(true);
+      setCurrentUser(user);
     } else {
       setErrors(user.errors);
     }
@@ -33,6 +33,7 @@ const LoginForm = ({ authenticated, setAuthenticated }) => {
     const user = await login(emailField.value, passwordField.value);
     if (!user.errors) {
       setAuthenticated(true);
+      setCurrentUser(user);
       return history.push("/");
     } else {
       setErrors(user.errors);
@@ -104,7 +105,6 @@ const LoginForm = ({ authenticated, setAuthenticated }) => {
           </div>
         </div>
       </div>
-      <Footer />
     </>
   );
 };

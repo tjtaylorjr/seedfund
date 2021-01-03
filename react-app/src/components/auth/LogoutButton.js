@@ -2,10 +2,11 @@ import React from "react";
 import { NavLink } from "react-router-dom";
 import { logout } from "../../services/auth";
 
-const LogoutButton = ({ setAuthenticated }) => {
+const LogoutButton = ({ setAuthenticated, setCurrentUser }) => {
   const onLogout = async (e) => {
     await logout();
     setAuthenticated(false);
+    // setCurrentUser(null);
   };
 
   return (

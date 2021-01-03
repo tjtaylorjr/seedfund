@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { NavLink, Redirect, useHistory, useParams } from "react-router-dom";
-import Footer from '../Footer/Footer';
-import { dateDiffInDays, getPledgeCount, fillBar } from '../../services/utils';
+import { dateDiffInDays, getPledgeCount, fillBar } from "../../services/utils";
 
 function ProjectProfile(props) {
   const [project, setProject] = useState({});
@@ -20,6 +19,9 @@ function ProjectProfile(props) {
     (async () => {
       const response = await fetch(`/api/projects/${id}`);
       const res = await response.json();
+      if (res.error) {
+        return <Redirect exact to="/" />;
+      }
       setProject(res);
       if (props.user.id !== undefined && project.user_id === props.user.id) {
         setCanEdit(true);
@@ -37,20 +39,18 @@ function ProjectProfile(props) {
     })();
   }, [id, userId]);
 
-  if (project.error) {
-    return <Redirect exact to="/" />;
-  }
   const editProject = () => {
     history.push(`/project/${id}/edit`);
   };
 
   //get total pledges
   useEffect(() => {
-    (async() => {
+    (async () => {
       const pledgeNum = await getPledgeCount(id);
       setPledgeCount(pledgeNum);
     })();
-  },[id, pledged])
+  }, [id, pledged]);
+
   //handle pledge submission
   const handlePledge = async (e) => {
     e.preventDefault();
@@ -71,7 +71,7 @@ function ProjectProfile(props) {
     const response = await fetch(`/api/projects/${id}/pledges`, {
       method,
       headers: {
-        'Content-Type': 'application/json',
+        "Content-Type": "application/json",
       },
       body: JSON.stringify({
         userId,
@@ -83,38 +83,39 @@ function ProjectProfile(props) {
     setProject(res.project);
     setAmount("");
     setAmountError("");
+    if (method === "POST") setPledged(true);
   };
 
   const remainingDays = () => {
     const days = dateDiffInDays(project.date_goal);
-    const fundingResult = project.balance >= project.funding_goal
+    const fundingResult = project.balance >= project.funding_goal;
     if (days > 0) {
       return (
         <div className="project-profile-page__goal-date">
           <h1>{dateDiffInDays(project.date_goal)}</h1>
           <p>days to go</p>
         </div>
-      )
+      );
     } else if (days === -1) {
       return (
         <div className="project-profile-page__goal-date">
-          <h1>{fundingResult ? 'Funded' : 'Did not reach goal'}</h1>
+          <h1>{fundingResult ? "Funded" : "Did not reach goal"}</h1>
           <p>{`Ended ${Math.abs(days)} day ago`}</p>
         </div>
-      )
+      );
     }
 
     return (
       <div className="project-profile-page__goal-date">
-        <h1>{fundingResult ? 'Funded' : 'Did not reach goal'}</h1>
+        <h1>{fundingResult ? "Funded" : "Did not reach goal"}</h1>
         <p>{`Ended ${Math.abs(days)} days ago`}</p>
       </div>
-    )
-  }
+    );
+  };
 
   const deleteProject = async () => {
     const response = await fetch(`/api/projects/${id}`, {
-      method: 'DELETE',
+      method: "DELETE",
     });
     if (response.ok) {
       history.push("/");
@@ -134,16 +135,26 @@ function ProjectProfile(props) {
               <p>{project.description}</p>
             </div>
           </div>
-                {/* body for picture and informational box */}
+          {/* body for picture and informational box */}
           <div className="project-profile-page__image-container">
-            <img className="project-profile-page__image" src={project.image} alt="Project Image" />
-            <NavLink to={('/search?q=' + project.category).toLowerCase()} className="project-profile-page__category">
-              <h1>{'Category: ' + project.category}</h1>
+            <img
+              className="project-profile-page__image"
+              src={project.image}
+              alt={project.title}
+            />
+            <NavLink
+              to={("/search?q=" + project.category).toLowerCase()}
+              className="project-profile-page__category"
+            >
+              <h1>{"Category: " + project.category}</h1>
             </NavLink>
           </div>
           <div className="project-profile-page__info-container">
             <div className="project-profile-page__progress-bar">
-              <div className="project-profile-page__progress-color" style={fillBar(project.balance, project.funding_goal)}></div>
+              <div
+                className="project-profile-page__progress-color"
+                style={fillBar(project.balance, project.funding_goal)}
+              ></div>
             </div>
             <div className="project-profile-page__info-container-stats">
               <div className="project-profile-page__balance">
@@ -177,13 +188,13 @@ function ProjectProfile(props) {
                   Update Pledge
                 </button>
               ) : (
-                  <button
-                    className="project-profile-page__button"
-                    onClick={handlePledge}
-                  >
-                    Pledge
-                  </button>
-                )}
+                <button
+                  className="project-profile-page__button"
+                  onClick={handlePledge}
+                >
+                  Pledge
+                </button>
+              )}
             </form>
             {canEdit && (
               <div className="project-profile-page__project-management">
@@ -205,7 +216,6 @@ function ProjectProfile(props) {
           {/* </div> */}
         </div>
       </main>
-      <Footer />
     </>
   );
 }

@@ -19,7 +19,8 @@ class Project(db.Model):
 
     user = db.relationship("User", back_populates="projects")
     # project is not a typo
-    pledges = db.relationship("Pledge", back_populates="project")
+    pledges = db.relationship(
+        "Pledge", back_populates="project", cascade="delete, delete-orphan")
 
     def to_dict(self):
         return {

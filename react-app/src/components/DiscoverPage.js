@@ -1,28 +1,28 @@
-import React, { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
-import ProjectCard from './ProjectCard';
-import Footer from './Footer/Footer';
+import React, { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
+import ProjectCard from "./ProjectCard";
 
 const DiscoverPage = () => {
+  const [queryResult, setqueryResult] = useState([]);
+  const [queryString, setQueryString] = useState("");
 
-    const [queryResult, setqueryResult] = useState();
-    const [queryString, setQueryString] = useState('');
+  const { query } = useParams();
 
-    const { query } = useParams();
+  useEffect(() => {
+    if (query) {
+      setQueryString(query);
+    }
+  }, [query]);
 
-    useEffect(() => {
-        if (query) {
-            setQueryString(query);
-        }
-    }, [query])
+  useEffect(() => {
+    (async () => {
+      const res = await fetch(`/api/projects/search/${query}`);
+      const json = await res.json();
+      setqueryResult(json.projects);
+    })();
+  }, [queryString]);
 
-    useEffect(() => {
-        (async () => {
-            const res = await fetch(`/api/projects/search/${query}`);
-            const json = await res.json();
-            setqueryResult(json.projects);
-        })()
-    }, [queryString])
+  //Moved this to a utils file so that we can use it in other pages on the site.  Didn't want to just delete your code so commented out instead.
 
     return queryResult ? (queryResult.length === 0 ? <div>No results</div> :
         <>

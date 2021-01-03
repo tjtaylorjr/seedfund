@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { Redirect, NavLink } from "react-router-dom";
 import { signUp } from "../../services/auth";
-import Footer from "../Footer/Footer";
 
 const SignUpForm = ({ authenticated, setAuthenticated }) => {
   const [errors, setErrors] = useState([]);
@@ -134,7 +133,6 @@ const SignUpForm = ({ authenticated, setAuthenticated }) => {
           </form>
         </div>
       </div>
-      <Footer />
     </>
   );
 };
