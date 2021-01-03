@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { NavLink, useParams, useHistory, useLocation } from "react-router-dom";
+import { useParams, useHistory, useLocation } from "react-router-dom";
 import ProjectCard from "../Landing/ProjectCard";
 
 const DiscoverMembersPage = (props) => {
@@ -28,7 +28,6 @@ const DiscoverMembersPage = (props) => {
         throw res;
       }
       const data = await res.json();
-      console.log(data);
       if (data) {
         setProjects(data.projects);
       }
@@ -39,7 +38,7 @@ const DiscoverMembersPage = (props) => {
   // props.user.firstname + " " + props.user.lastname === creator.member
   //   ? history.push("/profile")
   //   :
-  console.log(projects);
+  // console.log(projects);
 
   return projects ? (
     projects.length === 0 ? (

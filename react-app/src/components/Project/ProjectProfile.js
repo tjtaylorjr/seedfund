@@ -47,8 +47,6 @@ function ProjectProfile(props) {
 
   useEffect(() => {
     (async () => {
-      debugger;
-
       try {
         if (!project.user_id) return;
         const res = await fetch(`/users/${project.user_id}`, {

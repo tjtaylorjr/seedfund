@@ -18,7 +18,6 @@ const SignUpForm = ({ authenticated, setAuthenticated }) => {
       if (!user.errors) {
         setAuthenticated(true);
       } else {
-        console.log("there are errors");
         setErrors(user.errors);
       }
     } else {
