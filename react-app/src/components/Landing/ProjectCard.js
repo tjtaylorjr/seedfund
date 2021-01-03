@@ -23,6 +23,7 @@ const ProjectCard = (data) => {
     date_goal,
     category,
   } = data.data;
+  // console.log(data.data);
   const projectData = {
     id: id,
     user_id: user_id,
@@ -127,7 +128,10 @@ const ProjectCard = (data) => {
                 <div className="projectcard__topdata-creator">
                   <div style={{ display: "inline-block" }}>
                     <NavLink
-                      to={{pathname:"/discover/members/" + creator, state: {creator_id: project.user_id}}}
+                      to={{
+                        pathname: "/discover/members/" + creator,
+                        state: { creator_id: project.user_id },
+                      }}
                       className="projectcard__topdata-creator-link"
                     >
                       <span>{"By " + creator}</span>

@@ -4,7 +4,7 @@ import { dateDiffInDays, getPledgeCount, fillBar } from "../../services/utils";
 
 function ProjectProfile(props) {
   const [project, setProject] = useState({});
-  const [creator, setCreator] = useState({})
+  const [creator, setCreator] = useState({});
   const [canEdit, setCanEdit] = useState(false);
   const [amount, setAmount] = useState("");
   const [amountError, setAmountError] = useState("");
@@ -15,7 +15,7 @@ function ProjectProfile(props) {
 
   const { id } = useParams();
   const userId = props.user.id;
-  const creatorName = creator.firstname + ' ' + creator.lastname
+  const creatorName = creator.firstname + " " + creator.lastname;
 
   //check if project belongs to user
   useEffect(() => {
@@ -47,25 +47,28 @@ function ProjectProfile(props) {
 
   useEffect(() => {
     (async () => {
+      debugger;
+
       try {
+        if (!project.user_id) return;
         const res = await fetch(`/users/${project.user_id}`, {
           headers: {
             "Content-Type": "application/json",
           },
-        })
-        if(!res.ok) {
-          throw res
+        });
+        if (!res.ok) {
+          throw res;
         }
 
         const data = await res.json();
         if (data) {
-          setCreator(data)
+          setCreator(data);
         }
-      }catch(err) {
+      } catch (err) {
         console.error(err);
       }
-    })()
-  }, [project])
+    })();
+  }, [project]);
 
   const editProject = () => {
     history.push(`/project/${id}/edit`);
@@ -110,7 +113,10 @@ function ProjectProfile(props) {
       return setAmountError(res.error);
     }
     if (method === "PUT") setUserPledgeAmount(res.pledge.amount);
-    if (method === "POST") setPledged(true);
+    if (method === "POST") {
+      setPledged(true);
+      setUserPledgeAmount(res.pledge.amount);
+    }
     setProject(res.project);
     setAmount("");
     setAmountError("");
@@ -178,7 +184,13 @@ function ProjectProfile(props) {
             >
               <h1>{"Category: " + project.category}</h1>
             </NavLink>
-            <NavLink to={{ pathname: "/discover/members/" + creator, state: { creator_id: project.user_id } }} className="project-profile-page__creator">
+            <NavLink
+              to={{
+                pathname: "/discover/members/" + creator,
+                state: { creator_id: project.user_id },
+              }}
+              className="project-profile-page__creator"
+            >
               <h1>{"By " + creatorName}</h1>
             </NavLink>
           </div>
@@ -191,8 +203,20 @@ function ProjectProfile(props) {
             </div>
             <div className="project-profile-page__info-container-stats">
               <div className="project-profile-page__balance">
-                <h1>${project.balance}</h1>
-                <p>pledged of ${project.funding_goal} goal</p>
+                <h1>
+                  $
+                  {project.balance
+                    ? project.balance.toLocaleString("en-US")
+                    : project.balance}
+                </h1>
+                <p>
+                  {`pledged of $${
+                    project.funding_goal
+                      ? project.funding_goal.toLocaleString("en-US")
+                      : project.funding_goal
+                  }
+                  goal`}
+                </p>
               </div>
               <div className="project-profile-page__backer-total">
                 <h1>{pledgeCount}</h1>
@@ -205,7 +229,9 @@ function ProjectProfile(props) {
               <input
                 placeholder={
                   pledged
-                    ? `Current Pledge Amount $${userPledgeAmount}`
+                    ? `Current Pledge Amount $${userPledgeAmount.toLocaleString(
+                        "en-US"
+                      )}`
                     : "Enter Pledge Amount"
                 }
                 type="number"
