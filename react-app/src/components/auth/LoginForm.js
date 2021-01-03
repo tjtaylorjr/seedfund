@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { Redirect, NavLink, useHistory } from "react-router-dom";
 import { login } from "../../services/auth";
-import Footer from "../Footer/Footer";
 
 const LoginForm = ({ authenticated, setAuthenticated, setCurrentUser }) => {
   const [errors, setErrors] = useState([]);
@@ -106,7 +105,6 @@ const LoginForm = ({ authenticated, setAuthenticated, setCurrentUser }) => {
           </div>
         </div>
       </div>
-      <Footer />
     </>
   );
 };

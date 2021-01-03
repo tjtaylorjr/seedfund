@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import { NavLink, Redirect, useHistory, useParams } from "react-router-dom";
-import Footer from "../Footer/Footer";
 import { dateDiffInDays, getPledgeCount, fillBar } from "../../services/utils";
 
 function ProjectProfile(props) {
@@ -217,7 +216,6 @@ function ProjectProfile(props) {
           {/* </div> */}
         </div>
       </main>
-      <Footer />
     </>
   );
 }

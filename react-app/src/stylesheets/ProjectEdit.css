@@ -23,6 +23,13 @@
   border-radius: 2px;
 }
 
+.edit-project-form__header {
+  align-self: start;
+  margin-bottom: 10px;
+  font-size: 24px;
+  color: #282828;
+}
+
 .edit-project-form__form-container {
   display: flex;
   flex-direction: column;
