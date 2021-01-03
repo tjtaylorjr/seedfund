@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { NavLink, useParams, useHistory, useLocation } from "react-router-dom";
-import ProjectCard from "./Landing/ProjectCard";
+import ProjectCard from "../Landing/ProjectCard";
 
 
 const DiscoverMembersPage = (props) => {
