@@ -8,6 +8,7 @@ import ProtectedRoute from "./components/auth/ProtectedRoute";
 import NewProject from "./components/Project/NewProject";
 import ProjectProfile from "./components/Project/ProjectProfile";
 import DiscoverPage from "./components/DiscoverPage";
+import DiscoverMembersPage from "./components/DiscoverMembersPage";
 import { authenticate } from "./services/auth";
 import UserProfile from "./components/UserProfile/UserProfile";
 import ProjectEdit from "./components/Project/ProjectEdit";
@@ -91,6 +92,10 @@ function App() {
         </ProtectedRoute>
         <Route path="/discover/:query" exact={true}>
           <DiscoverPage />
+          <Footer />
+        </Route>
+        <Route path="/discover/members/:member" exact={true}>
+          <DiscoverMembersPage user={currentUser} authenticated={authenticated} />
           <Footer />
         </Route>
       </Switch>
