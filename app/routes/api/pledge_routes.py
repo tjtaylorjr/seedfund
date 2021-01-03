@@ -45,7 +45,7 @@ def editPledge(id):
     amount = float(data["amount"])
     project = Project.query.get(id)
     if project:
-        pledge = Pledge.query.filter_by(user_id=user_id).first()
+        pledge = Pledge.query.filter_by(project_id=id, user_id=user_id).first()
         pledge_difference = amount - float(pledge.amount)
         project.balance = float(project.balance) + pledge_difference
         pledge.amount = amount

@@ -200,13 +200,13 @@ function ProjectProfile(props) {
                   onClick={editProject}
                   className="project-profile-page__edit-button"
                 >
-                  Edit
+                  Edit Project
                 </button>
                 <button
                   onClick={deleteProject}
                   className="project-profile-page__delete-button"
                 >
-                  Delete
+                  Delete Project
                 </button>
               </div>
             )}
