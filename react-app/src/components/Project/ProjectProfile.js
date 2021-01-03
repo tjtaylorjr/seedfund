@@ -36,8 +36,8 @@ function ProjectProfile(props) {
       const response = await fetch(`/api/projects/${id}/pledges`);
       const res = await response.json();
       let match = res.pledges.filter((pledge) => pledge.user_id === userId);
-      if (match.length)  {
-        setUserPledgeAmount(match[0].amount)
+      if (match.length) {
+        setUserPledgeAmount(match[0].amount);
         setPledged(true);
       }
     })();
@@ -82,10 +82,14 @@ function ProjectProfile(props) {
       }),
     });
     const res = await response.json();
+    if (res.error) {
+      return setAmountError(res.error);
+    }
+    if (method === "PUT") setUserPledgeAmount(res.pledge.amount);
+    if (method === "POST") setPledged(true);
     setProject(res.project);
     setAmount("");
     setAmountError("");
-    if (method === "POST") setPledged(true);
   };
 
   const remainingDays = () => {
@@ -172,7 +176,11 @@ function ProjectProfile(props) {
             <form className="project-profile-page__form">
               {amountError ? <span>{amountError}</span> : <></>}
               <input
-                placeholder={pledged ? `Current Pledge Amount $${userPledgeAmount}` : "Enter Pledge Amount"}
+                placeholder={
+                  pledged
+                    ? `Current Pledge Amount $${userPledgeAmount}`
+                    : "Enter Pledge Amount"
+                }
                 type="number"
                 min="0.00"
                 step="1.00"
