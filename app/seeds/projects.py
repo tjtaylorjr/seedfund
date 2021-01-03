@@ -52,7 +52,7 @@ def seed_projects():
         balance = 120.00,
         image='https://images.unsplash.com/photo-1493612276216-ee3925520721?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1000&q=80',
         date_goal=(datetime.now() + timedelta(days=25)).isoformat(),
-        category='Art'
+        category='Arts'
     )
     db.session.add(project3)
 
