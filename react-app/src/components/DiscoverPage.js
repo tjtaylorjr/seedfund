@@ -22,9 +22,12 @@ const DiscoverPage = () => {
     })();
   }, [queryString]);
 
-  //Moved this to a utils file so that we can use it in other pages on the site.  Didn't want to just delete your code so commented out instead.
-
-    return queryResult ? (queryResult.length === 0 ? <div>No results</div> :
+    return queryResult ? (queryResult.length === 0 ? 
+    <section className="query-results__wrapper">
+                <div className="query-results__container">
+                    <div className="query-results__no-results-message">Sorry! No results found for '{query}'.</div>
+                </div>
+            </section> :
         <>
             <section className="query-results__wrapper">
                 <div className="query-results__container">
