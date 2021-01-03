@@ -34,7 +34,8 @@ const NavBar = ({ authenticated, setAuthenticated, setCurrentUser }) => {
   const handleSearchQuery = (e) => {
     e.preventDefault();
     hideSearch();
-    const query = searchText;
+    const query = searchText.toLowerCase();
+    // const query = searchText.toLowerCase().split('%20a%20').join('%20').split('%20an%20').join('%20').split('%20the%20').join('%20').split('%20if%20').join('%20').split('$20or%20').join('%20').split('%20but%20').join('%20').split('%20and%20').join('%20').split('%20for%20').join('%20').split('%20nor%20').join('%20').split('%20yet%20').join('%20').split('%20so%20').join('%20').split('%20at%20').join('%20').split('%20by%20').join('%20').split('%20from%20').join('%20').split('%20in%20').join('%20').split('%20into%20').join('%20').split('%20of%20').join('%20').split('%20on%20').join('%20').split('%20to%20').join('%20').split('%20with%20').join('%20');
     setSearchText('');
     history.push(`/discover/${query}`);
   };

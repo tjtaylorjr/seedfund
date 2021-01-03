@@ -3,7 +3,7 @@ import { useParams } from "react-router-dom";
 import ProjectCard from "./ProjectCard";
 
 const DiscoverPage = () => {
-  const [queryResult, setqueryResult] = useState([]);
+  const [queryResult, setQueryResult] = useState([]);
   const [queryString, setQueryString] = useState("");
 
   const { query } = useParams();
@@ -11,15 +11,42 @@ const DiscoverPage = () => {
   useEffect(() => {
     if (query) {
       setQueryString(query);
+      setQueryResult([])
     }
   }, [query]);
 
   useEffect(() => {
-    (async () => {
-      const res = await fetch(`/api/projects/search/${query}`);
-      const json = await res.json();
-      setqueryResult(json.projects);
+    const searchFilter = (() => {
+        const params = query.split(" ");
+        const badSearchTerms = ["a", "an", "the", "if", "or", "but", "and", "for", "nor", "yet", "so", "at", "by", "from", "in", "into", "of", "on", "to", "with", "is"];
+        const filtered_query = params.filter(param => {
+            return badSearchTerms.indexOf(param) === -1;
+        });
+        return filtered_query;
     })();
+
+    let allProjects = []
+    searchFilter.map(async(searchTerm) => {
+      (async () => {
+        const res = await fetch(`/api/projects/search/${searchTerm}`);
+        if(!res.ok) {
+          throw res
+        }
+        const json = await res.json();
+
+        if(json.projects.length > 0) {
+          allProjects = [...allProjects, ...json.projects]
+          setQueryResult(allProjects);
+        }
+      })();
+    });
+
+    // (async () => {
+    //   const res = await fetch(`/api/projects/search/${query}`);
+    //   const json = await res.json();
+    //      console.log(typeof json.projects)
+    //   setQueryResult(json.projects);
+    // })();
   }, [queryString]);
 
     return queryResult ? (queryResult.length === 0 ?
@@ -48,7 +75,6 @@ const DiscoverPage = () => {
                     <div className="query-results__loading-message">Loading...</div>
                 </div>
             </section>
-            <Footer />
         </>
 }
 

@@ -13,16 +13,16 @@ const QuickSelectBar = () => {
                 <NavLink to="/discover/arts" className="quick-select__navigation-navlink">Arts</NavLink>
               </li>
               <li className="quick-select__navigation-link">
-                <NavLink to="/discover/comics+illustration" className="quick-select__navigation-navlink">Comics & Illustration</NavLink>
+                <NavLink to="/discover/comics%20illustration" className="quick-select__navigation-navlink">Comics & Illustration</NavLink>
               </li>
               <li className="quick-select__navigation-link">
-                <NavLink to="/discover/design+tech" className="quick-select__navigation-navlink">Design & Tech</NavLink>
+                <NavLink to="/discover/design%20tech" className="quick-select__navigation-navlink">Design & Tech</NavLink>
               </li>
               <li className="quick-select__navigation-link">
                 <NavLink to="/discover/film" className="quick-select__navigation-navlink">Film</NavLink>
               </li>
               <li className="quick-select__navigation-link">
-                <NavLink to="/discover/food+crafts" className="quick-select__navigation-navlink">Food & Craft</NavLink>
+                <NavLink to="/discover/food%20crafts" className="quick-select__navigation-navlink">Food & Craft</NavLink>
               </li>
               <li className="quick-select__navigation-link">
                 <NavLink to="/discover/games" className="quick-select__navigation-navlink">Games</NavLink>
