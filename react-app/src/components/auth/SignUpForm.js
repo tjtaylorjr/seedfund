@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Redirect, NavLink } from "react-router-dom";
 import { signUp } from "../../services/auth";
 
-const SignUpForm = ({ authenticated, setAuthenticated }) => {
+const SignUpForm = ({ authenticated, setAuthenticated, setCurrentUser }) => {
   const [errors, setErrors] = useState([]);
   const [firstname, setFirstname] = useState("");
   const [lastname, setLastname] = useState("");
@@ -16,6 +16,7 @@ const SignUpForm = ({ authenticated, setAuthenticated }) => {
     if (password === repeatPassword) {
       const user = await signUp(firstname, lastname, username, email, password);
       if (!user.errors) {
+        setCurrentUser(user);
         setAuthenticated(true);
       } else {
         setErrors(user.errors);

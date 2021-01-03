@@ -58,6 +58,7 @@ function App() {
           <SignUpForm
             authenticated={authenticated}
             setAuthenticated={setAuthenticated}
+            setCurrentUser={setCurrentUser}
           />
           <Footer />
         </Route>
@@ -95,7 +96,10 @@ function App() {
           <Footer />
         </Route>
         <Route path="/discover/members/:member" exact={true}>
-          <DiscoverMembersPage user={currentUser} authenticated={authenticated} />
+          <DiscoverMembersPage
+            user={currentUser}
+            authenticated={authenticated}
+          />
           <Footer />
         </Route>
       </Switch>
