@@ -49,7 +49,7 @@ def getSpecificProject(id):
 
 
 # GET route for projects started by user
-@project_routes.route('/user/<user_id>')
+@project_routes.route('/users/<user_id>')
 def getUserProjects(user_id):
     projects = Project.query.filter_by(user_id=user_id).all()
     if projects:

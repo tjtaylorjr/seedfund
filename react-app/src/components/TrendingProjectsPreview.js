@@ -18,6 +18,7 @@ const TrendingProjectsPreview = () => {
           "Content-Type": "application/json",
         },
       });
+
       data = await res.json();
       if (data) {
         setTrending(data.trending_projects);

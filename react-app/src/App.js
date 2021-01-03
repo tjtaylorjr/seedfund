@@ -27,64 +27,65 @@ function App() {
       setLoaded(true);
     })();
   }, []);
+
   if (!loaded) {
     return null;
   }
 
   return (
-    { loaded } && (
-      <BrowserRouter>
-        <NavBar
-          authenticated={authenticated}
-          setAuthenticated={setAuthenticated}
-        />
-        <Switch>
-          <Route path="/" exact={true} authenticated={authenticated}>
-            <Home />
-          </Route>
-          <Route path="/login" exact={true}>
-            <LoginForm
-              authenticated={authenticated}
-              setAuthenticated={setAuthenticated}
-            />
-          </Route>
-          <Route path="/signup" exact={true}>
-            <SignUpForm
-              authenticated={authenticated}
-              setAuthenticated={setAuthenticated}
-            />
-          </Route>
-          <ProtectedRoute
-            path="/profile"
-            exact={true}
+    <BrowserRouter>
+      <NavBar
+        authenticated={authenticated}
+        setAuthenticated={setAuthenticated}
+        setCurrentUser={setCurrentUser}
+      />
+      <Switch>
+        <Route path="/" exact={true} authenticated={authenticated}>
+          <Home />
+        </Route>
+        <Route path="/login" exact={true}>
+          <LoginForm
             authenticated={authenticated}
             setAuthenticated={setAuthenticated}
-          >
-            <UserProfile user={currentUser} />
-          </ProtectedRoute>
-          <ProtectedRoute
-            path="/start"
-            exact={true}
+            setCurrentUser={setCurrentUser}
+          />
+        </Route>
+        <Route path="/signup" exact={true}>
+          <SignUpForm
             authenticated={authenticated}
-          >
-            <NewProject />
-          </ProtectedRoute>
-          <Route path="/project/:id" exact={true} authenticated={authenticated}>
-            <ProjectProfile user={currentUser} authenticated={authenticated} />
-          </Route>
-          <ProtectedRoute
-            path="/project/:id/edit"
-            exact={true}
-            authenticated={authenticated}
-          >
-            <ProjectEdit />
-          </ProtectedRoute>
-          <Route path="/discover/:query" exact={true}>
-            <DiscoverPage />
-          </Route>
-        </Switch>
-      </BrowserRouter>
-    )
+            setAuthenticated={setAuthenticated}
+          />
+        </Route>
+        <ProtectedRoute
+          path="/profile"
+          exact={true}
+          authenticated={authenticated}
+          setAuthenticated={setAuthenticated}
+        >
+          <UserProfile user={currentUser} />
+        </ProtectedRoute>
+        <ProtectedRoute
+          path="/start"
+          exact={true}
+          authenticated={authenticated}
+        >
+          <NewProject />
+        </ProtectedRoute>
+        <Route path="/project/:id" exact={true} authenticated={authenticated}>
+          <ProjectProfile user={currentUser} authenticated={authenticated} />
+        </Route>
+        <ProtectedRoute
+          path="/project/:id/edit"
+          exact={true}
+          authenticated={authenticated}
+        >
+          <ProjectEdit />
+        </ProtectedRoute>
+        <Route path="/discover/:query" exact={true}>
+          <DiscoverPage />
+        </Route>
+      </Switch>
+    </BrowserRouter>
   );
 }
 
