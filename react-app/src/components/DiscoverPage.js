@@ -11,7 +11,6 @@ const DiscoverPage = () => {
   useEffect(() => {
     if (query) {
       setQueryString(query);
-      setQueryResult([])
     }
   }, [query]);
 
@@ -36,10 +35,19 @@ const DiscoverPage = () => {
 
         if(json.projects.length > 0) {
           allProjects = [...allProjects, ...json.projects]
-          setQueryResult(allProjects);
         }
+
+        const uniqueResults = (() => {
+          const checkProp = allProjects.map(obj => obj['id']);
+          return allProjects.filter((obj, idx) => {
+            return checkProp.indexOf(obj['id']) === idx;
+          })
+        })()
+
+        setQueryResult(uniqueResults)
       })();
     });
+
 
     // (async () => {
     //   const res = await fetch(`/api/projects/search/${query}`);
@@ -49,33 +57,33 @@ const DiscoverPage = () => {
     // })();
   }, [queryString]);
 
-    return queryResult ? (queryResult.length === 0 ?
+  return queryResult ? (queryResult.length === 0 ?
     <section className="query-results__wrapper">
-                <div className="query-results__container">
-                    <div className="query-results__no-results-message">Sorry! No results found for '{query}'.</div>
-                </div>
-            </section> :
-        <>
-            <section className="query-results__wrapper">
-                <div className="query-results__container">
-                    <h3 className="query-results__header">
-                        {'Explore ' + queryResult.length + (queryResult.length > 1 ? ' Projects' : ' Project')}
-                    </h3>
-                    <ul className='query-results__list'>
-                        {queryResult.map((project, i) => (
-                            <ProjectCard key={i} data={project} />
-                        ))}
-                    </ul>
-                </div>
-            </section>
-        </>)
-        : <>
-            <section className="query-results__wrapper">
-                <div className="query-results__container">
-                    <div className="query-results__loading-message">Loading...</div>
-                </div>
-            </section>
-        </>
+      <div className="query-results__container">
+        <div className="query-results__no-results-message">Sorry! No results found for '{query}'.</div>
+      </div>
+    </section> :
+    <>
+     <section className="query-results__wrapper">
+        <div className="query-results__container">
+          <h3 className="query-results__header">
+            {'Explore ' + queryResult.length + (queryResult.length > 1 ? ' Projects' : ' Project')}
+          </h3>
+          <ul className='query-results__list'>
+            {queryResult.map((project, i) => (
+                <ProjectCard key={i} data={project} />
+            ))}
+          </ul>
+        </div>
+      </section>
+    </>) :
+    <>
+      <section className="query-results__wrapper">
+        <div className="query-results__container">
+          <div className="query-results__loading-message">Loading...</div>
+        </div>
+      </section>
+    </>
 }
 
 export default DiscoverPage;
