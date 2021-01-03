@@ -58,10 +58,8 @@ function ProjectProfile(props) {
       history.push("/login");
     }
     //error handling for user's pledge amount
-    if (amount < 0) {
+    if (amount <= 0) {
       return setAmountError("Pledge amount must be at least $1.00");
-    } else if (amount > project.funding_goal - amount) {
-      return setAmountError("Pledge cannot exceed funding goal");
     } else if (!Number(amount)) {
       return setAmountError("Pledge amount must be numerical");
     }
