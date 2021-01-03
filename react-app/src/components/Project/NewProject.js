@@ -76,7 +76,7 @@ function NewProject() {
                 className="new-project-form__select-field"
                 onChange={(e) => setCategory(e.target.value)}
               >
-                <option value="" disabled selected>
+                <option value="" disabled defaultValue="">
                   Select a category
                 </option>
                 <option value="Art">Art</option>
