@@ -6,7 +6,7 @@ import {
   getCreatorName,
   dateDiffInDays,
   fillBar,
-} from "../services/utils";
+} from "../../services/utils";
 
 const ProjectCard = (data) => {
   const [project, setProject] = useState({});

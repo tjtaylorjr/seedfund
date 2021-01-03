@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { NavLink } from "react-router-dom";
-import { fillBar, getCreatorName } from "../services/utils";
+import { fillBar, getCreatorName } from "../../services/utils";
 // import default_img620by350 from "../assets/images/default_img620by350.png";
 // import ProjectProfile from "./Project/ProjectProfile";
 import TrendingList from "./TrendingList";
