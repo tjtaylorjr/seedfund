@@ -6,6 +6,7 @@ import {
   dateDiffInDays,
   fillBar,
 } from "../../services/utils";
+import default_img from "../../assets/images/default_img350by200.png"
 
 const UserProjectCard = (data) => {
   const [project, setProject] = useState({});
@@ -105,7 +106,7 @@ const UserProjectCard = (data) => {
                     style={
                       project.image
                         ? { backgroundImage: `url(${project.image})` }
-                        : null
+                        : { backgroundImage: `url(${default_img})` }
                     }
                     className="userprojectcard__picture"
                   ></div>
@@ -128,7 +129,7 @@ const UserProjectCard = (data) => {
                   <div style={{ display: "inline-block" }}>
                     <NavLink
                       to={{
-                        pathname: "/discover/members/" + creator,
+                        pathname: "/discover/users/" + creator,
                         state: { creator_id: project.user_id },
                       }}
                       className="userprojectcard__topdata-creator-link"

@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { NavLink } from "react-router-dom";
 import { fillBar, getCreatorName } from "../../services/utils";
 import TrendingList from "./TrendingList";
+import default_img_large from "../../assets/images/default_img620by350.png"
 
 const TrendingProjectsPreview = () => {
   const [trending, setTrending] = useState([]);
@@ -80,7 +81,7 @@ const TrendingProjectsPreview = () => {
                           style={
                             featured.image
                               ? { backgroundImage: `url(${featured.image})` }
-                              : null
+                              : { backgroundImage: `url(${default_img_large})` }
                           }
                         ></div>
                         <div className="trending-projects__featured-card-progress-bar">
@@ -103,7 +104,7 @@ const TrendingProjectsPreview = () => {
                     <div className="trending-projects__featured-card-project-creator-container">
                       <NavLink
                         to={{
-                          pathname: "/discover/members/" + creator,
+                          pathname: "/discover/users/" + creator,
                           state: { creator_id: featured.user_id },
                         }}
                         style={{ textDecoration: "none" }}

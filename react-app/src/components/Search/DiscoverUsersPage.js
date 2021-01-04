@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useParams, useHistory, useLocation } from "react-router-dom";
 import ProjectCard from "../Project/ProjectCard";
 
-const DiscoverMembersPage = (props) => {
+const DiscoverUsersPage = (props) => {
   const [projects, setProjects] = useState([]);
   const history = useHistory();
   const location = useLocation();
@@ -10,12 +10,16 @@ const DiscoverMembersPage = (props) => {
 
   const creator_id = location.state.creator_id;
 
-  if (
-    props.user &&
-    props.user.firstname + " " + props.user.lastname === creator.member
-  ) {
-    history.push("/profile");
-  }
+  useEffect(() => {
+    if (
+      props.user &&
+      props.user.firstname + " " + props.user.lastname === creator.user
+    ) {
+      history.push("/profile");
+    }
+
+  }, [history])
+
   useEffect(() => {
     (async () => {
       const res = await fetch(`/api/projects/users/${creator_id}`, {
@@ -39,7 +43,7 @@ const DiscoverMembersPage = (props) => {
       <section className="query-results__wrapper">
         <div className="query-results__container">
           <h3 className="query-results__header">
-            {'Explore ' + projects.length + (projects.length > 1 ? ' Projects by ' + creator.member : ' Project by ' + creator.member)}
+            {'Explore ' + projects.length + (projects.length > 1 ? ' Projects by ' + creator.user : ' Project by ' + creator.user)}
           </h3>
           <ul className='query-results__list'>
             {projects.map((project, i) => (
@@ -47,7 +51,7 @@ const DiscoverMembersPage = (props) => {
             ))}
           </ul>
           <div className="query-results__no-results-message">
-            '{creator.member} does not currently have any active projects.'
+            '{creator.user} does not currently have any active projects.'
           </div>
         </div>
       </section>
@@ -59,8 +63,8 @@ const DiscoverMembersPage = (props) => {
               {"Explore " +
                 projects.length +
                 (projects.length > 1
-                  ? " Projects by " + creator.member
-                  : " Project by " + creator.member)}
+                  ? " Projects by " + creator.user
+                  : " Project by " + creator.user)}
               {/* {'Explore ' + projects.length + ' ' + (projects.length > 1 ? 'Projects by ' + {creator.member} : 'Project by ' + {creator.member})} */}
             </h3>
             <ul className="query-results__list">
@@ -83,4 +87,4 @@ const DiscoverMembersPage = (props) => {
   );
 };
 
-export default DiscoverMembersPage;
+export default DiscoverUsersPage;

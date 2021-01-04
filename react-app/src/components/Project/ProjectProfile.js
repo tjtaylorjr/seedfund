@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { NavLink, Redirect, useHistory, useParams } from "react-router-dom";
 import { dateDiffInDays, getPledgeCount, fillBar } from "../../services/utils";
+import default_img from '../../assets/images/default_img620by350.png';
 
 function ProjectProfile(props) {
   const [project, setProject] = useState({});
@@ -173,7 +174,7 @@ function ProjectProfile(props) {
           <div className="project-profile-page__image-container">
             <img
               className="project-profile-page__image"
-              src={project.image}
+              src={project.image || default_img}
               alt={project.title}
             />
             <NavLink
@@ -184,7 +185,7 @@ function ProjectProfile(props) {
             </NavLink>
             <NavLink
               to={{
-                pathname: "/discover/members/" + creator,
+                pathname: "/discover/users/" + creator,
                 state: { creator_id: project.user_id },
               }}
               className="project-profile-page__creator"
