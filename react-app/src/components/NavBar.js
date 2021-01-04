@@ -35,7 +35,7 @@ const NavBar = ({ authenticated, setAuthenticated, setCurrentUser }) => {
     e.preventDefault();
     hideSearch();
     const query = searchText.toLowerCase();
-    setSearchText('');
+    setSearchText("");
     history.push(`/discover/${query}`);
   };
 

@@ -40,19 +40,16 @@ const UserProfile = (props) => {
       }
     })();
   }, [user]);
-  console.log(user);
-  console.log("pledges", pledges);
-  console.log("projects", projects);
 
   return (
     <div className="user-profile__main-container">
       <div className="user-username">{userName}</div>
       <div className="user-project-summary">
         <div className="user-project-summary__num-projects">
-          {`You own ${projectMatch ? projects.length : "0"} projects`}
+          {`${projectMatch ? projects.length : "0"} projects started`}
         </div>
         <div className="user-project-summary__num-pledges">
-          {`You've backed ${pledgeMatch ? pledges.length : "0"} projects`}
+          {`${pledgeMatch ? pledges.length : "0"} projects backed`}
         </div>
       </div>
       <div className="my-projects__main-container">

@@ -2,6 +2,7 @@
   /* padding-bottom: 50rem; */
   background-color: #f7f7f6;
   height: 100%;
+  padding-bottom: 20px;
 }
 .project-profile-page__main-container {
   display: grid;

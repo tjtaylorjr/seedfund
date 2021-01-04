@@ -42,7 +42,7 @@ const TrendingList = (data) => {
           const ownerName = await getCreatorName(project.user_id);
           setCreator(ownerName);
         } catch (err) {
-          console.log(err);
+          console.error(err);
         }
       }
     })();
