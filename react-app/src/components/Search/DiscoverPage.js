@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import ProjectCard from "../Landing/ProjectCard";
+import ProjectCard from "../Project/ProjectCard";
 
 const DiscoverPage = () => {
   const [queryResult, setQueryResult] = useState([]);
@@ -48,13 +48,6 @@ const DiscoverPage = () => {
       })();
     });
 
-
-    // (async () => {
-    //   const res = await fetch(`/api/projects/search/${query}`);
-    //   const json = await res.json();
-    //      console.log(typeof json.projects)
-    //   setQueryResult(json.projects);
-    // })();
   }, [queryString]);
 
   return queryResult ? (queryResult.length === 0 ?

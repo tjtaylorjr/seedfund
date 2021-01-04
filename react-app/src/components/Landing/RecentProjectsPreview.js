@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import ProjectCard from "./ProjectCard";
+import ProjectCard from "../Project/ProjectCard";
 
 const RecentProjectsPreview = () => {
   const [newest, setNewest] = useState([]);
@@ -111,7 +111,6 @@ const RecentProjectsPreview = () => {
       category: "Theater",
     },
   ];
-  // const creator = "Creator Placeholder";
 
   let databaseInfo;
 

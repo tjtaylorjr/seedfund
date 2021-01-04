@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { NavLink } from "react-router-dom";
 import { getCreatorName } from "../../services/utils";
+import default_img from "../../assets/images/default_img560by315.png";
 
 const TrendingList = (data) => {
   const [project, setProject] = useState({});
@@ -63,7 +64,11 @@ const TrendingList = (data) => {
           >
             <div
               className="trending-projects__right-panel-list-item-navlink-wrapper"
-              style={{ backgroundImage: `url(${image})` }}
+              style={
+                project.image
+                  ? { backgroundImage: `url(${project.image})` }
+                  : { backgroundImage: `url(${default_img})` }
+              }
             ></div>
           </NavLink>
           <div className="trending-projects__right-panel-list-item-info-container">

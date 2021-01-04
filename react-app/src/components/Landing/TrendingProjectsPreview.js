@@ -1,9 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { NavLink } from "react-router-dom";
 import { fillBar, getCreatorName } from "../../services/utils";
-// import default_img620by350 from "../assets/images/default_img620by350.png";
-// import ProjectProfile from "./Project/ProjectProfile";
 import TrendingList from "./TrendingList";
+import default_img_large from "../../assets/images/default_img620by350.png"
 
 const TrendingProjectsPreview = () => {
   const [trending, setTrending] = useState([]);
@@ -55,11 +54,6 @@ const TrendingProjectsPreview = () => {
     })();
   }, [featured]);
 
-  // const funding = () => {
-  //   const current = (project.balance * 100) / project.goal
-  //   const percentFunded = current + "% funded"
-  //   return percentFunded
-  // };
   let databaseInfo;
 
   if (trending) {
@@ -79,10 +73,7 @@ const TrendingProjectsPreview = () => {
                   FEATURED PROJECT
                 </h3>
                 <div className="trending-projects__featured-card-hover-field">
-                  <div
-                    // to="#" react does not allow nested links (i.e. <a> within an <a>)
-                    className="trending-projects__featured-card-navlink"
-                  >
+                  <div className="trending-projects__featured-card-navlink">
                     <div className="trending-projects__featured-card-focusable-link">
                       <NavLink to={"/project/" + featured.id}>
                         <div
@@ -90,7 +81,7 @@ const TrendingProjectsPreview = () => {
                           style={
                             featured.image
                               ? { backgroundImage: `url(${featured.image})` }
-                              : null
+                              : { backgroundImage: `url(${default_img_large})` }
                           }
                         ></div>
                         <div className="trending-projects__featured-card-progress-bar">
@@ -113,7 +104,7 @@ const TrendingProjectsPreview = () => {
                     <div className="trending-projects__featured-card-project-creator-container">
                       <NavLink
                         to={{
-                          pathname: "/discover/members/" + creator,
+                          pathname: "/discover/users/" + creator,
                           state: { creator_id: featured.user_id },
                         }}
                         style={{ textDecoration: "none" }}

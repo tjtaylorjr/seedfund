@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from "react";
 import { NavLink } from "react-router-dom";
-// import defaultimg350by200 from "../assets/images/default_img350by200.png";
 import {
   getPledgeCount,
   getCreatorName,
   dateDiffInDays,
   fillBar,
 } from "../../services/utils";
+import default_img from '../../assets/images/default_img350by200.png'
 
 const ProjectCard = (data) => {
   const [project, setProject] = useState({});
@@ -23,7 +23,7 @@ const ProjectCard = (data) => {
     date_goal,
     category,
   } = data.data;
-  // console.log(data.data);
+
   const projectData = {
     id: id,
     user_id: user_id,
@@ -49,7 +49,7 @@ const ProjectCard = (data) => {
           const ownerName = await getCreatorName(project.user_id);
           setCreator(ownerName);
         } catch (err) {
-          console.log(err);
+          console.error(err);
         }
       }
     })();
@@ -67,7 +67,14 @@ const ProjectCard = (data) => {
       setPledgeCount(pledgeNum);
     })();
   }, []);
-
+  // const pictureDisplay = () => {
+  //   if(project.img === "") {
+  //     return {backgroundImage: `url(${default_img})`}
+  //   }
+  //   return {backgroundImage: `url(${project.image})`}
+  //   // {project.image.length ? { backgroundImage: `url(${project.image})` }
+  //   //   : backgroundImage: "../../assets/images/default_img350by200.png" }
+  // }
   const remainingDays = () => {
     const days = dateDiffInDays(project.date_goal);
     const fundingResult = project.balance >= project.funding_goal;
@@ -107,7 +114,7 @@ const ProjectCard = (data) => {
                     style={
                       project.image
                         ? { backgroundImage: `url(${project.image})` }
-                        : null
+                        : { backgroundImage: `url(${default_img})`}
                     }
                     className="projectcard__picture"
                   ></div>
@@ -129,7 +136,7 @@ const ProjectCard = (data) => {
                   <div style={{ display: "inline-block" }}>
                     <NavLink
                       to={{
-                        pathname: "/discover/members/" + creator,
+                        pathname: "/discover/users/" + creator,
                         state: { creator_id: project.user_id },
                       }}
                       className="projectcard__topdata-creator-link"

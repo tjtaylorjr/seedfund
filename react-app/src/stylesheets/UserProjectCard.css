@@ -73,29 +73,6 @@
   text-decoration: none;
 }
 
-/* .userprojectcard__topdata-name:after {
-    position: absolute;
-    top: 90%;
-    left: 2rem;
-    bottom: 0;
-    right: 0;
-    width: 55%;
-    height: 1px;
-    background: #034752;
-    content: '';
-    opacity: 0;
-    transition: height 0.3s, opacity 0.5s, transform 0.3s, color 0.3s;
-    transform: translateY(-1px);
-} */
-
-/* .userprojectcard__topdata-name:hover:after {
-  opacity: 1;
-  height: 2px;
-  transition: height 0.3s, opacity 0.5s, transform 0.3s, color 0.3s;
-  transform: translateY(-0px);
-}
-*/
-
 .userprojectcard__topdata-header {
   margin-bottom: 0/6rem;
   font-weight: 200;
@@ -187,7 +164,7 @@
 
 @media only screen and (min-width: 640px) {
   .userprojectcard__topdata-header {
-    font-size: 22px;
+    font-size: 20px;
     line-height: 30px;
   }
 }
