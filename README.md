@@ -1,28 +1,67 @@
-# Flask React Project
+<div align="center">
+  <h1>SeedFund</h1>
+</div>
 
-This is the backend for the Flask React project.
+<br>
 
-## Getting started
+![seedfund-picture](https://user-images.githubusercontent.com/62177226/103574188-80a41100-4e9d-11eb-980b-9d25a0d6597d.JPG)
 
-1. Clone this repository (only this branch)
+<br>
 
-   ```bash
-   git clone https://github.com/appacademy-starters/python-project-starter.git
-   ```
 
-2. Install dependencies
 
-      ```bash
+> A collaboration project to create a clone website based on Kickstarter
+
+
+
+<div align="center">
+  <h2>Table of Contents</h2>
+</div>
+
+
+- [Installation](#installation)
+- [Features](#features)
+- [Contributing](#contributing)
+- [Team](#team)
+- [FAQ](#faq)
+
+
+
+---
+
+<div align="center">
+  <h2>Installation</h2>
+</div>
+
+
+### Clone
+
+- Clone this repo to your local machine using `https://github.com/tjtaylorjr/seedfund.git`
+
+<br>
+
+### Setup
+
+> install flask dependencies
+
+ ```bash
       pipenv install --dev -r dev-requirements.txt && pipenv install -r requirements.txt
-      ```
+ ```
 
-3. Create a **.env** file based on the example with proper settings for your
-   development environment
-4. Setup your PostgreSQL user, password and database and make sure it matches your **.env** file
+> cd into the react-app directory and install npm packages
 
-5. Get into your pipenv, migrate your database, seed your database, and run your flask app
+```shell
+$ npm install
+```
 
-   ```bash
+> Create database
+- Create a **.env** file based on the example with proper settings for your
+  development environment
+- Setup your PostgreSQL user, password and database and make sure it matches your **.env** file
+- Get into your pipenv, migrate your database, seed your database, and run your flask app
+<br>
+
+```bash
    pipenv shell
    ```
 
@@ -38,61 +77,67 @@ This is the backend for the Flask React project.
    flask run
    ```
 
-6. To run the React App in development, checkout the [README](./react-app/README.md) inside the `react-app` directory.
+> run the react frontend
 
-***
-*IMPORTANT!*
-   If you add any python dependencies to your pipfiles, you'll need to regenerate your requirements.txt before deployment.
-   You can do this by running:
+```shell
+npm start
+```
+> browse to http://localhost:3000
+---
 
-   ```bash
-   pipenv lock -r > requirements.txt
-   ```
+<div align="center">
+  <h2>Features</h2>
+</div>
 
-*ALSO IMPORTANT!*
-   psycopg2-binary MUST remain a dev dependency because you can't install it on apline-linux.
-   There is a layer in the Dockerfile that will install psycopg2 (not binary) for us.
-***
+- Currently the App allows the creation of accounts, projects, and pleding to fund projects in a basic manor.  Improvements and additional features to follow.
 
-## Deploy to Heroku
 
-1. Create a new project on Heroku
-2. Under Resources click "Find more add-ons" and add the add on called "Heroku Postgres"
-3. Install the [Heroku CLI](https://devcenter.heroku.com/articles/heroku-command-line)
-4. Run
+---
 
-   ```bash
-   heroku login
-   ```
+<div align="center">
+  <h2>Contributing</h2>
+</div>
 
-5. Login to the heroku container registry
 
-   ```bash
-   heroku container:login
-   ```
+> To get started...
 
-6. Update the `REACT_APP_BASE_URL` variable in the Dockerfile.
-   This should be the full URL of your Heroku app: i.e. "https://flask-react-aa.herokuapp.com"
-7. Push your docker container to heroku from the root directory of your project.
-   This will build the dockerfile and push the image to your heroku container registry
+### Step 1
 
-   ```bash
-   heroku container:push web -a {NAME_OF_HEROKU_APP}
-   ```
+- **Option 1**
+    - 🍴 fork or clone this repo!
 
-8. Release your docker container to heroku
+- **Option 2**
+    - 👯 Clone this repo to your local machine using `https://github.com/tjtaylorjr/seedfund.git`
 
-   ```bash
-   heroku container:release web -a {NAME_OF_HEROKU_APP}
-   ```
+### Step 2
 
-9. set up your database:
+- **HACK AWAY!** 🔨🔨🔨
 
-   ```bash
-   heroku run -a {NAME_OF_HEROKU_APP} flask db upgrade
-   heroku run -a {NAME_OF_HEROKU_APP} flask seed all
-   ```
+### Step 3
 
-10. Under Settings find "Config Vars" and add any additional/secret .env variables.
+- 🔃 Create a new pull request using <a href="https://github.com/tjtaylorjr/seedfund/compare" target="_blank">`https://github.com/tjtaylorjr/seedfund/compare`</a>.
 
-11. profit
+---
+
+<div align="center">
+  <h2>Team</h2>
+</div>
+
+
+| <a href="https://github.com/corbinHA" target="_blank">**Corbin Armendariz**</a> | <a href="https://github.com/remaley5" target="_blank">**remaley5**</a> | <a href="https://github.com/tjtaylorjr" target="_blank">**TJ Taylor**</a> | <a href="https://github.com/xxl4tomxu98" target="_blank">**Tom Xu**</a> |
+|:---:|:---:|:---:|:---:|
+| [![Corbin Armendariz](https://avatars2.githubusercontent.com/u/68240935?s=150&u=5e9e01a87cf8c2f8b64633cb321a9007e72b6b17&v=4)](https://github.com/corbinHA) | [![James Lee](https://avatars3.githubusercontent.com/u/19562787?s=150&u=ebac3a5c61b12ca0b72e065bc3177eecc7cb122f&v=4)](https://github.com/JamestLee513) | [![Miguel Munoz](https://avatars0.githubusercontent.com/u/68749533?s=150&u=af9fe29e52e4db280ff178749a4ef44c28268b89&v=4)](https://github.com/memg92) | [![TJ Taylor](https://avatars3.githubusercontent.com/u/62177226?s=150&u=034c0f894dd93f9eb2ed8e43e3172ed83d19a9cc&v=4)](https://github.com/tjtaylorjr) |
+| <a href="http://github.com/corbinHA" target="_blank">`github.com/corbinHA`</a> | <a href="https://github.com/JamestLee513" target="_blank">`github.com/JamestLee513`</a> | <a href="http://github.com/memg92" target="_blank">`github.com/memg92`</a> | <a href="http://github.com/tjtaylorjr" target="_blank">`github.com/tjtaylorjr`</a> |
+
+
+---
+
+<div align="center">
+  <h2>FAQ</h2>
+</div>
+
+
+- **How do I do *that*?**
+    - Easy! Just do **this**.
+
+---
