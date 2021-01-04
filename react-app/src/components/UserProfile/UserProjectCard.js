@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import { NavLink } from "react-router-dom";
-// import defaultimg350by200 from "../assets/images/default_img350by200.png";
 import {
   getPledgeCount,
   getCreatorName,

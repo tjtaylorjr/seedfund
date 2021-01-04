@@ -48,13 +48,6 @@ const DiscoverPage = () => {
       })();
     });
 
-
-    // (async () => {
-    //   const res = await fetch(`/api/projects/search/${query}`);
-    //   const json = await res.json();
-    //      console.log(typeof json.projects)
-    //   setQueryResult(json.projects);
-    // })();
   }, [queryString]);
 
   return queryResult ? (queryResult.length === 0 ?

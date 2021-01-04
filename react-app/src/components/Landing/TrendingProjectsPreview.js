@@ -1,8 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { NavLink } from "react-router-dom";
 import { fillBar, getCreatorName } from "../../services/utils";
-// import default_img620by350 from "../assets/images/default_img620by350.png";
-// import ProjectProfile from "./Project/ProjectProfile";
 import TrendingList from "./TrendingList";
 
 const TrendingProjectsPreview = () => {
@@ -55,11 +53,6 @@ const TrendingProjectsPreview = () => {
     })();
   }, [featured]);
 
-  // const funding = () => {
-  //   const current = (project.balance * 100) / project.goal
-  //   const percentFunded = current + "% funded"
-  //   return percentFunded
-  // };
   let databaseInfo;
 
   if (trending) {
@@ -79,10 +72,7 @@ const TrendingProjectsPreview = () => {
                   FEATURED PROJECT
                 </h3>
                 <div className="trending-projects__featured-card-hover-field">
-                  <div
-                    // to="#" react does not allow nested links (i.e. <a> within an <a>)
-                    className="trending-projects__featured-card-navlink"
-                  >
+                  <div className="trending-projects__featured-card-navlink">
                     <div className="trending-projects__featured-card-focusable-link">
                       <NavLink to={"/project/" + featured.id}>
                         <div

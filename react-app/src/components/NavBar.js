@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import { NavLink } from "react-router-dom";
 import LogoutButton from "./auth/LogoutButton";
 import { useHistory } from "react-router-dom";
-// import { login } from "../services/auth";
 
 const NavBar = ({ authenticated, setAuthenticated, setCurrentUser }) => {
   const [isHidden, setIsHidden] = useState(true);
@@ -16,20 +15,6 @@ const NavBar = ({ authenticated, setAuthenticated, setCurrentUser }) => {
   const showSearch = () => {
     setIsHidden(false);
   };
-
-  // const demoLogin = async (e) => {
-  //   e.preventDefault();
-  //   const email = "demo@user.io";
-  //   const password = "password";
-  //   const user = await login(email, password);
-  //   if (!user.errors) {
-  //     setAuthenticated(true);
-  //   }
-  // }
-  //   if (authenticated) {
-  //     return <Redirect to="/" />;
-  //   }
-  // }
 
   const handleSearchQuery = (e) => {
     e.preventDefault();

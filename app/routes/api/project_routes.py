@@ -5,7 +5,6 @@ from app.forms.project_form import ProjectForm
 from flask_login import current_user
 from sqlalchemy.orm import joinedload
 from sqlalchemy import func, or_
-import re
 
 project_routes = Blueprint('projects', __name__)
 
@@ -116,4 +115,3 @@ def searchForProjects(query):
     result = Project.query.filter(or_(Project.title.ilike(f"%{query}%"), Project.description.ilike(f"%{query}%"), Project.category.ilike(f"%{query}%"))).options(joinedload(Project.user)).all()
     data = [project.to_dict() for project in result]
     return {"projects": data}
-

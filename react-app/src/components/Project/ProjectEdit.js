@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import { useHistory, useParams } from "react-router-dom";
 
 function ProjectEdit(props) {
-  // const [project, setProject] = useState({})
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [fundingGoal, setFundingGoal] = useState("");

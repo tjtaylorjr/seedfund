@@ -111,7 +111,6 @@ const RecentProjectsPreview = () => {
       category: "Theater",
     },
   ];
-  // const creator = "Creator Placeholder";
 
   let databaseInfo;
 

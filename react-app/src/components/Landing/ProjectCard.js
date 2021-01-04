@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import { NavLink } from "react-router-dom";
-// import defaultimg350by200 from "../assets/images/default_img350by200.png";
 import {
   getPledgeCount,
   getCreatorName,
@@ -23,7 +22,7 @@ const ProjectCard = (data) => {
     date_goal,
     category,
   } = data.data;
-  // console.log(data.data);
+
   const projectData = {
     id: id,
     user_id: user_id,
@@ -49,7 +48,7 @@ const ProjectCard = (data) => {
           const ownerName = await getCreatorName(project.user_id);
           setCreator(ownerName);
         } catch (err) {
-          console.log(err);
+          console.error(err);
         }
       }
     })();
