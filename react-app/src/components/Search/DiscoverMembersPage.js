@@ -11,11 +11,9 @@ const DiscoverMembersPage = (props) => {
 
   const creator_id = location.state.creator_id
 
-  // if (props.user && (props.user.firstname + ' ' + props.user.lastname) === creator.member) {
-  //   history.push("/profile");
-  // }
-
-  props.user && (props.user.firstname + ' ' + props.user.lastname) === creator.member ? history.push("/profile") :
+  if (props.user && (props.user.firstname + ' ' + props.user.lastname) === creator.member) {
+    history.push("/profile");
+  }
 
   useEffect(() => {
     (async() => {
@@ -49,7 +47,6 @@ const DiscoverMembersPage = (props) => {
         <div className="query-results__container">
           <h3 className="query-results__header">
             {'Explore ' + projects.length + (projects.length > 1 ? ' Projects by ' + creator.member : ' Project by ' + creator.member)}
-            {/* {'Explore ' + projects.length + ' ' + (projects.length > 1 ? 'Projects by ' + {creator.member} : 'Project by ' + {creator.member})} */}
           </h3>
           <ul className='query-results__list'>
             {projects.map((project, i) => (
