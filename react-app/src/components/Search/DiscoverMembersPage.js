@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useParams, useHistory, useLocation } from "react-router-dom";
-import ProjectCard from "../Landing/ProjectCard";
+import ProjectCard from "../Project/ProjectCard";
 
 const DiscoverMembersPage = (props) => {
   const [projects, setProjects] = useState([]);

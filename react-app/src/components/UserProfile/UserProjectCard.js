@@ -127,7 +127,10 @@ const UserProjectCard = (data) => {
                 <div className="userprojectcard__topdata-creator">
                   <div style={{ display: "inline-block" }}>
                     <NavLink
-                      to="#"
+                      to={{
+                        pathname: "/discover/members/" + creator,
+                        state: { creator_id: project.user_id },
+                      }}
                       className="userprojectcard__topdata-creator-link"
                     >
                       <span>{"By " + creator}</span>
