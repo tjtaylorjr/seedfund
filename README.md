@@ -89,7 +89,7 @@ npm start
   <h2>Features</h2>
 </div>
 
-- Currently the App allows the creation of accounts, projects, and pleding to fund projects in a basic manor.  Improvements and additional features to follow.
+- Currently the App allows the creation of accounts, projects, and pleding to fund projects in a basic manner.  Improvements and additional features to follow.
 
 
 ---
