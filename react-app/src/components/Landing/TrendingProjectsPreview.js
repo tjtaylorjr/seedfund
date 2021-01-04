@@ -49,7 +49,7 @@ const TrendingProjectsPreview = () => {
           const ownerName = await getCreatorName(featured.user_id);
           setCreator(ownerName);
         } catch (err) {
-          console.log(err);
+          console.error(err);
         }
       }
     })();
@@ -111,9 +111,13 @@ const TrendingProjectsPreview = () => {
                       {featured.description}
                     </p>
                     <div className="trending-projects__featured-card-project-creator-container">
-                      <NavLink to={{
-                        pathname: "/discover/members/" + creator,
-                        state: { creator_id: featured.user_id }}} style={{textDecoration: "none"}}>
+                      <NavLink
+                        to={{
+                          pathname: "/discover/members/" + creator,
+                          state: { creator_id: featured.user_id },
+                        }}
+                        style={{ textDecoration: "none" }}
+                      >
                         <span className="trending-projects__featured-card-creator">
                           By {creator}
                         </span>
