@@ -104,7 +104,7 @@ npm start
 ### Step 1
 
 - **Option 1**
-    - 🍴 fork or clone this repo!
+    - 🍴 fork this repo!
 
 - **Option 2**
     - 👯 Clone this repo to your local machine using `https://github.com/tjtaylorjr/seedfund.git`
