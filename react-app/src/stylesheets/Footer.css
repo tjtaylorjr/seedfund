@@ -1,3 +1,12 @@
+.footer {
+  height: 185px;
+  width: 100%;
+  position: relative;
+  bottom: 0;
+  background: #FFFFFF;
+  padding-bottom: 10px;
+}
+
 .footer-grid__main-container {
   display: grid;
   grid-template-areas:
@@ -45,7 +54,8 @@
 .footer__bottom-container {
   display: flex;
   justify-content: center;
-  margin: 18px auto;
+  align-items: center;
+  margin: 10px auto;
   font-size: 14px;
   opacity: 0.8;
 }

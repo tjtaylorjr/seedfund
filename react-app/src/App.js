@@ -44,7 +44,6 @@ function App() {
       <Switch>
         <Route path="/" exact={true} authenticated={authenticated}>
           <Home />
-          <Footer />
         </Route>
         <Route path="/login" exact={true}>
           <LoginForm
@@ -52,7 +51,6 @@ function App() {
             setAuthenticated={setAuthenticated}
             setCurrentUser={setCurrentUser}
           />
-          <Footer />
         </Route>
         <Route path="/signup" exact={true}>
           <SignUpForm
@@ -60,7 +58,6 @@ function App() {
             setAuthenticated={setAuthenticated}
             setCurrentUser={setCurrentUser}
           />
-          <Footer />
         </Route>
         <ProtectedRoute
           path="/profile"
@@ -69,7 +66,6 @@ function App() {
           setAuthenticated={setAuthenticated}
         >
           <UserProfile user={currentUser} />
-          <Footer />
         </ProtectedRoute>
         <ProtectedRoute
           path="/start"
@@ -77,11 +73,9 @@ function App() {
           authenticated={authenticated}
         >
           <NewProject />
-          <Footer />
         </ProtectedRoute>
         <Route path="/project/:id" exact={true} authenticated={authenticated}>
           <ProjectProfile user={currentUser} authenticated={authenticated} />
-          <Footer />
         </Route>
         <ProtectedRoute
           path="/project/:id/edit"
@@ -89,11 +83,9 @@ function App() {
           authenticated={authenticated}
         >
           <ProjectEdit />
-          <Footer />
         </ProtectedRoute>
         <Route path="/discover/:query" exact={true}>
           <DiscoverPage />
-          <Footer />
         </Route>
         <Route path="/discover/users/:user" exact={true}>
           <DiscoverUsersPage
@@ -103,6 +95,7 @@ function App() {
           <Footer />
         </Route>
       </Switch>
+      <Footer />
     </BrowserRouter>
   );
 }
