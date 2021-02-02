@@ -60,6 +60,8 @@ const LoginForm = ({ authenticated, setAuthenticated, setCurrentUser }) => {
       }
     }
   }
+  
+  // original code for demo login
 
   // const logInDemo = async (e) => {
   //   e.preventDefault();
@@ -81,42 +83,6 @@ const LoginForm = ({ authenticated, setAuthenticated, setCurrentUser }) => {
   //     setErrors(user.errors);
   //   }
   // };
-
-  // useEffect(() => {
-  //   if (demoLogin === true && demoEmailIndex < demoEmail.length) {
-  //     setTimeout(() => {
-  //       setCurrentDemoEmailText(currentDemoEmailText + demoEmail[demoEmailIndex])
-  //       setDemoEmailIndex(demoEmailIndex + 1)
-  //     }, 40)
-  //   }
-
-  // }, [demoEmailIndex, demoLogin])
-
-  // useEffect(() => {
-  //   if (demoLogin && demoPassIndex < demoPassInput.length && demoEmailIndex === demoEmailInput.length) {
-  //     setTimeout(() => {
-  //       setCurrentDemoPassText(currentDemoPassText + demoPassInput[demoPassIndex])
-  //       setDemoPassIndex(demoPassIndex + 1)
-  //     }, 40)
-  //   }
-
-  // }, [demoLogin, demoEmailIndex, demoPassIndex])
-
-  // if (currentDemoEmailText === "demo@user.io" && currentDemoPassText === "password") {
-  //   const emailField = document.querySelector(".email");
-  //   const passwordField = document.querySelector(".password");
-
-  //   (async() => {
-  //     const user = await login(emailField.value, passwordField.value);
-  //     if (!user.errors) {
-  //       setAuthenticated(true);
-  //       setCurrentUser(user);
-  //       return history.push("/");
-  //     } else {
-  //       setErrors(user.errors);
-  //     }
-  //   })()
-  // }
 
   const updateEmail = (e) => {
     setEmail(e.target.value);
