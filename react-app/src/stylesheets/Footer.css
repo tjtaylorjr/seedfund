@@ -44,13 +44,14 @@
 
 .footer__bottom-container {
   display: flex;
-  justify-content: space-evenly;
+  justify-content: center;
   margin: 18px auto;
   font-size: 14px;
   opacity: 0.8;
 }
 
 .fa-github-square {
+  margin-left: 10px;
   font-size: 20px;
   color: #282828;
 }
