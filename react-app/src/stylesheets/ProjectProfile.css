@@ -1,9 +1,22 @@
-.project-profile-page__main {
-  /* padding-bottom: 50rem; */
-  background-color: #f7f7f6;
+.project-profile-page__container {
+  position: relative;
+  min-height: 638px;
   height: 100%;
-  padding-bottom: 20px;
+  background: #f7f7f6;
+
 }
+
+
+
+.project-profile-page__main {
+
+  background-color: #f7f7f6;
+  padding-bottom: 0px;
+  min-height: 638px;
+  height: 100%;
+
+}
+
 .project-profile-page__main-container {
   display: grid;
   grid-template-areas:
@@ -13,27 +26,25 @@
     "image image image image info info info"
     "image image image image info info info";
 
-  /* grid-template-columns: 33% 34% 33%;
-  grid-template-rows: 20% 60% 20%; */
-  /* justify-content: center; */
-  /* vertical-align: baseline; */
+
   padding: 5px auto;
   background-color: #f7f7f6;
-  /* height: 100vh; */
   border-top: 1px solid #f1eeea;
+  height: 100%;
+
 }
 
 .project-profile-page__header {
   grid-area: header;
   display: flex;
   flex-direction: column;
-  padding-top: 4.2rem;
+  padding-top: 2.5rem;
   margin-top: 0rem;
   margin-bottom: 3.6rem;
-  margin-left: -18px;
+  /* margin-left: -18px;
   margin-right: -18px;
   padding-left: 18px;
-  padding-right: 18px;
+  padding-right: 18px; */
   /* makes sure the header will size appropriately no matter size of page */
   position: relative;
   vertical-align: top;

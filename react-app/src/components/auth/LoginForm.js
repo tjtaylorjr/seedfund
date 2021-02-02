@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Redirect, NavLink, useHistory } from "react-router-dom";
 import { login } from "../../services/auth";
 
@@ -6,7 +6,13 @@ const LoginForm = ({ authenticated, setAuthenticated, setCurrentUser }) => {
   const [errors, setErrors] = useState([]);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+
+  const [demoLogin, setDemoLogin] = useState(false);
+  const [demoEmailIndex, setDemoEmailIndex] = useState(0);
+  const [demoPassIndex, setDemoPassIndex] = useState(0);
+
   const history = useHistory();
+
 
   const onLogin = async (e) => {
     e.preventDefault();
@@ -19,26 +25,64 @@ const LoginForm = ({ authenticated, setAuthenticated, setCurrentUser }) => {
     }
   };
 
+  const demoEmail = "demo@user.io";
+  let emailIndex = 0;
+  const demoPass = "password";
+  let passIndex = 0;
   const logInDemo = async (e) => {
     e.preventDefault();
+    demoAutomation();
+  }
+
+  const demoAutomation = async() => {
     const emailField = document.querySelector(".email");
     const passwordField = document.querySelector(".password");
-    if (email || password) {
-      setEmail("");
-      setPassword("");
-    }
-    emailField.value = "demo@user.io";
-    passwordField.value = "password";
-
-    const user = await login(emailField.value, passwordField.value);
-    if (!user.errors) {
-      setAuthenticated(true);
-      setCurrentUser(user);
-      return history.push("/");
+    if (emailIndex < demoEmail.length) {
+      setTimeout(() => {
+        emailField.value = demoEmail.substr(0, emailIndex + 1)
+        emailIndex++
+        demoAutomation();
+      }, 40)
+    } else if (passIndex < demoPass.length) {
+      setTimeout(() => {
+        passwordField.value = demoPass.substr(0, passIndex + 1)
+        passIndex++
+        demoAutomation();
+      }, 40)
     } else {
-      setErrors(user.errors);
+      const user = await login(emailField.value, passwordField.value);
+      if (!user.errors) {
+        setAuthenticated(true);
+        setCurrentUser(user);
+        return history.push("/");
+      } else {
+        setErrors(user.errors);
+      }
     }
-  };
+  }
+  
+  // original code for demo login
+
+  // const logInDemo = async (e) => {
+  //   e.preventDefault();
+  //   const emailField = document.querySelector(".email");
+  //   const passwordField = document.querySelector(".password");
+  //   if (email || password) {
+  //     setEmail("");
+  //     setPassword("");
+  //   }
+  //   emailField.value = "demo@user.io";
+  //   passwordField.value = "password";
+
+  //   const user = await login(emailField.value, passwordField.value);
+  //   if (!user.errors) {
+  //     setAuthenticated(true);
+  //     setCurrentUser(user);
+  //     return history.push("/");
+  //   } else {
+  //     setErrors(user.errors);
+  //   }
+  // };
 
   const updateEmail = (e) => {
     setEmail(e.target.value);
@@ -51,7 +95,6 @@ const LoginForm = ({ authenticated, setAuthenticated, setCurrentUser }) => {
   if (authenticated) {
     return <Redirect to="/" />;
   }
-
   return (
     <>
       <div className="login-page__main-container">
@@ -69,7 +112,7 @@ const LoginForm = ({ authenticated, setAuthenticated, setCurrentUser }) => {
             ) : (
               <span></span>
             )}
-            <div className="login-form__title">Log In</div>
+            <div className="login-form__title">Log In </div>
             <input
               name="email"
               type="email"
@@ -84,8 +127,7 @@ const LoginForm = ({ authenticated, setAuthenticated, setCurrentUser }) => {
               placeholder="Password"
               className="login-form__input-field password"
               value={password}
-              onChange={updatePassword}
-            />
+            onChange={updatePassword} />
             <button className="login-form__submit-button" type="submit">
               Log in
             </button>

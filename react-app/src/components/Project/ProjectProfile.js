@@ -158,127 +158,127 @@ function ProjectProfile(props) {
   };
 
   return (
-    <>
-      <main className="project-profile-page__main">
-        <div className="project-profile-page__main-container">
-          {/* header section */}
-          <div className="project-profile-page__header">
-            <div className="project-profile-page__header-title">
-              <h1>{project.title}</h1>
-            </div>
-            <div className="project-profile-page__header-description">
-              <p>{project.description}</p>
-            </div>
-          </div>
-          {/* body for picture and informational box */}
-          <div className="project-profile-page__image-container">
-            <img
-              className="project-profile-page__image"
-              src={project.image || default_img}
-              alt={project.title}
-            />
-            <NavLink
-              to={("/discover/" + project.category).toLowerCase()}
-              className="project-profile-page__category"
-            >
-              <h1>{"Category: " + project.category}</h1>
-            </NavLink>
-            <NavLink
-              to={{
-                pathname: "/discover/users/" + creator,
-                state: { creator_id: project.user_id },
-              }}
-              className="project-profile-page__creator"
-            >
-              <h1>{"By " + creatorName}</h1>
-            </NavLink>
-          </div>
-          <div className="project-profile-page__info-container">
-            <div className="project-profile-page__progress-bar">
-              <div
-                className="project-profile-page__progress-color"
-                style={fillBar(project.balance, project.funding_goal)}
-              ></div>
-            </div>
-            <div className="project-profile-page__info-container-stats">
-              <div className="project-profile-page__balance">
-                <h1>
-                  $
-                  {project.balance
-                    ? project.balance.toLocaleString("en-US")
-                    : project.balance}
-                </h1>
-                <p>
-                  {`pledged of $${
-                    project.funding_goal
-                      ? project.funding_goal.toLocaleString("en-US")
-                      : project.funding_goal
-                  }
-                  goal`}
-                </p>
+    <div className="project-profile-page__container">
+        <main className="project-profile-page__main">
+          <div className="project-profile-page__main-container">
+            {/* header section */}
+            <div className="project-profile-page__header">
+              <div className="project-profile-page__header-title">
+                <h1>{project.title}</h1>
               </div>
-              <div className="project-profile-page__backer-total">
-                <h1>{pledgeCount}</h1>
-                <p>backers</p>
+              <div className="project-profile-page__header-description">
+                <p>{project.description}</p>
               </div>
-              {remainingDays()}
             </div>
-            <form className="project-profile-page__form">
-              {amountError ? <span>{amountError}</span> : <></>}
-              <input
-                placeholder={
-                  pledged
-                    ? `Current Pledge Amount $${userPledgeAmount.toLocaleString(
-                        "en-US"
-                      )}`
-                    : "Enter Pledge Amount"
-                }
-                type="number"
-                min="0.00"
-                step="1.00"
-                value={amount}
-                className="project-profile-page__input-field"
-                onChange={(e) => {
-                  setAmount(e.target.value);
-                }}
+            {/* body for picture and informational box */}
+            <div className="project-profile-page__image-container">
+              <img
+                className="project-profile-page__image"
+                src={project.image || default_img}
+                alt={project.title}
               />
-              {pledged ? (
-                <button
-                  className="project-profile-page__button"
-                  onClick={handlePledge}
-                >
-                  Update Pledge
-                </button>
-              ) : (
-                <button
-                  className="project-profile-page__button"
-                  onClick={handlePledge}
-                >
-                  Pledge
-                </button>
-              )}
-            </form>
-            {canEdit && (
-              <div className="project-profile-page__project-management">
-                <button
-                  onClick={editProject}
-                  className="project-profile-page__edit-button"
-                >
-                  Edit Project
-                </button>
-                <button
-                  onClick={deleteProject}
-                  className="project-profile-page__delete-button"
-                >
-                  Delete Project
-                </button>
+              <NavLink
+                to={("/discover/" + project.category).toLowerCase()}
+                className="project-profile-page__category"
+              >
+                <h1>{"Category: " + project.category}</h1>
+              </NavLink>
+              <NavLink
+                to={{
+                  pathname: "/discover/users/" + creator,
+                  state: { creator_id: project.user_id },
+                }}
+                className="project-profile-page__creator"
+              >
+                <h1>{"By " + creatorName}</h1>
+              </NavLink>
+            </div>
+            <div className="project-profile-page__info-container">
+              <div className="project-profile-page__progress-bar">
+                <div
+                  className="project-profile-page__progress-color"
+                  style={fillBar(project.balance, project.funding_goal)}
+                ></div>
               </div>
-            )}
+              <div className="project-profile-page__info-container-stats">
+                <div className="project-profile-page__balance">
+                  <h1>
+                    $
+                    {project.balance
+                      ? project.balance.toLocaleString("en-US")
+                      : project.balance}
+                  </h1>
+                  <p>
+                    {`pledged of $${
+                      project.funding_goal
+                        ? project.funding_goal.toLocaleString("en-US")
+                        : project.funding_goal
+                    }
+                    goal`}
+                  </p>
+                </div>
+                <div className="project-profile-page__backer-total">
+                  <h1>{pledgeCount}</h1>
+                  <p>backers</p>
+                </div>
+                {remainingDays()}
+              </div>
+              <form className="project-profile-page__form">
+                {amountError ? <span>{amountError}</span> : <></>}
+                <input
+                  placeholder={
+                    pledged
+                      ? `Current Pledge Amount $${userPledgeAmount.toLocaleString(
+                          "en-US"
+                        )}`
+                      : "Enter Pledge Amount"
+                  }
+                  type="number"
+                  min="0.00"
+                  step="1.00"
+                  value={amount}
+                  className="project-profile-page__input-field"
+                  onChange={(e) => {
+                    setAmount(e.target.value);
+                  }}
+                />
+                {pledged ? (
+                  <button
+                    className="project-profile-page__button"
+                    onClick={handlePledge}
+                  >
+                    Update Pledge
+                  </button>
+                ) : (
+                  <button
+                    className="project-profile-page__button"
+                    onClick={handlePledge}
+                  >
+                    Pledge
+                  </button>
+                )}
+              </form>
+              {canEdit && (
+                <div className="project-profile-page__project-management">
+                  <button
+                    onClick={editProject}
+                    className="project-profile-page__edit-button"
+                  >
+                    Edit Project
+                  </button>
+                  <button
+                    onClick={deleteProject}
+                    className="project-profile-page__delete-button"
+                  >
+                    Delete Project
+                  </button>
+                </div>
+              )}
+            </div>
+            {/* </div> */}
           </div>
-          {/* </div> */}
-        </div>
-      </main>
-    </>
+        </main>
+    </div>
   );
 }
 

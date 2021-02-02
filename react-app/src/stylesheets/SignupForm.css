@@ -5,7 +5,8 @@
   background-color: #f7f7f6;
   vertical-align: baseline;
   padding: 60px 18px;
-  height: 100vh;
+  min-height: 638px;
+  height: 100%;
   border-top: 1px solid #f1eeea;
 }
 

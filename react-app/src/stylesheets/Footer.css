@@ -1,3 +1,12 @@
+.footer {
+  height: 185px;
+  width: 100%;
+  position: relative;
+  bottom: 0;
+  background: #FFFFFF;
+  padding-bottom: 10px;
+}
+
 .footer-grid__main-container {
   display: grid;
   grid-template-areas:
@@ -44,13 +53,15 @@
 
 .footer__bottom-container {
   display: flex;
-  justify-content: space-evenly;
-  margin: 18px auto;
+  justify-content: center;
+  align-items: center;
+  margin: 10px auto;
   font-size: 14px;
   opacity: 0.8;
 }
 
 .fa-github-square {
+  margin-left: 10px;
   font-size: 20px;
   color: #282828;
 }

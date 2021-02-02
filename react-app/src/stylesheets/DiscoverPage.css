@@ -1,6 +1,8 @@
 .query-results__wrapper {
   padding-bottom: 6rem;
   padding-top: 1.8rem;
+  min-height: 560px;
+  height: 100%;
 }
 
 .query-results__container {
@@ -26,7 +28,7 @@
 }
 
 .query-results__loading-message, .query-results__no-results-message {
-  height: 100vh;
+  height: 100%;
   text-align: center;
   padding-top: 5rem;
   font-size: 22px;

@@ -5,7 +5,7 @@ import Product from "./Product";
 
 function Footer() {
   return (
-    <>
+    <div className="footer">
       <div className="footer-grid__main-container">
         <Contributors />
         <Product />
@@ -20,7 +20,7 @@ function Footer() {
           <i className="fab fa-github-square"></i>
         </a>
       </div>
-    </>
+    </div>
   );
 }
 
