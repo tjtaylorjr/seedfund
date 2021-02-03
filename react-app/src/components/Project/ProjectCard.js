@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import { NavLink } from "react-router-dom";
 import {
   getPledgeCount,
@@ -6,75 +6,106 @@ import {
   dateDiffInDays,
   fillBar,
 } from "../../services/utils";
-import default_img from '../../assets/images/default_img350by200.png'
+import default_img from '../../assets/images/default_img350by200.png';
+import LoadingAnimation from "../LoadingAnimation.js";
 
 const ProjectCard = (data) => {
   const [project, setProject] = useState({});
   const [pledgeCount, setPledgeCount] = useState(0);
   const [creator, setCreator] = useState("");
-  const {
-    id,
-    user_id,
-    title,
-    description,
-    funding_goal,
-    balance,
-    image,
-    date_goal,
-    category,
-  } = data.data;
+  const [funding, setFunding] = useState("");
 
-  const projectData = {
-    id: id,
-    user_id: user_id,
-    title: title,
-    description: description,
-    funding_goal: funding_goal,
-    balance: balance,
-    image: image,
-    date_goal: date_goal,
-    category: category,
-  };
+  const spinnerRef = useRef();
 
   useEffect(() => {
-    if (projectData) {
-      setProject(projectData);
+    let mounted = true;
+
+    const showSpinner = () => spinnerRef.current.classList.remove('loadSpinner--hide');
+
+    if (mounted) {
+      showSpinner()
     }
-  }, [data]);
+    return () => mounted = false;
+  }, [data.data.image]);
 
   useEffect(() => {
+    let mounted = true;
+
+    const {
+      id,
+      user_id,
+      title,
+      description,
+      funding_goal,
+      balance,
+      image,
+      date_goal,
+      category,
+    } = data.data;
+
+    const projectData = {
+      id: id,
+      user_id: user_id,
+      title: title,
+      description: description,
+      funding_goal: funding_goal,
+      balance: balance,
+      image: image,
+      date_goal: date_goal,
+      category: category,
+    };
+
+    if (mounted) {
+      setProject({ ...projectData });
+    }
+    return () => mounted = false;
+  }, [data.data]);
+
+
+
+  useEffect(() => {
+    let mounted = true;
     (async () => {
       if (project.user_id) {
         try {
           const ownerName = await getCreatorName(project.user_id);
-          setCreator(ownerName);
+          if(mounted) {
+            setCreator(ownerName);
+          }
         } catch (err) {
           console.error(err);
         }
       }
     })();
+    return () => mounted = false;
   }, [project]);
 
-  const funding = () => {
-    const current = parseInt((balance * 100) / funding_goal).toString();
-    const percentFunded = current + "%";
-    return percentFunded;
-  };
+  useEffect(() => {
+    let mounted = true;
+
+    const current = parseInt((project.balance * 100) / project.funding_goal);
+    const percentFunded = current + "% funded";
+    if (mounted) {
+      setFunding(percentFunded);
+    }
+    return () => mounted = false;
+  }, [project.balance, project.funding_goal])
 
   useEffect(() => {
+    let mounted = true;
     (async () => {
-      const pledgeNum = await getPledgeCount(id);
-      setPledgeCount(pledgeNum);
+      try {
+        if(mounted && project.id) {
+        const pledgeNum = await getPledgeCount(project.id);
+          setPledgeCount(pledgeNum);
+        }
+      } catch(e) {
+        console.error(e);
+      }
     })();
-  }, []);
-  // const pictureDisplay = () => {
-  //   if(project.img === "") {
-  //     return {backgroundImage: `url(${default_img})`}
-  //   }
-  //   return {backgroundImage: `url(${project.image})`}
-  //   // {project.image.length ? { backgroundImage: `url(${project.image})` }
-  //   //   : backgroundImage: "../../assets/images/default_img350by200.png" }
-  // }
+    return () => mounted = false;
+  }, [project.id]);
+
   const remainingDays = () => {
     const days = dateDiffInDays(project.date_goal);
     const fundingResult = project.balance >= project.funding_goal;
@@ -99,6 +130,20 @@ const ProjectCard = (data) => {
     );
   };
 
+  useEffect(() => {
+    let mounted = true;
+
+    const hideSpinner = () => spinnerRef.current.classList.add('loadSpinner--hide');
+
+    if (mounted) {
+      setTimeout(() => {
+        hideSpinner()
+
+      }, 2500)
+    }
+    return () => mounted = false;
+  }, [project.image]);
+
   return (
     <>
       <div className="projectcard">
@@ -107,9 +152,12 @@ const ProjectCard = (data) => {
             <div className="projectcard__container">
               <div className="projectcard__picturebox">
                 <NavLink
-                  to={"/project/" + id}
+                  to={"/project/" + project.id}
                   className="projectcard__picturebox-navlink"
                 >
+                  <div ref={spinnerRef} className="loadSpinner">
+                    <LoadingAnimation size={"MED"} />
+                  </div>
                   <div
                     style={
                       project.image
@@ -124,11 +172,11 @@ const ProjectCard = (data) => {
                 <div className="projectcard__topdata">
                   <div className="projectcard__topdata-text-container">
                     <NavLink
-                      to={"/project/" + id}
+                      to={"/project/" + project.id}
                       className="projectcard__topdata-name"
                     >
-                      <h3 className="projectcard__topdata-header">{title}</h3>
-                      <p className="projectcard__topdata-desc">{description}</p>
+                      <h3 className="projectcard__topdata-header">{project.title}</h3>
+                      <p className="projectcard__topdata-desc">{project.description}</p>
                     </NavLink>
                   </div>
                 </div>
@@ -150,7 +198,7 @@ const ProjectCard = (data) => {
                 <div className="projectcard__bottomdata-fillbar">
                   <div
                     className="projectcard__bottomdata-fillbar-progress"
-                    style={fillBar(balance, funding_goal)}
+                    style={fillBar(project.balance, project.funding_goal)}
                   ></div>
                 </div>
                 <div className="projectcard__bottomdata-campaign">
@@ -158,21 +206,30 @@ const ProjectCard = (data) => {
                     <span>{pledgeCount + " pledged"}</span>
                   </div>
                   <div className="projectcard__bottomdata-percent-funded">
-                    <span>{funding() + " funded"}</span>
+                    <span>{funding}</span>
                   </div>
                   {remainingDays()}
                   <div className="projectcard__bottomdata-days">
                     <span className="projectcard__bottomdata-days-text">
-                      {"End date: " + date_goal}
+                      {"End date: " + project.date_goal}
                     </span>
                   </div>
                   <div>
-                    <NavLink
-                      to={"/discover/" + category.toLowerCase()}
-                      className="projectcard__bottomdata-category"
-                    >
-                      {category}
-                    </NavLink>
+                    {project.category ? (
+                      <NavLink
+                        to={"/discover/" + project.category.toLowerCase()}
+                        className="projectcard__bottomdata-category"
+                      >
+                        {project.category}
+                      </NavLink>
+                    ) : (
+                        <NavLink
+                          to={"#"}
+                          className="projectcard__bottomdata-category"
+                        >
+                          Category
+                        </NavLink>
+                    )}
                   </div>
                 </div>
               </div>

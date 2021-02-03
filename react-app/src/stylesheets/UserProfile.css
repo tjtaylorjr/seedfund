@@ -22,8 +22,9 @@
 }
 
 .my-project__project-container,
-.my-pledge__project-container {
+.my-pledge__pledge-container {
   display: flex;
+  height: 416.17px;
 }
 
 .my-projects-header,

@@ -1,15 +1,32 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { NavLink } from "react-router-dom";
 import { fillBar, getCreatorName } from "../../services/utils";
 import TrendingList from "./TrendingList";
 import default_img_large from "../../assets/images/default_img620by350.png"
+import LoadingAnimation from "../LoadingAnimation.js";
 
 const TrendingProjectsPreview = () => {
   const [trending, setTrending] = useState([]);
   const [featured, setFeatured] = useState({});
   const [creator, setCreator] = useState("Fake User");
 
+  const spinnerRef = useRef();
+
+  // preserve code for use in changing content
+
+  // useEffect(() => {
+  //   let mounted = true;
+
+  //   const showSpinner = () => spinnerRef.current.classList.remove('hide');
+
+  //   if (mounted) {
+  //     showSpinner()
+  //   }
+  //   return () => mounted = false;
+  // }, []);
+
   useEffect(() => {
+    let mounted = true;
     let data = null;
     (async () => {
       const res = await fetch("/api/projects/trending", {
@@ -17,15 +34,18 @@ const TrendingProjectsPreview = () => {
           "Content-Type": "application/json",
         },
       });
-
-      data = await res.json();
-      if (data) {
-        setTrending(data.trending_projects);
+      if(mounted) {
+        data = await res.json();
+        if (data) {
+          setTrending(data.trending_projects);
+        }
       }
     })();
+    return () => mounted = false;
   }, []);
 
   useEffect(() => {
+    let mounted = true;
     let random;
     (async () => {
       const res = await fetch("/api/projects/random", {
@@ -33,25 +53,32 @@ const TrendingProjectsPreview = () => {
           "Content-Type": "application/json",
         },
       });
-      random = await res.json();
+      if(mounted) {
+        random = await res.json();
 
-      if (random) {
-        setFeatured(random.random_project[0]);
+        if (random) {
+          setFeatured(random.random_project[0]);
+        }
       }
     })();
+    return () => mounted = false;
   }, []);
 
   useEffect(() => {
+    let mounted = true;
     (async () => {
       if (featured.user_id) {
         try {
           const ownerName = await getCreatorName(featured.user_id);
-          setCreator(ownerName);
+          if(mounted) {
+            setCreator(ownerName);
+          }
         } catch (err) {
           console.error(err);
         }
       }
     })();
+    return () => mounted = false;
   }, [featured]);
 
   let databaseInfo;
@@ -61,6 +88,19 @@ const TrendingProjectsPreview = () => {
   } else {
     databaseInfo = null;
   }
+
+  useEffect(() => {
+    let mounted = true;
+
+    const hideSpinner = () => spinnerRef.current.classList.add('loadSpinner--hide');
+
+    if(mounted) {
+      setTimeout(() => {
+        hideSpinner()
+      }, 2500)
+    }
+    return () => mounted = false;
+  }, []);
 
   return (
     <>
@@ -72,10 +112,14 @@ const TrendingProjectsPreview = () => {
                 <h3 className="trending-projects__featured-card-header">
                   FEATURED PROJECT
                 </h3>
+
                 <div className="trending-projects__featured-card-hover-field">
                   <div className="trending-projects__featured-card-navlink">
                     <div className="trending-projects__featured-card-focusable-link">
                       <NavLink to={"/project/" + featured.id}>
+                        <div ref={spinnerRef} className="loadSpinner">
+                          <LoadingAnimation size={"LRG"} />
+                        </div>
                         <div
                           className="trending-projects__featured-card-image"
                           style={

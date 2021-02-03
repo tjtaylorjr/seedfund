@@ -18,29 +18,30 @@
 
 .projectcard__container {
   position: relative;
-  background-color: #FFF;
+  /* background-color: #FFF; */
   color: #000;
   border-color: #DCDEDD;
   border: 0.1rem solid #DCDEDD;
 }
 
-.projectcard__picturebox-navlink {
-  width: 100%;
-  display: block;
-  padding-top: 56.25%;
-  text-decoration: none;
-}
-
 .projectcard__picturebox {
+  display: block;
   position: relative;
   align-self: flex-start;
+  height: 210px;
+  width: 100%;
+  /* padding-top: 56.25%; */
+}
+
+.projectcard__picturebox-navlink {
+
+  text-decoration: none;
 }
 
 .projectcard__picture {
 
   width: 100%;
   top: 0rem;
-  position: absolute;
   border-color: #E8E8E8;
   border-bottom: 0.1rem solid #DCDEDD;
   border: none;
@@ -57,7 +58,7 @@
   height: 18rem;
   padding-left: 1.8rem !important;
   padding-right: 1.8rem !important;
-  padding-top: 2.4rem;
+  padding-top: 1rem;
   margin-bottom: 0.1rem;
   color: #95959E;
 }
@@ -87,7 +88,7 @@
   white-space: nowrap;
   /* width: 100%; */
   position: relative;
-  padding-top: 2rem;
+  padding-top: 1rem;
   max-height: 3.8rem;
   text-decoration: none;
   color: #696969;
@@ -187,6 +188,6 @@
   .projectcard {
     padding-left: 18px;
     padding-right: 18px;
-    width: calc(4/12 * 100%) !important;
+    /* width: calc(4/12 * 100%) !important; */
 }
 }

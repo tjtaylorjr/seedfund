@@ -25,6 +25,7 @@
   display: flex;
   flex-wrap: wrap;
   justify-content: space-evenly;
+  box-sizing: border-box;
 }
 
 .query-results__loading-message, .query-results__no-results-message {

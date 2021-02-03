@@ -48,6 +48,7 @@ def getSpecificProject(id):
     return result.to_dict()
 
 
+
 # GET route for projects started by user
 @project_routes.route('/users/<user_id>')
 def getUserProjects(user_id):

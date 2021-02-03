@@ -10,19 +10,25 @@ export function dateDiffInDays(date_goal) {
 }
 
 export const getPledgeCount = async (id) => {
-  const res = await fetch(`/api/projects/${id}/pledges`, {
-    headers: {
-      "Content-Type": "application/json",
-    },
-  });
 
-  if (!res.ok) {
-    throw res;
-  }
+    const res = await fetch(`/api/projects/${id}/pledges`, {
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
 
-  const data = await res.json();
-  const totalPledged = data.pledges.length;
-  return totalPledged;
+    if (!res.ok) {
+      throw res;
+    }
+
+    const data = await res.json();
+    if(data) {
+
+      const totalPledged = data.pledges.length;
+      return totalPledged;
+    }
+
+
 };
 
 export const getCreatorName = async (id) => {

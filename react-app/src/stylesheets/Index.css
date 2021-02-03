@@ -13,6 +13,7 @@
 @import "UserProfile.css";
 @import "ProjectEdit.css";
 @import "DiscoverPage.css";
+@import "LoadingAnimation.css";
 
 html {
   font-family: "Maison Neue Book", "Helvetica Neue", Helvetica, Arial,

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import { NavLink } from "react-router-dom";
 import {
   getPledgeCount,
@@ -6,40 +6,47 @@ import {
   dateDiffInDays,
   fillBar,
 } from "../../services/utils";
-import default_img from "../../assets/images/default_img350by200.png"
+import default_img from "../../assets/images/default_img350by200.png";
+import LoadingAnimation from "../LoadingAnimation.js";
 
 const UserProjectCard = (data) => {
   const [project, setProject] = useState({});
   const [pledgeCount, setPledgeCount] = useState(0);
   const [creator, setCreator] = useState("");
-  const {
-    id,
-    user_id,
-    title,
-    description,
-    funding_goal,
-    balance,
-    image,
-    date_goal,
-    category,
-  } = data.data;
-  const projectData = {
-    id: id,
-    user_id: user_id,
-    title: title,
-    description: description,
-    funding_goal: funding_goal,
-    balance: balance,
-    image: image,
-    date_goal: date_goal,
-    category: category,
-  };
+
+  const spinnerRef = useRef();
 
   useEffect(() => {
-    if (projectData) {
-      setProject(projectData);
+    let mounted = true;
+    const {
+      id,
+      user_id,
+      title,
+      description,
+      funding_goal,
+      balance,
+      image,
+      date_goal,
+      category,
+    } = data.data;
+    const projectData = {
+      id: id,
+      user_id: user_id,
+      title: title,
+      description: description,
+      funding_goal: funding_goal,
+      balance: balance,
+      image: image,
+      date_goal: date_goal,
+      category: category,
+    };
+
+    if (mounted) {
+      setProject({...projectData });
     }
-  }, [data]);
+
+    return () => mounted = false;
+  },[data.data])
 
   useEffect(() => {
     (async () => {
@@ -55,17 +62,25 @@ const UserProjectCard = (data) => {
   }, [project]);
 
   const funding = () => {
-    const current = parseInt((balance * 100) / funding_goal).toString();
+    const current = parseInt((project.balance * 100) / project.funding_goal).toString();
     const percentFunded = current + "%";
     return percentFunded;
   };
 
   useEffect(() => {
+    let mounted = true;
     (async () => {
-      const pledgeNum = await getPledgeCount(id);
-      setPledgeCount(pledgeNum);
+      try {
+        if (mounted && project.id) {
+          const pledgeNum = await getPledgeCount(project.id);
+          setPledgeCount(pledgeNum);
+        }
+      } catch (e) {
+        console.error(e);
+      }
     })();
-  }, []);
+    return () => mounted = false;
+  }, [project.id]);
 
   const remainingDays = () => {
     const days = dateDiffInDays(project.date_goal);
@@ -91,6 +106,20 @@ const UserProjectCard = (data) => {
     );
   };
 
+  useEffect(() => {
+    let mounted = true;
+
+    const hideSpinner = () => spinnerRef.current.classList.add('loadSpinner--hide');
+
+    if (mounted) {
+      setTimeout(() => {
+        hideSpinner()
+
+      }, 2500)
+    }
+    return () => mounted = false;
+  }, [project.image]);
+
   return (
     <>
       <div className="userprojectcard">
@@ -99,9 +128,12 @@ const UserProjectCard = (data) => {
             <div className="userprojectcard__container">
               <div className="userprojectcard__picturebox">
                 <NavLink
-                  to={"/project/" + id}
+                  to={"/project/" + project.Mathid}
                   className="userprojectcard__picturebox-navlink"
                 >
+                  <div ref={spinnerRef} className="loadSpinner">
+                    <LoadingAnimation size={"MED-SML"} />
+                  </div>
                   <div
                     style={
                       project.image
@@ -116,11 +148,11 @@ const UserProjectCard = (data) => {
                 <div className="userprojectcard__topdata">
                   <div className="userprojectcard__topdata-text-container">
                     <NavLink
-                      to={"/project/" + id}
+                      to={"/project/" + project.id}
                       className="userprojectcard__topdata-name"
                     >
                       <h3 className="userprojectcard__topdata-header">
-                        {title}
+                        {project.title}
                       </h3>
                     </NavLink>
                   </div>
@@ -143,7 +175,7 @@ const UserProjectCard = (data) => {
                 <div className="userprojectcard__bottomdata-fillbar">
                   <div
                     className="userprojectcard__bottomdata-fillbar-progress"
-                    style={fillBar(balance, funding_goal)}
+                    style={fillBar(project.balance, project.funding_goal)}
                   ></div>
                 </div>
                 <div className="userprojectcard__bottomdata-campaign">
@@ -155,12 +187,21 @@ const UserProjectCard = (data) => {
                   </div>
                   {remainingDays()}
                   <div>
-                    <NavLink
-                      to={"/discover/" + category.toLowerCase()}
-                      className="userprojectcard__bottomdata-category"
-                    >
-                      {category}
-                    </NavLink>
+                    {project.category ? (
+                      <NavLink
+                        to={"/discover/" + project.category.toLowerCase()}
+                        className="userprojectcard__bottomdata-category"
+                      >
+                        {project.category}
+                      </NavLink>
+                    ) : (
+                      <NavLink
+                        to={"#"}
+                        className="userprojectcard__bottomdata-category"
+                      >
+                        Category
+                      </NavLink>
+                    )}
                   </div>
                 </div>
               </div>

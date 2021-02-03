@@ -1,0 +1,30 @@
+.spinnerContainer  {
+  position: relative;
+  /* width: 3rem;
+  height: 3rem; */
+  background-color: #FFFFFF;
+  width: 100%;
+  top: 0;
+  left: 0;
+  transition: opacity 0.1s;
+}
+
+.loadSpinner {
+  position: absolute;
+  transition: opacity 0.1s;
+  height: 100%;
+  width: 100%;
+}
+
+.loadSpinner--hide {
+  opacity: 0;
+}
+
+.spinner {
+  display: block;
+  border: solid #E8E8E8;
+  border-top: solid #028858;
+  border-radius: 50%;
+  position: absolute;
+  box-sizing: border-box;
+}

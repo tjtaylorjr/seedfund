@@ -6,8 +6,6 @@
 
 }
 
-
-
 .project-profile-page__main {
 
   background-color: #f7f7f6;
@@ -76,15 +74,21 @@
   vertical-align: top;
   float: left;
   position: relative;
-  /* width: calc(8 / 12 * 100%) !important; */
+}
+
+.project-profile-page__image-wrapper {
+  display: block;
+  width: 620px;
+  height: 362px;
 }
 
 .project-profile-page__image {
-  /* width: 75%;
-  height: 75%; */
-  max-width: 700px;
-  max-height: 450px;
-  height: auto;
+  max-width: 620px;
+  height: 362px;
+  background-color: #F0F0F0;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
 }
 
 .project-profile-page__category {
@@ -115,9 +119,9 @@
   padding: 0 -20px 0 18px;
   float: left;
   position: relative;
-  /* width: calc(12 / 12 * 100%); */
   max-width: 350px;
-  margin-left: -10px;
+  padding-right: 10px;
+  padding-left: 10px;
 }
 
 .project-profile-page__progress-bar {
@@ -224,8 +228,7 @@
   width: 25%;
   border-radius: 2px;
   padding: 1px;
-  /* margin-left: 7rem;
-  margin-right: 2rem; */
+
 }
 
 .project-profile-page__delete-button {
@@ -241,6 +244,4 @@
   width: 25%;
   border-radius: 2px;
   padding: 1px;
-  /* margin-left: 2rem;
-  margin-right: 4rem; */
 }

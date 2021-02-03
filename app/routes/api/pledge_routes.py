@@ -7,7 +7,7 @@ from sqlalchemy.orm import joinedload
 pledge_routes = Blueprint('pledges', __name__)
 
 
-# Get all pledges for a specific project
+#Get all pledges for a specific project
 @pledge_routes.route('/projects/<id>/pledges')
 def getAllProjectPledges(id):
     project = Project.query.get(id)
