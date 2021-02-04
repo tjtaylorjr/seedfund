@@ -14,40 +14,43 @@ const DiscoverPage = () => {
     }
   }, [query]);
 
-  useEffect(() => {
-    const searchFilter = (() => {
-        const params = query.split(" ");
-        const badSearchTerms = ["a", "an", "the", "if", "or", "but", "and", "for", "nor", "yet", "so", "at", "by", "from", "in", "into", "of", "on", "to", "with", "is"];
-        const filtered_query = params.filter(param => {
-            return badSearchTerms.indexOf(param) === -1;
-        });
-        return filtered_query;
-    })();
+  const filteredSearch = (() => {
+    const params = query.split(" ");
+    const queryFilter1 = params.filter(param => {
+      return param.length > 0;
+    })
+    const badSearchTerms = ["a", "an", "the", "if", "or", "but", "and", "for", "nor", "yet", "so", "at", "by", "from", "in", "into", "of", "on", "to", "with", "is"];
+    const queryFilter2 = queryFilter1.filter(param => {
+      return badSearchTerms.indexOf(param) === -1;
+    });
+    const formattedSearchTerms = queryFilter2.join('+');
+    console.log(formattedSearchTerms)
+    return formattedSearchTerms;
+  })();
 
-    let allProjects = []
-    searchFilter.map(async(searchTerm) => {
+  useEffect(() => {
+    let mounted = true;
+
       (async () => {
-        const res = await fetch(`/api/projects/search/${searchTerm}`);
-        if(!res.ok) {
+        const res = await fetch(`/api/projects/search/${filteredSearch}`);
+        if (!res.ok) {
           throw res
         }
-        const json = await res.json();
+        const {projects} = await res.json();
 
-        if(json.projects.length > 0) {
-          allProjects = [...allProjects, ...json.projects]
-        }
-
+        console.log(projects)
         const uniqueResults = (() => {
-          const checkProp = allProjects.map(obj => obj['id']);
-          return allProjects.filter((obj, idx) => {
+          const checkProp = projects.map(obj => obj['id']);
+          return projects.filter((obj, idx) => {
             return checkProp.indexOf(obj['id']) === idx;
           })
         })()
-
-        setQueryResult(uniqueResults)
+        if(mounted) {
+          setQueryResult(uniqueResults)
+        }
       })();
-    });
 
+    return () => mounted = false;
   }, [queryString]);
 
   return queryResult ? (queryResult.length === 0 ?

@@ -14,9 +14,12 @@ const ProjectCard = (data) => {
   const [pledgeCount, setPledgeCount] = useState(0);
   const [creator, setCreator] = useState("");
   const [funding, setFunding] = useState("");
+  const [daysRemaining, setDaysRemaining] = useState(0);
+
 
   const spinnerRef = useRef();
-
+  // console.log(data)
+  // console.log(spinnerRef)
   useEffect(() => {
     let mounted = true;
 
@@ -26,7 +29,7 @@ const ProjectCard = (data) => {
       showSpinner()
     }
     return () => mounted = false;
-  }, [data.data.image]);
+  }, [data.data]);
 
   useEffect(() => {
     let mounted = true;
@@ -106,33 +109,22 @@ const ProjectCard = (data) => {
     return () => mounted = false;
   }, [project.id]);
 
-  const remainingDays = () => {
-    const days = dateDiffInDays(project.date_goal);
-    const fundingResult = project.balance >= project.funding_goal;
-    if (days > 0) {
-      return (
-        <div className="projectcard__bottomdata-days">
-          <span>{days + " days to go"}</span>
-        </div>
-      );
-    } else if (days === -1) {
-      return (
-        <div className="projectcard__bottomdata-days">
-          <span>{`Ended ${Math.abs(days)} day ago`}</span>
-        </div>
-      );
-    }
-
-    return (
-      <div className="projectcard__bottomdata-days">
-        <span>{`Ended ${Math.abs(days)} days ago`}</span>
-      </div>
-    );
-  };
-
   useEffect(() => {
     let mounted = true;
 
+    (async() => {
+      const days = dateDiffInDays(project.date_goal);
+
+      if(mounted) {
+        setDaysRemaining(days);
+      }
+    })()
+    return () => mounted = false;
+  },[project.date_goal])
+
+  useEffect(() => {
+    let mounted = true;
+    console.log(spinnerRef.current)
     const hideSpinner = () => spinnerRef.current.classList.add('loadSpinner--hide');
 
     if (mounted) {
@@ -142,7 +134,30 @@ const ProjectCard = (data) => {
       }, 2500)
     }
     return () => mounted = false;
-  }, [project.image]);
+  }, [project]);
+
+  const remainingDays = () => {
+    // const fundingResult = project.balance >= project.funding_goal;
+    if (daysRemaining >= 0) {
+      return (
+        <div className="projectcard__bottomdata-days">
+          <span>{daysRemaining + " days to go"}</span>
+        </div>
+      );
+    } else if (daysRemaining === -1) {
+      return (
+        <div className="projectcard__bottomdata-days">
+          <span>{`Ended 1 day ago`}</span>
+        </div>
+      );
+    }
+
+    return (
+      <div className="projectcard__bottomdata-days">
+        <span>{`Ended ${Math.abs(daysRemaining)} days ago`}</span>
+      </div>
+    );
+  };
 
   return (
     <>
