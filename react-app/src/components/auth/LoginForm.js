@@ -42,13 +42,13 @@ const LoginForm = ({ authenticated, setAuthenticated, setCurrentUser }) => {
         emailField.value = demoEmail.substr(0, emailIndex + 1)
         emailIndex++
         demoAutomation();
-      }, 40)
+      }, 100)
     } else if (passIndex < demoPass.length) {
       setTimeout(() => {
         passwordField.value = demoPass.substr(0, passIndex + 1)
         passIndex++
         demoAutomation();
-      }, 40)
+      }, 100)
     } else {
       const user = await login(emailField.value, passwordField.value);
       if (!user.errors) {
@@ -60,7 +60,7 @@ const LoginForm = ({ authenticated, setAuthenticated, setCurrentUser }) => {
       }
     }
   }
-  
+
   // original code for demo login
 
   // const logInDemo = async (e) => {
