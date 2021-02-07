@@ -5,11 +5,11 @@ import RecentProjectsPreview from "./RecentProjectsPreview";
 
 const Home = () => {
   return (
-    <>
+    <div className="landing__container">
       <QuickSelectBar />
       <TrendingProjectsPreview />
       <RecentProjectsPreview />
-    </>
+    </div>
   );
 };
 

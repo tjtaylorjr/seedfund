@@ -1,6 +1,7 @@
 .trending-projects {
   border-color: #E8E8E8;
   border-bottom: 0.1rem solid #DCDEDD;
+  position: relative;
 }
 
 .trending-projects__container {

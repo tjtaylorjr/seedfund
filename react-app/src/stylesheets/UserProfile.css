@@ -1,6 +1,11 @@
 .user-profile__main-container {
   display: flex;
   flex-direction: column;
+  position: relative;
+  padding-top: 67px;
+  height: 100%;
+  min-height: 900px;
+  padding-bottom: 165px;
 }
 
 .user-username {
@@ -14,17 +19,21 @@
   justify-content: center;
   align-items: center;
   margin: auto;
+  position: relative;
 }
 
 .my-projects__main-container {
   display: flex;
   flex-direction: column;
+  position: relative;
+  height: 100%;
 }
 
 .my-project__project-container,
 .my-pledge__pledge-container {
   display: flex;
   height: 416.17px;
+  position: relative;
 }
 
 .my-projects-header,

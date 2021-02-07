@@ -98,7 +98,7 @@ const LoginForm = ({ authenticated, setAuthenticated, setCurrentUser }) => {
   return (
     <>
       <div className="login-page__main-container">
-        <div className="login-form__main-container">
+        <div className="login-form__wrapper">
           <form className="login-form__form-container" onSubmit={onLogin}>
             {errors.length ? (
               <div className="errors__main-container">

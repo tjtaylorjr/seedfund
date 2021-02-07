@@ -1,10 +1,10 @@
 .footer {
-  height: 185px;
+  height: 165px;
   width: 100%;
-  position: relative;
+  position: absolute;
   bottom: 0;
   background: #FFFFFF;
-  padding-bottom: 10px;
+  padding-bottom: 0px;
 }
 
 .footer-grid__main-container {
@@ -17,7 +17,7 @@
     "contributor . .";
   justify-content: space-evenly;
   border-top: 2px solid #dcdedd;
-  padding-top: 14px;
+  padding-top: 5px;
 }
 
 .footer-contributors {
@@ -55,7 +55,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  margin: 10px auto;
+  /* margin: 5px auto; */
   font-size: 14px;
   opacity: 0.8;
 }

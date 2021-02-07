@@ -21,7 +21,7 @@ html {
   font-size: 62.5%;
   font-weight: 400;
   line-height: 1;
-  max-height: 100vh;
+  max-height: 100%;
 }
 
 body {
@@ -40,4 +40,20 @@ body {
   top: 0;
   right: 0;
   left: 0;
+}
+
+.page-container {
+  position: relative;
+  min-height: 100vh;
+}
+
+.content-wrap {
+  padding-bottom: 165px;
+}
+
+.landing__container {
+  position: relative;
+  min-height: 900px;
+  height: 100%;
+  padding-top: 67px;
 }
