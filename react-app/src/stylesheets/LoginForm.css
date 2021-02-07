@@ -12,10 +12,6 @@
   padding-top: 127px;
 }
 
-.login-page__main-wrapper {
-  /* padding-bottom: 165px; */
-}
-
 .login-form__wrapper {
   box-sizing: border-box;
   display: flex;

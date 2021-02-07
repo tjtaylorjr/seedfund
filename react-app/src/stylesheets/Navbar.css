@@ -27,7 +27,6 @@
   left: 0rem;
   top: 0rem;
   position: absolute;
-  /* animation: fade_in ease 6s cubic-bezier(0.175 0.885, 0.335, 1); */
 }
 
 .navbar__searchfield-container--hidden,
@@ -105,10 +104,8 @@
 .navbar__searchfield-results-container {
   z-index: 100;
   position: relative;
-  /* overflow-y: scroll; */
   background-color: #fff;
   transition: all 0.3s ease 0s;
-  /* may revisit and attempt to add functionality, for now just a placeholder */
 }
 
 .navbar__left-links-container {
@@ -214,19 +211,8 @@
   font-size: 1.4rem;
   color: #282828;
   cursor: pointer;
-  /* margin-right: .4rem; */
   text-decoration: none;
 }
-
-/* @keyframes fade_in {
-  0% {
-    opacity: 0;
-  }
-
-  100% {
-    opacity: 1;
-  }
-} */
 
 @media only screen and (min-width: 600px) {
   .navbar__right-links-container {

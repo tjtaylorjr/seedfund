@@ -18,7 +18,6 @@
 
 .projectcard__container {
   position: relative;
-  /* background-color: #FFF; */
   color: #000;
   border-color: #DCDEDD;
   border: 0.1rem solid #DCDEDD;
@@ -30,7 +29,6 @@
   align-self: flex-start;
   height: 210px;
   width: 100%;
-  /* padding-top: 56.25%; */
 }
 
 .projectcard__picturebox-navlink {
@@ -86,7 +84,6 @@
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
-  /* width: 100%; */
   position: relative;
   padding-top: 1rem;
   max-height: 3.8rem;
@@ -181,13 +178,12 @@
   .projectcard {
     padding-left: 12px;
     padding-right: 12px;
-}
+  }
 }
 
 @media only screen and (min-width: 1025px) {
   .projectcard {
     padding-left: 18px;
     padding-right: 18px;
-    /* width: calc(4/12 * 100%) !important; */
-}
+  }
 }
