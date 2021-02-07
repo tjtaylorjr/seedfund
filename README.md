@@ -4,22 +4,12 @@
 
 <br>
 
-![seedfund-picture](https://user-images.githubusercontent.com/62177226/103574188-80a41100-4e9d-11eb-980b-9d25a0d6597d.JPG)
-
-<br>
-
-
-
-> A collaboration project to create a clone website based on Kickstarter
-
-
-
 <div align="center">
   <h2>Table of Contents</h2>
 </div>
 
 
-- [Installation](#installation)
+- [Description](#description)
 - [Features](#features)
 - [Contributing](#contributing)
 - [Team](#team)
@@ -30,63 +20,18 @@
 ---
 
 <div align="center">
-  <h2>Installation</h2>
+  <h2>Description</h2>
 </div>
 
-
-### Clone
-
-- Clone this repo to your local machine using `https://github.com/tjtaylorjr/seedfund.git`
+A crowdfunding site in the style of Kickstarter.  SeedFund is a fullstack application built with Postgresql, Flask, and React.  Users can create projects and pledge money to ideas they like.  Improvements and additional features to follow.
 
 <br>
 
-### Setup
-
-> install flask dependencies
-
- ```bash
-      pipenv install --dev -r dev-requirements.txt && pipenv install -r requirements.txt
- ```
-
-> cd into the react-app directory and install npm packages
-
-```shell
-$ npm install
-```
-
-> Create database
-- Create a **.env** file based on the example with proper settings for your
-  development environment
-- Setup your PostgreSQL user, password and database and make sure it matches your **.env** file
-- Get into your pipenv, migrate your database, seed your database, and run your flask app
-<br>
-
-```bash
-   pipenv shell
-   ```
-
-   ```bash
-   flask db upgrade
-   ```
-
-   ```bash
-   flask seed all
-   ```
-
-   ```bash
-   flask run
-   ```
-
-> run the react frontend
-
-```shell
-npm start
-```
-> browse to http://localhost:3000
+[![Image from Gyazo](https://i.gyazo.com/abbbd24e74f4bf015550a7e48693f25d.gif)](https://gyazo.com/abbbd24e74f4bf015550a7e48693f25d)
 ---
 
 <div align="center">
-  <h2>Features</h2>
+  <h2>Application Architecture & Technologies</h2>
 </div>
 
 - Currently the App allows the creation of accounts, projects, and pleding to fund projects in a basic manner.  Improvements and additional features to follow.
