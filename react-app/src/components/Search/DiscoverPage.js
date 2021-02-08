@@ -5,6 +5,7 @@ import ProjectCard from "../Project/ProjectCard";
 const DiscoverPage = () => {
   const [queryResult, setQueryResult] = useState([]);
   const [queryString, setQueryString] = useState("");
+  const [notFound, setNotFound] = useState(false);
 
   const { query } = useParams();
 
@@ -45,6 +46,9 @@ const DiscoverPage = () => {
           })
         })()
         if(mounted) {
+          if(uniqueResults.length === 0) {
+            setNotFound(true)
+          }
           setQueryResult(uniqueResults)
         }
       })();
@@ -52,14 +56,15 @@ const DiscoverPage = () => {
     return () => mounted = false;
   }, [queryString]);
 
-  return queryResult ? (queryResult.length === 0 ?
-    <section className="query-results__wrapper">
-      <div className="query-results__container">
-        <div className="query-results__no-results-message">Sorry! No results found for '{query}'.</div>
-      </div>
-    </section> :
-    <>
-     <section className="query-results__wrapper">
+  return notFound ? (
+      <section className="query-results__wrapper">
+        <div className="query-results__container">
+          <div className="query-results__no-results-message">Sorry! No results found for '{query}'.</div>
+        </div>
+      </section>
+  ) : (
+    queryResult.length >= 1 ? (
+      <section className="query-results__wrapper">
         <div className="query-results__container">
           <h3 className="query-results__header">
             {'Explore ' + queryResult.length + (queryResult.length > 1 ? ' Projects' : ' Project')}
@@ -71,14 +76,14 @@ const DiscoverPage = () => {
           </ul>
         </div>
       </section>
-    </>) :
-    <>
+    ) : (
       <section className="query-results__wrapper">
         <div className="query-results__container">
-          <div className="query-results__loading-message">Loading...</div>
+          <div className="query-results__no-results-message">Searching for '{query}'.</div>
         </div>
       </section>
-    </>
-}
+    )
+  );
+};
 
 export default DiscoverPage;

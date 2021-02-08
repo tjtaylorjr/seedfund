@@ -128,7 +128,7 @@ const UserProjectCard = (data) => {
             <div className="userprojectcard__container">
               <div className="userprojectcard__picturebox">
                 <NavLink
-                  to={"/project/" + project.Mathid}
+                  to={"/project/" + project.id}
                   className="userprojectcard__picturebox-navlink"
                 >
                   <div ref={spinnerRef} className="loadSpinner">
