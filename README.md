@@ -26,13 +26,11 @@
   <h2>Description</h2>
 </div>
 
-A crowdfunding site in the style of Kickstarter.  Users can create projects and pledge money to ideas they like.  Improvements and additional features to follow.
+A crowdfunding site in the style of Kickstarter.  Currently, users can create projects and pledge money to ideas they like.  Improvements and additional features to follow.
 
 <br>
 
-<div align="center">
 <img src="https://i.gyazo.com/7f5cf3f068882affb830ff7fdc75876d.gif" width=400px>
-</div>
 
 <br>
 
@@ -48,13 +46,7 @@ SeedFund is a streamlined fullstack application built with PostgreSQL and Flask 
 
 <br>
 
-<div align="center">
   <img width="550" alt="AppArchetecture" src="https://user-images.githubusercontent.com/62177226/107172057-61b00780-6992-11eb-8f6b-7e0ce0e71fa5.png">
-</div>
-
-<br>
-
-Currently, the App allows the creation of accounts, projects, and pledging to fund projects.  Improvements and additional features to follow.
 
 <br>
 
