@@ -29,7 +29,7 @@ def seed_projects():
         title='THE SIGN YOU\'VE BEEN LOOKING FOR',
         description=
         '''
-        What are you waiting for? Hasn't THIS is the sign you've been waiting
+        What are you waiting for? THIS is the sign you've been waiting
         for all this time!
         ''',
         funding_goal=4000.00,
@@ -272,5 +272,5 @@ def seed_projects():
     db.session.commit()
 
 def undo_projects():
-    db.session.execute('TRUNCATE projects;')
+    db.session.execute('TRUNCATE projects CASCADE;')
     db.session.commit()

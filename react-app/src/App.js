@@ -35,68 +35,73 @@ function App() {
   }
 
   return (
-    <BrowserRouter>
-      <NavBar
-        authenticated={authenticated}
-        setAuthenticated={setAuthenticated}
-        setCurrentUser={setCurrentUser}
-      />
-      <Switch>
-        <Route path="/" exact={true} authenticated={authenticated}>
-          <Home />
-        </Route>
-        <Route path="/login" exact={true}>
-          <LoginForm
+    <div className="page-container">
+      <div className="page-wrapper">
+
+        <BrowserRouter>
+          <NavBar
             authenticated={authenticated}
             setAuthenticated={setAuthenticated}
             setCurrentUser={setCurrentUser}
           />
-        </Route>
-        <Route path="/signup" exact={true}>
-          <SignUpForm
-            authenticated={authenticated}
-            setAuthenticated={setAuthenticated}
-            setCurrentUser={setCurrentUser}
-          />
-        </Route>
-        <ProtectedRoute
-          path="/profile"
-          exact={true}
-          authenticated={authenticated}
-          setAuthenticated={setAuthenticated}
-        >
-          <UserProfile user={currentUser} />
-        </ProtectedRoute>
-        <ProtectedRoute
-          path="/start"
-          exact={true}
-          authenticated={authenticated}
-        >
-          <NewProject />
-        </ProtectedRoute>
-        <Route path="/project/:id" exact={true} authenticated={authenticated}>
-          <ProjectProfile user={currentUser} authenticated={authenticated} />
-        </Route>
-        <ProtectedRoute
-          path="/project/:id/edit"
-          exact={true}
-          authenticated={authenticated}
-        >
-          <ProjectEdit />
-        </ProtectedRoute>
-        <Route path="/discover/:query" exact={true}>
-          <DiscoverPage />
-        </Route>
-        <Route path="/discover/users/:user" exact={true}>
-          <DiscoverUsersPage
-            user={currentUser}
-            authenticated={authenticated}
-          />
-          <Footer />
-        </Route>
-      </Switch>
-      <Footer />
-    </BrowserRouter>
+          <Switch>
+            <Route path="/" exact={true} authenticated={authenticated}>
+              <Home />
+            </Route>
+            <Route path="/login" exact={true}>
+              <LoginForm
+                authenticated={authenticated}
+                setAuthenticated={setAuthenticated}
+                setCurrentUser={setCurrentUser}
+              />
+            </Route>
+            <Route path="/signup" exact={true}>
+              <SignUpForm
+                authenticated={authenticated}
+                setAuthenticated={setAuthenticated}
+                setCurrentUser={setCurrentUser}
+              />
+            </Route>
+            <ProtectedRoute
+              path="/profile"
+              exact={true}
+              authenticated={authenticated}
+              setAuthenticated={setAuthenticated}
+            >
+              <UserProfile user={currentUser} />
+            </ProtectedRoute>
+            <ProtectedRoute
+              path="/start"
+              exact={true}
+              authenticated={authenticated}
+            >
+              <NewProject />
+            </ProtectedRoute>
+            <Route path="/project/:id" exact={true} authenticated={authenticated}>
+              <ProjectProfile user={currentUser} authenticated={authenticated} />
+            </Route>
+            <ProtectedRoute
+              path="/project/:id/edit"
+              exact={true}
+              authenticated={authenticated}
+            >
+              <ProjectEdit />
+            </ProtectedRoute>
+            <Route path="/discover/:query" exact={true}>
+              <DiscoverPage />
+            </Route>
+            <Route path="/discover/users/:user" exact={true}>
+              <DiscoverUsersPage
+                user={currentUser}
+                authenticated={authenticated}
+              />
+              <Footer />
+            </Route>
+          </Switch>
+        </BrowserRouter>
+        <Footer />
+      </div>
+    </div>
   );
 }
 
