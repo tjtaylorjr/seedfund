@@ -46,8 +46,17 @@ A crowdfunding site in the style of Kickstarter.  Users can create projects and 
 
 SeedFund is a streamlined fullstack application built with PostgreSQL and Flask at the backend, which accepts RESTful data requests from the front-end user interface powered by React.
 
-Currently the App allows the creation of accounts, projects, and pleding to fund projects in a basic manner.  Improvements and additional features to follow.
+<br>
 
+<div align="center">
+  <img width="550" alt="AppArchetecture" src="https://user-images.githubusercontent.com/62177226/107172057-61b00780-6992-11eb-8f6b-7e0ce0e71fa5.png">
+</div>
+
+<br>
+
+Currently the App allows the creation of accounts, projects, and pleding to fund projects.  Improvements and additional features to follow.
+
+<br>
 
 ---
 
