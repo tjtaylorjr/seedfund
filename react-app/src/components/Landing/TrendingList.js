@@ -93,7 +93,7 @@ const TrendingList = (data) => {
       setTimeout(() => {
         hideSpinner()
 
-      }, 2500)
+      }, 1750)
     }
     return () => mounted = false;
   }, []);

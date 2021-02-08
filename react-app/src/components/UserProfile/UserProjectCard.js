@@ -115,7 +115,7 @@ const UserProjectCard = (data) => {
       setTimeout(() => {
         hideSpinner()
 
-      }, 2500)
+      }, 2000)
     }
     return () => mounted = false;
   }, [project.image]);

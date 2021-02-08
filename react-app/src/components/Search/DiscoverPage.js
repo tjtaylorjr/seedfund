@@ -24,7 +24,7 @@ const DiscoverPage = () => {
       return badSearchTerms.indexOf(param) === -1;
     });
     const formattedSearchTerms = queryFilter2.join('+');
-    console.log(formattedSearchTerms)
+
     return formattedSearchTerms;
   })();
 
@@ -38,7 +38,6 @@ const DiscoverPage = () => {
         }
         const {projects} = await res.json();
 
-        console.log(projects)
         const uniqueResults = (() => {
           const checkProp = projects.map(obj => obj['id']);
           return projects.filter((obj, idx) => {

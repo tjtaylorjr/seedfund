@@ -18,8 +18,7 @@ const ProjectCard = (data) => {
 
 
   const spinnerRef = useRef();
-  // console.log(data)
-  // console.log(spinnerRef)
+
   useEffect(() => {
     let mounted = true;
 
@@ -124,20 +123,19 @@ const ProjectCard = (data) => {
 
   useEffect(() => {
     let mounted = true;
-    console.log(spinnerRef.current)
+
     const hideSpinner = () => spinnerRef.current.classList.add('loadSpinner--hide');
 
     if (mounted) {
       setTimeout(() => {
         hideSpinner()
 
-      }, 2500)
+      }, 2000)
     }
     return () => mounted = false;
   }, [project]);
 
   const remainingDays = () => {
-    // const fundingResult = project.balance >= project.funding_goal;
     if (daysRemaining >= 0) {
       return (
         <div className="projectcard__bottomdata-days">

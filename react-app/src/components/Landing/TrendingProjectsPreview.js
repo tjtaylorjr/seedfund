@@ -97,7 +97,7 @@ const TrendingProjectsPreview = () => {
     if(mounted) {
       setTimeout(() => {
         hideSpinner()
-      }, 2500)
+      }, 2000)
     }
     return () => mounted = false;
   }, []);

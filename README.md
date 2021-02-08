@@ -54,19 +54,219 @@ SeedFund is a streamlined fullstack application built with PostgreSQL and Flask 
 
 <br>
 
-Currently the App allows the creation of accounts, projects, and pleding to fund projects.  Improvements and additional features to follow.
+Currently, the App allows the creation of accounts, projects, and pledging to fund projects.  Improvements and additional features to follow.
 
 <br>
 
 ---
 
+<br>
+
 <div align="center">
   <h2>Frontend Overview</h2>
 </div>
 
+SeedFund was designed with simplicity in mind, allowing the frontend to focus on rendering served database records.  However, future improvements such as messaging and project campaign rewards will make fuller use of React's powerful ability to maintain state.
 
+React components simplify development and allow for the reuse of code while still keeping it dry.  This is exemplified in SeedFund through the project card component.  We have made use of this single page of code in different ways throughout the entire app.
+
+The project card represents the benefit and disadvantages to using React all at once.  Once challenge that we had to overcome was the split second flicker that can happen with React's useEffect hook.  In this case, the app was rendering the default picture before the component could be updated with the picture from the database.  There were several ways we could have addressed this problem but ultimately applied a loading animation to reveal the rendered component underneath after the DOM had been updated.
+
+To impliment this solution, we brought in Framer Motion; It is an easy to use motion library that simplifies the work needed in CSS to achieve animation effects.
+
+<br>
 
 ---
+
+<br>
+
+##### loading animation component
+
+```jsx
+import React, { useEffect, useRef } from "react";
+import { motion } from "framer-motion";
+
+const spinnerAnimation = {
+  repeat: 2,
+  repeatType: "loop",
+  duration: 1.25,
+  ease: "linear"
+};
+
+const LoadingAnimation = (props) => {
+
+  const containerRef = useRef();
+  const animationRef = useRef();
+
+  const containerStyle = `spinnerContainer--${props.size}`;
+  const animationStyle = `spinner--${props.size}`
+
+  useEffect(() => {
+    containerRef.current.classList.add(containerStyle);
+    animationRef.current.classList.add(animationStyle);
+  }, [])
+
+  return (
+    <div className="spinnerContainer" ref={containerRef}>
+      <motion.span className="spinner"
+        ref={animationRef}
+        animate={{ rotate: 360}}
+        transition={spinnerAnimation}
+        />
+    </div>
+  );
+};
+
+export default LoadingAnimation;
+
+```
+
+##### Relevant CSS for component
+
+```css
+.loadSpinner {
+  position: absolute;
+  transition: opacity 0.1s;
+  height: 100%;
+  width: 100%;
+}
+
+.loadSpinner--hide {
+  opacity: 0;
+}
+
+.spinnerContainer  {
+  position: relative;
+  background-color: #FFFFFF;
+  width: 100%;
+  top: 0;
+  left: 0;
+  transition: opacity 0.1s;
+}
+
+.spinnerContainer--MED {
+  height: 210px;
+}
+
+.spinner {
+  display: block;
+  border: solid #E8E8E8;
+  border-top: solid #028858;
+  border-radius: 50%;
+  position: absolute;
+  box-sizing: border-box;
+}
+
+.spinner--MED {
+    top: 75px;
+    left: 146px;
+    width: 6rem;
+    height: 6rem;
+    border-width: 1rem;
+}
+```
+
+##### Parent component implementation
+
+```jsx
+    <>
+      <div className="projectcard">
+        <div>
+          <div className="projectcard__wrapper">
+            <div className="projectcard__container">
+              <div className="projectcard__picturebox">
+                <NavLink
+                  to={"/project/" + project.id}
+                  className="projectcard__picturebox-navlink"
+                >
+                  <div ref={spinnerRef} className="loadSpinner">
+                    <LoadingAnimation size={"MED"} />
+                  </div>
+                  <div
+                    style={
+                      project.image
+                        ? { backgroundImage: `url(${project.image})` }
+                        : { backgroundImage: `url(${default_img})`}
+                    }
+                    className="projectcard__picture"
+                  ></div>
+                </NavLink>
+              </div>
+              <div>
+                <div className="projectcard__topdata">
+                  <div className="projectcard__topdata-text-container">
+                    <NavLink
+                      to={"/project/" + project.id}
+                      className="projectcard__topdata-name"
+                    >
+                      <h3 className="projectcard__topdata-header">{project.title}</h3>
+                      <p className="projectcard__topdata-desc">{project.description}</p>
+                    </NavLink>
+                  </div>
+                </div>
+                <div className="projectcard__topdata-creator">
+                  <div style={{ display: "inline-block" }}>
+                    <NavLink
+                      to={{
+                        pathname: "/discover/users/" + creator,
+                        state: { creator_id: project.user_id },
+                      }}
+                      className="projectcard__topdata-creator-link"
+                    >
+                      <span>{"By " + creator}</span>
+                    </NavLink>
+                  </div>
+                </div>
+              </div>
+              <div className="projectcard__bottomdata">
+                <div className="projectcard__bottomdata-fillbar">
+                  <div
+                    className="projectcard__bottomdata-fillbar-progress"
+                    style={fillBar(project.balance, project.funding_goal)}
+                  ></div>
+                </div>
+                <div className="projectcard__bottomdata-campaign">
+                  <div className="projectcard__bottomdata-pledged">
+                    <span>{pledgeCount + " pledged"}</span>
+                  </div>
+                  <div className="projectcard__bottomdata-percent-funded">
+                    <span>{funding}</span>
+                  </div>
+                  {remainingDays()}
+                  <div className="projectcard__bottomdata-days">
+                    <span className="projectcard__bottomdata-days-text">
+                      {"End date: " + project.date_goal}
+                    </span>
+                  </div>
+                  <div>
+                    {project.category ? (
+                      <NavLink
+                        to={"/discover/" + project.category.toLowerCase()}
+                        className="projectcard__bottomdata-category"
+                      >
+                        {project.category}
+                      </NavLink>
+                    ) : (
+                        <NavLink
+                          to={"#"}
+                          className="projectcard__bottomdata-category"
+                        >
+                          Category
+                        </NavLink>
+                    )}
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </>
+```
+
+
+
+
 
 <div align="center">
   <h2>Backend Overview</h2>

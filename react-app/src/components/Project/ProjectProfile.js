@@ -168,7 +168,7 @@ const ProjectProfile = (props) => {
       setTimeout(() => {
         hideSpinner()
 
-      }, 2500)
+      }, 2000)
     }
     return () => mounted = false;
   }, []);

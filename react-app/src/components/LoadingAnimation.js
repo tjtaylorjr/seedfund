@@ -1,61 +1,30 @@
-import React, {useEffect} from "react";
+import React, { useEffect, useRef } from "react";
 import { motion } from "framer-motion";
 
 const spinnerAnimation = {
-  repeat: Infinity,
+  repeat: 2,
   repeatType: "loop",
-  duration: 1,
+  duration: 1.25,
   ease: "linear"
 };
 
 const LoadingAnimation = (props) => {
-  let height = "";
-  let top = "";
-  let left = "";
-  let spinWidth = "";
-  let spinHeight = "";
-  let borderWidth = "";
 
-  if(props.size === "LRG") {
-    height = "362px";
-    top = "12.5rem";
-    left = "25.5rem";
-    spinWidth = "12rem";
-    spinHeight = "12rem";
-    borderWidth = "2rem";
-  }
+  const containerRef = useRef();
+  const animationRef = useRef();
 
-  if (props.size === "MED-SML") {
-    height = "139.5px";
-    top = "50px";
-    left = "105px";
-    spinWidth = "4rem";
-    spinHeight = "4rem";
-    borderWidth = ".75rem";
-  }
+  const containerStyle = `spinnerContainer--${props.size}`;
+  const animationStyle = `spinner--${props.size}`
 
-  if (props.size === "MED") {
-    height = "210px";
-    top = "75px";
-    left = "146px";
-    spinWidth = "6rem";
-    spinHeight = "6rem";
-    borderWidth = "1rem";
-  }
-
-  if (props.size === "SML") {
-    height = "90px";
-    top = "30px";
-    left = "60.5px";
-    spinWidth = "3rem";
-    spinHeight = "3rem";
-    borderWidth = ".5rem";
-  }
+  useEffect(() => {
+    containerRef.current.classList.add(containerStyle);
+    animationRef.current.classList.add(animationStyle);
+  }, [])
 
   return (
-    <div className="spinnerContainer" style={{height: height}} >
+    <div className="spinnerContainer" ref={containerRef}>
       <motion.span className="spinner"
-        style={{top: top, left: left, height: spinHeight, width: spinWidth, borderWidth: borderWidth}}
+        ref={animationRef}
         animate={{ rotate: 360}}
         transition={spinnerAnimation}
         />
