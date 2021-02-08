@@ -66,17 +66,23 @@ Currently, the App allows the creation of accounts, projects, and pledging to fu
   <h2>Frontend Overview</h2>
 </div>
 
+<br>
+
 SeedFund was designed with simplicity in mind, allowing the frontend to focus on rendering served database records.  However, future improvements such as messaging and project campaign rewards will make fuller use of React's powerful ability to maintain state.
+
+<br>
+
+### React
 
 React components simplify development and allow for the reuse of code while still keeping it dry.  This is exemplified in SeedFund through the project card component.  We have made use of this single page of code in different ways throughout the entire app.
 
 The project card represents the benefit and disadvantages to using React all at once.  Once challenge that we had to overcome was the split second flicker that can happen with React's useEffect hook.  In this case, the app was rendering the default picture before the component could be updated with the picture from the database.  There were several ways we could have addressed this problem but ultimately applied a loading animation to reveal the rendered component underneath after the DOM had been updated.
 
-To impliment this solution, we brought in Framer Motion; It is an easy to use motion library that simplifies the work needed in CSS to achieve animation effects.
-
 <br>
 
----
+### Framer Motion
+
+To implement this solution, we brought in Framer Motion; It is an easy to use motion library that simplifies the work needed in CSS to achieve animation effects.  We have posted the implementation of this library below:
 
 <br>
 
@@ -272,17 +278,58 @@ export default LoadingAnimation;
   <h2>Backend Overview</h2>
 </div>
 
+SeedFund utilizes Python through the power of a Flask server with a PostgreSQL database to serve the front end.  The entire operation is very straightforward with Flask facilitating data transfer to and from the user interface, updating data records in PostgreSQL as needed.
 
+### PostgreSQL
 
----
+PostgreSQL's main draw is that it has 25 years of open source development behind it, making it one of the most stable and professional open source databases out there.  Can't beat free and PostgreSQL is not lacking in features or power.  It can handle high amounts of traffic which this app could certainly see, if it were in public use.
+
+### Flask
+
+Flask is a micro framework that uses Python.  This means it is light weight, easy to set up, and powerful.  Flask's barebones approach allows you to not have to worry about bloat in your app and scale up as needed.  This translates into a faster, more responsive application for your users.
+
+A challenge that presented itself during this project was how the search route interacted with parameters passed from the front end.  In particular, clicking on a quick select bar item that had an ampersand in it was causing a bad request error.  Interestingly enough, the query parameter didn't even include an ampersand.  Instead it was converting that into a space and making a fetch request to the backend for each word.
+
+The front end loops were inefficient and it was unclear why this particular error was only happening with the quick select bar.  If you typed the same query into the search bar, it would not produce an error.  Our solution to this was to pass our query in a single fetch request with the '+' character standing in for any spaces.  On the backend, we split the query and iterate through a list of parameters to return a dictionary of the combined results.
+
+<br>
+
+```python
+
+@project_routes.route('/search/<query>')
+def searchForProjects(query):
+
+    search_terms = query.split('+')
+
+    result = list(chain.from_iterable(
+                     (Project.query.filter(or_(
+                         Project.title.ilike(f"%{term}%"),
+                         Project.description.ilike(f"%{term}%"),
+                         Project.category.ilike(f"%{term}%")
+                     )).options(joinedload(Project.user)).all())
+                     for term in search_terms))
+
+    data = [project.to_dict() for project in result]
+
+    return {"projects": data}
+
+```
+
+<br>
 
 <div align="center">
   <h2>Conclusion and Next Steps</h2>
 </div>
 
+What we have built here is just the beginning.  We have plans to add additional features to better reflect what crowdfunding applications can and should do.
 
+Ultimately this was an enjoyable project that demonstrated just how easily and quickly the Flask/React stack can bring a job from concept to working software.
+
+<br>
 
 ---
+
+<br>
 
 <div align="center">
   <h2>Team</h2>
