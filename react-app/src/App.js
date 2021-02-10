@@ -95,7 +95,6 @@ function App() {
                 user={currentUser}
                 authenticated={authenticated}
               />
-              <Footer />
             </Route>
           </Switch>
         </BrowserRouter>
