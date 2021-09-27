@@ -23,22 +23,21 @@
   border: 0.1rem solid #dcdedd;
 }
 
-.userprojectcard__picturebox-navlink {
-  width: 100%;
-  display: block;
-  padding-top: 56.25%;
-  text-decoration: none;
-}
-
 .userprojectcard__picturebox {
   position: relative;
   align-self: flex-start;
+  display: block;
+  height: 139.5px;
+  width: 100%;
+}
+
+.userprojectcard__picturebox-navlink {
+  text-decoration: none;
 }
 
 .userprojectcard__picture {
   width: 100%;
   top: 0rem;
-  position: absolute;
   border-color: #e8e8e8;
   border-bottom: 0.1rem solid #dcdedd;
   border: none;
@@ -62,7 +61,6 @@
 }
 
 .userprojectcard__topdata-text-container {
-  /* margin-bottom: 2rem; */
   color: #95959e;
 }
 

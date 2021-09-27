@@ -1,8 +1,8 @@
 .query-results__wrapper {
-  padding-bottom: 6rem;
-  padding-top: 1.8rem;
-  min-height: 560px;
+  padding-top: 127px;
+  min-height: 608px;
   height: 100%;
+  padding-bottom: 165px;
 }
 
 .query-results__container {
@@ -25,6 +25,7 @@
   display: flex;
   flex-wrap: wrap;
   justify-content: space-evenly;
+  box-sizing: border-box;
 }
 
 .query-results__loading-message, .query-results__no-results-message {

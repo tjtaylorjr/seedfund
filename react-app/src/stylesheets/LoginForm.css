@@ -5,12 +5,14 @@
   background-color: #f7f7f6;
   vertical-align: baseline;
   padding: 60px 18px;
-  min-height: 638px;
-  height: 100%;
+  min-height: 900px;
+  height: 100vh;
   border-top: 1px solid #f1eeea;
+  position: relative;
+  padding-top: 127px;
 }
 
-.login-form__main-container {
+.login-form__wrapper {
   box-sizing: border-box;
   display: flex;
   flex-direction: column;

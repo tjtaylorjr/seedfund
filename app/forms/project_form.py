@@ -11,6 +11,3 @@ class ProjectForm(FlaskForm):
     image = StringField('image')
     dateGoal = DateField('dateGoal')
     category = StringField('category', validators=[DataRequired()])
-    # username = StringField('username', validators=[DataRequired()])
-    # email = StringField('email', validators=[DataRequired(), user_exists])
-    # password = StringField('password', validators=[DataRequired()])

@@ -110,7 +110,7 @@ const NavBar = ({ authenticated, setAuthenticated, setCurrentUser }) => {
               </div>
               <li className="navbar__navlink-profile">
                 <NavLink to="/profile" exact={true} activeClassName="active">
-                  Profile
+                  My Projects
                 </NavLink>
               </li>
               <LogoutButton

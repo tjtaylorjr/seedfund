@@ -5,9 +5,11 @@
   background-color: #f7f7f6;
   vertical-align: baseline;
   padding: 60px 18px;
-  min-height: 638px;
-  height: 100%;
+  min-height: 900px;
+  height: 100vh;
   border-top: 1px solid #f1eeea;
+  padding-top: 127px;
+  position: relative;
 }
 
 .signup-form__main-container {

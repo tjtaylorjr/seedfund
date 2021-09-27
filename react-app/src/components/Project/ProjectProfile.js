@@ -1,9 +1,10 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { NavLink, Redirect, useHistory, useParams } from "react-router-dom";
+import LoadingAnimation from "../LoadingAnimation.js";
 import { dateDiffInDays, getPledgeCount, fillBar } from "../../services/utils";
 import default_img from '../../assets/images/default_img620by350.png';
 
-function ProjectProfile(props) {
+const ProjectProfile = (props) => {
   const [project, setProject] = useState({});
   const [creator, setCreator] = useState({});
   const [canEdit, setCanEdit] = useState(false);
@@ -12,8 +13,9 @@ function ProjectProfile(props) {
   const [pledged, setPledged] = useState(false);
   const [userPledgeAmount, setUserPledgeAmount] = useState(0);
   const [pledgeCount, setPledgeCount] = useState(null);
-  const history = useHistory();
 
+  const history = useHistory();
+  const spinnerRef = useRef();
   const { id } = useParams();
   const userId = props.user.id;
   const creatorName = creator.firstname + " " + creator.lastname;
@@ -157,6 +159,20 @@ function ProjectProfile(props) {
     }
   };
 
+  useEffect(() => {
+    let mounted = true;
+
+    const hideSpinner = () => spinnerRef.current.classList.add('loadSpinner--hide');
+
+    if (mounted) {
+      setTimeout(() => {
+        hideSpinner()
+
+      }, 2000)
+    }
+    return () => mounted = false;
+  }, []);
+
   return (
     <div className="project-profile-page__container">
         <main className="project-profile-page__main">
@@ -172,11 +188,24 @@ function ProjectProfile(props) {
             </div>
             {/* body for picture and informational box */}
             <div className="project-profile-page__image-container">
-              <img
-                className="project-profile-page__image"
-                src={project.image || default_img}
-                alt={project.title}
-              />
+              <div className="project-profile-page__image-wrapper">
+                {/* <img
+                  className="project-profile-page__image"
+                  src={project.image || default_img}
+                  alt={project.title}
+                /> */}
+                <div ref={spinnerRef} className="loadSpinner">
+                  <LoadingAnimation size={"LRG"} />
+                </div>
+                <div
+                  className="project-profile-page__image"
+                  style={
+                    project.image
+                      ? { backgroundImage: `url(${project.image})` }
+                      : { backgroundImage: `url(${default_img})` }
+                  }
+                ></div>
+              </div>
               <NavLink
                 to={("/discover/" + project.category).toLowerCase()}
                 className="project-profile-page__category"
@@ -280,6 +309,6 @@ function ProjectProfile(props) {
         </main>
     </div>
   );
-}
+};
 
 export default ProjectProfile;
