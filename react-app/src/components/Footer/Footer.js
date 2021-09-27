@@ -12,7 +12,7 @@ function Footer() {
         <Community />
       </div>
       <div className="footer__bottom-container">
-        <div className="footer-copyright">SeedFund, © 2020</div>
+        <div className="footer-copyright">SeedFund, © 2021</div>
         <a
           className="footer-github"
           href="https://github.com/tjtaylorjr/seedfund"
